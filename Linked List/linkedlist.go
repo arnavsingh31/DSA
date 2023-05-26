@@ -85,12 +85,43 @@ func (list *LinkedList) ReverseLinkedList() {
 	list.head = currNode
 }
 
+func (list *LinkedList) DeleteGivenKey(key int) {
+	currNode := list.head
+	prevNode := list.head
+	// tempNode := &Node{}
+
+	for currNode.data != key {
+		prevNode = currNode
+		currNode = currNode.next
+	}
+
+	prevNode.next = currNode.next
+	currNode.next = nil
+}
+
+func (list *LinkedList) DeleteKeyAtGivenLocation(pos int) {
+	currPos := 0
+	currNode := list.head
+	prevNode := &Node{}
+
+	for currPos != pos-1 {
+		prevNode = currNode
+		currNode = currNode.next
+		currPos++
+	}
+
+	prevNode.next = currNode.next
+	currNode.next = nil
+}
+
 func main() {
 	newList := initList()
 	newList.PopulateList(5)
 	newList.Traverse()
 	// newList.MoveLastToFront()
-	newList.ReverseLinkedList()
+	// newList.ReverseLinkedList()
+	// newList.DeleteGivenKey(3)
+	newList.DeleteKeyAtGivenLocation(4)
 	fmt.Println()
 	newList.Traverse()
 
