@@ -146,6 +146,58 @@ func (list *LinkedList) InsertionAfterGivenNode(key interface{}, after int) {
 
 }
 
+func (list *LinkedList) OddEvenLinkedList() {
+	oddNode := &Node{}
+	evenNode := &Node{}
+	startEvenNode := &Node{}
+	pos := 1
+	currNode := list.head
+	for currNode.next != nil {
+		if pos%2 == 0 {
+			if startEvenNode.next == nil {
+				startEvenNode.next = currNode
+			}
+			if evenNode.next != nil {
+				evenNode.next.next = currNode
+			}
+			evenNode.next = currNode
+
+		} else {
+			if oddNode.next != nil {
+				oddNode.next.next = currNode
+			}
+			oddNode.next = currNode
+		}
+		pos++
+		currNode = currNode.next
+	}
+
+	// checking whether the last node is odd or even and then handling the node respectively
+	if pos%2 == 0 {
+		if startEvenNode.next != nil {
+			evenNode.next.next = currNode
+			evenNode.next = currNode
+		} else {
+			startEvenNode.next = currNode
+			evenNode.next = currNode
+		}
+		// now joinning the odd and even list
+		oddNode.next.next = startEvenNode.next
+	} else {
+		if oddNode.next != nil {
+			oddNode.next.next = currNode
+			oddNode.next = currNode
+		} else {
+			oddNode.next = currNode
+		}
+
+		if startEvenNode.next != nil {
+			oddNode.next.next = startEvenNode.next
+			evenNode.next.next = nil
+		}
+	}
+}
+
 func main() {
 	newList := initList()
 	newList.PopulateList(5)
@@ -155,7 +207,8 @@ func main() {
 	// newList.DeleteGivenKey(3)
 	// newList.DeleteKeyAtGivenLocation(4)
 	// newList.InsertionKeyAtGivenPosition(0, 1)
-	newList.InsertionAfterGivenNode(4.5, 4)
+	// newList.InsertionAfterGivenNode(4.5, 4)
+	newList.OddEvenLinkedList()
 	fmt.Println()
 	newList.Traverse()
 
