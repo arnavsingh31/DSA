@@ -114,6 +114,38 @@ func (list *LinkedList) DeleteKeyAtGivenLocation(pos int) {
 	currNode.next = nil
 }
 
+func (list *LinkedList) InsertionKeyAtGivenPosition(key interface{}, pos int) {
+	newNode := &Node{data: key, next: nil}
+	if pos == 1 {
+		newNode.next = list.head
+		list.head = newNode
+		return
+	}
+	prevNode := &Node{}
+	currNode := list.head
+	currPos := 0
+	for currPos != pos-1 {
+		prevNode = currNode
+		currNode = currNode.next
+		currPos++
+	}
+
+	newNode.next = prevNode.next
+	prevNode.next = newNode
+}
+
+func (list *LinkedList) InsertionAfterGivenNode(key interface{}, after int) {
+	newNode := &Node{data: key, next: nil}
+	currNode := list.head
+
+	for currNode.data != after {
+		currNode = currNode.next
+	}
+	newNode.next = currNode.next
+	currNode.next = newNode
+
+}
+
 func main() {
 	newList := initList()
 	newList.PopulateList(5)
@@ -121,7 +153,9 @@ func main() {
 	// newList.MoveLastToFront()
 	// newList.ReverseLinkedList()
 	// newList.DeleteGivenKey(3)
-	newList.DeleteKeyAtGivenLocation(4)
+	// newList.DeleteKeyAtGivenLocation(4)
+	// newList.InsertionKeyAtGivenPosition(0, 1)
+	newList.InsertionAfterGivenNode(4.5, 4)
 	fmt.Println()
 	newList.Traverse()
 
