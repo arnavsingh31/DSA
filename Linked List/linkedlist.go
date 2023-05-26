@@ -32,7 +32,8 @@ func (list *LinkedList) Traverse() {
 	n := list.head
 
 	for n.next != nil {
-		fmt.Printf("( %v, currentNodeAddres:[%p] )-> ", *n, &n)
+		// fmt.Printf("( %v, currentNodeAddres:[%p] )-> ", *n, &*n)
+		fmt.Printf("%v -> ", *n)
 		n = n.next
 	}
 	fmt.Printf("%v", *n)
@@ -64,11 +65,32 @@ func (list *LinkedList) PopulateList(k int) {
 	}
 }
 
+func (list *LinkedList) ReverseLinkedList() {
+	tempNode := &Node{}
+	currNode := list.head
+	prevNode := list.head
+
+	for currNode.next != nil {
+		tempNode.next = currNode.next
+		if currNode == list.head {
+			currNode.next = nil
+			currNode = tempNode.next
+		} else {
+			tempNode.next, currNode.next = currNode.next, prevNode
+			prevNode = currNode
+			currNode = tempNode.next
+		}
+	}
+	currNode.next = prevNode
+	list.head = currNode
+}
+
 func main() {
 	newList := initList()
 	newList.PopulateList(5)
 	newList.Traverse()
-	newList.MoveLastToFront()
+	// newList.MoveLastToFront()
+	newList.ReverseLinkedList()
 	fmt.Println()
 	newList.Traverse()
 
