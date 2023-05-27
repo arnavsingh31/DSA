@@ -213,3 +213,22 @@ func main() {
 	newList.Traverse()
 
 }
+
+// checks whether the linked list has a cycle or not
+func hasCycle(head *Node) bool {
+	if head == nil {
+		return false
+	}
+	currNode := head
+	visited := make(map[*Node]bool)
+
+	for currNode.next != nil {
+		if visited[currNode] {
+			return true
+		}
+		visited[currNode] = true
+		currNode = currNode.next
+	}
+
+	return false
+}
