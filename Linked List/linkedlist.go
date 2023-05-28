@@ -290,3 +290,46 @@ func addDigits(d1, d2, prevCarry int) (sum, carry int) {
 	carry = tempSum / 10
 	return
 }
+
+func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+	prevNode := &ListNode{}
+	head := &ListNode{}
+
+	for l1 != nil && l2 != nil {
+		if l1.Val < l2.Val {
+			if head.Next == nil {
+				head.Next = l1
+			}
+			prevNode.Next = l1
+			prevNode = l1
+			l1 = l1.Next
+		} else if l2.Val < l1.Val {
+			if head.Next == nil {
+				head.Next = l2
+			}
+			prevNode.Next = l2
+			prevNode = l2
+			l2 = l2.Next
+		} else if l1.Val == l2.Val {
+			if head.Next == nil {
+				head.Next = l1
+			}
+			prevNode.Next = l1
+			prevNode = l1
+			l1 = l1.Next
+			prevNode.Next = l2
+			prevNode = l2
+			l2 = l2.Next
+		}
+	}
+
+	if l1 != nil {
+		prevNode.Next = l1
+	}
+
+	if l2 != nil {
+		prevNode.Next = l2
+	}
+
+	return head.Next
+}
