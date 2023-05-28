@@ -232,3 +232,61 @@ func hasCycle(head *Node) bool {
 
 	return false
 }
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	carry := 0
+	head := &ListNode{}
+	prevNode := &ListNode{}
+
+	// traversing through lists while both are not nil.
+	for l1 != nil && l2 != nil {
+		newNode := new(ListNode)
+		newNode.Val, carry = addDigits(l1.Val, l2.Val, carry)
+
+		if head.Next == nil {
+			head.Next = newNode
+		} else {
+			prevNode.Next = newNode
+		}
+
+		prevNode = newNode
+
+		l1 = l1.Next
+		l2 = l2.Next
+	}
+
+	// Now traversing through remaining nodes of either linked lists
+	for l1 != nil {
+		l1.Val, carry = addDigits(l1.Val, 0, carry)
+		prevNode.Next = l1
+		prevNode = l1
+		l1 = l1.Next
+	}
+
+	for l2 != nil {
+		l2.Val, carry = addDigits(l2.Val, 0, carry)
+		prevNode.Next = l2
+		prevNode = l2
+		l2 = l2.Next
+	}
+
+	// handling case where sum of last node and previous carry is > 0, in such case we have to create new node and add it to the list.
+	if carry > 0 {
+		n := &ListNode{Val: carry, Next: nil}
+		prevNode.Next = n
+	}
+
+	return head.Next
+}
+
+func addDigits(d1, d2, prevCarry int) (sum, carry int) {
+	tempSum := (d1 + d2 + prevCarry)
+	sum = tempSum % 10
+	carry = tempSum / 10
+	return
+}
