@@ -31,12 +31,11 @@ func (list *LinkedList) AddNode(d interface{}) {
 func (list *LinkedList) Traverse() {
 	n := list.head
 
-	for n.next != nil {
+	for n != nil {
 		// fmt.Printf("( %v, currentNodeAddres:[%p] )-> ", *n, &*n)
 		fmt.Printf("%v -> ", *n)
 		n = n.next
 	}
-	fmt.Printf("%v", *n)
 }
 
 func (list *LinkedList) MoveLastToFront() {
@@ -200,7 +199,7 @@ func (list *LinkedList) OddEvenLinkedList() {
 
 func main() {
 	newList := initList()
-	newList.PopulateList(5)
+	newList.PopulateList(2)
 	newList.Traverse()
 	// newList.MoveLastToFront()
 	// newList.ReverseLinkedList()
