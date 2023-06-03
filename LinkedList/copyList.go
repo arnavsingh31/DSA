@@ -1,19 +1,19 @@
 package main
 
-type Node struct {
+type SpecialNode struct {
 	Val    int
-	Next   *Node
-	Random *Node
+	Next   *SpecialNode
+	Random *SpecialNode
 }
 
-func copyList(head *Node) *Node {
-	copyHead := &Node{}
+func copyList(head *SpecialNode) *SpecialNode {
+	copyHead := &SpecialNode{}
 	currNode := copyHead
 	originalNode := head
-	originalToNewNodeMap := make(map[*Node]*Node)
+	originalToNewNodeMap := make(map[*SpecialNode]*SpecialNode)
 
 	for originalNode != nil {
-		copyNode := new(Node)
+		copyNode := new(SpecialNode)
 		copyNode.Val = originalNode.Val
 		currNode.Next = copyNode
 		currNode = copyNode
