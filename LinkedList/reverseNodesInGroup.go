@@ -1,10 +1,5 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 // APPROACH #1 Recursion.
 // T.C---> O(n) as each node is visited only once.
 // S.C---> O(n/k) as in each recursive call we reverse k nodes so to reverse 'n' nodes call stack will use space of n/k.
@@ -78,7 +73,7 @@ func reverseKGroup2(head *ListNode, k int) *ListNode {
 	tempNode := &ListNode{}
 	prevNode := &ListNode{}
 
-	for true {
+	for {
 		kthNode := geKthNode(nodeBeforeGroup, k)
 
 		if kthNode == nil {

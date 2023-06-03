@@ -1,10 +1,5 @@
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func reverseBetween(head *ListNode, left, right int) *ListNode {
 	if head == nil {
 		return head
