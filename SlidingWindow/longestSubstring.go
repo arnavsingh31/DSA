@@ -30,3 +30,31 @@ func getMaxLen(a, b int) int {
 	}
 	return a
 }
+
+// Optimsed
+func longestSubstring2(s string) int {
+	if len(s) <= 1 {
+		return len(s)
+	}
+
+	left := 0
+	maxLen := 1
+	hashMap := make(map[byte]int)
+
+	for right := 0; right < len(s); right++ {
+		curr := s[right]
+
+		if prevIndex, exist := hashMap[curr]; exist {
+
+			if prevIndex >= left {
+				left = prevIndex + 1
+			}
+		}
+		hashMap[curr] = right
+
+		maxLen = getMaxLen(maxLen, right-left+1)
+	}
+
+	return maxLen
+
+}
