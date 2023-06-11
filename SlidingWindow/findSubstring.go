@@ -1,9 +1,5 @@
 package main
 
-import (
-	"log"
-)
-
 func findSubstring(s string, words []string) []int {
 	stringLen := len(s)
 	wordArrayLen := len(words)
@@ -21,7 +17,7 @@ func findSubstring(s string, words []string) []int {
 		wordsFound := make(map[string]int)
 		wordsUsed := 0
 
-		for right := left; right < stringLen-wordLen; right += wordLen {
+		for right := left; right <= stringLen-wordLen; right += wordLen {
 			subStr := s[right : right+wordLen]
 
 			if count, exist := wordCount[subStr]; !exist {
@@ -31,7 +27,7 @@ func findSubstring(s string, words []string) []int {
 				wordsFound = make(map[string]int)
 				left = right + wordLen
 			} else {
-				for right-left+1 == substringLen || excessWord {
+				for right-left == substringLen || excessWord {
 					leftMostWord := s[left : left+wordLen]
 					wordsFound[leftMostWord] -= 1
 					left = left + wordLen
@@ -65,9 +61,4 @@ func findSubstring(s string, words []string) []int {
 	}
 
 	return res
-}
-
-func main() {
-
-	log.Printf("substring indices are---> %v", findSubstring("wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}))
 }
