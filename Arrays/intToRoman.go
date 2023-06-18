@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"strings"
 )
 
@@ -51,7 +50,6 @@ func intToRoman(num int) string {
 		IntVal:   1,
 		RomanVal: "I",
 	}}
-	log.Print(len(arr))
 
 	romanStr := ""
 
@@ -64,8 +62,4 @@ func intToRoman(num int) string {
 	}
 
 	return romanStr
-}
-
-func main() {
-	log.Printf("roman string is %s", intToRoman(3998))
 }
