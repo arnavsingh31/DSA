@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"math/rand"
 )
 
@@ -46,16 +45,16 @@ func (rs *RandomizedSet) GetRandom() int {
 	return rs.RSList[random_index]
 }
 
-func main() {
-	r_set := Constructor()
-	log.Printf("insert returned %v", r_set.Insert(3))
-	log.Printf("insert returned %v", r_set.Insert(3))
-	log.Printf("getRandom returned %v", r_set.GetRandom())
-	log.Printf("getRandom returned %v", r_set.GetRandom())
-	log.Printf("insert returned %v", r_set.Insert(1))
-	log.Printf("remove returned %v", r_set.Remove(3))
-	log.Printf("getRandom returned %v", r_set.GetRandom())
-	log.Printf("getRandom returned %v", r_set.GetRandom())
-	log.Printf("insert returned %v", r_set.Insert(0))
-	log.Printf("remove returned %v", r_set.Remove(0))
-}
+// func main() {
+// 	r_set := Constructor()
+// 	log.Printf("insert returned %v", r_set.Insert(3))
+// 	log.Printf("insert returned %v", r_set.Insert(3))
+// 	log.Printf("getRandom returned %v", r_set.GetRandom())
+// 	log.Printf("getRandom returned %v", r_set.GetRandom())
+// 	log.Printf("insert returned %v", r_set.Insert(1))
+// 	log.Printf("remove returned %v", r_set.Remove(3))
+// 	log.Printf("getRandom returned %v", r_set.GetRandom())
+// 	log.Printf("getRandom returned %v", r_set.GetRandom())
+// 	log.Printf("insert returned %v", r_set.Insert(0))
+// 	log.Printf("remove returned %v", r_set.Remove(0))
+// }
