@@ -37,6 +37,10 @@ func gcd2(a, b int) int {
 	return a
 }
 
+// optimised implimentatioin of Euclidean Algorithm
 func gcd3(a, b int) int {
-
+	if b == 0 {
+		return a
+	}
+	return gcd3(b, a%b)
 }
