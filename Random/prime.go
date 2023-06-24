@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"math"
 )
 
@@ -52,8 +51,4 @@ func isPrime3(a int) bool {
 	}
 
 	return true
-}
-
-func main() {
-	log.Print(isPrime(97))
 }
