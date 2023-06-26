@@ -12,12 +12,8 @@ func allDivisors(n int) {
 	}
 
 	for j := i; j >= 1; j-- {
-		if n%j == 0 {
+		if n%j == 0 && (j-1) != n/j {
 			log.Print(n / j)
 		}
 	}
-}
-
-func main() {
-	allDivisors(12)
 }
