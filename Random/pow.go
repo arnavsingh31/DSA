@@ -67,3 +67,28 @@ func pow3(x, n int) int {
 
 	return res
 }
+
+// it calculates x raised to n where n can be positive or negative integer and x is float64 type which
+// is also either positive or negative. (Leetcode #50)
+func pow4(x float64, n int) float64 {
+	res := 1.0
+	isNegative := false
+
+	if n < 0 {
+		n = -n
+		isNegative = true
+	}
+
+	for n > 0 {
+		if n%2 != 0 {
+			res = res * x
+		}
+		n = n / 2
+		x = x * x
+	}
+
+	if isNegative {
+		return 1 / res
+	}
+	return res
+}
