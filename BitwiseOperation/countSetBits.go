@@ -61,7 +61,3 @@ func count3(n uint32) int {
 	log.Print(res)
 	return res
 }
-
-func main() {
-	count3(uint32(19))
-}
