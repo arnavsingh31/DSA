@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"strings"
 )
 
@@ -39,8 +38,4 @@ func simplifyPath2(path string) string {
 	}
 
 	return "/" + strings.Join(stack, "/")
-}
-
-func main() {
-	log.Print(simplifyPath2("/../"))
 }
