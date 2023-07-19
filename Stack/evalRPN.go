@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"strconv"
 )
 
@@ -22,6 +21,7 @@ func (s *RPNStack) Pop() int {
 	return topVal
 }
 
+// LC #150
 func evalRPN(tokens []string) int {
 	arithematicOperatorMap := map[string]func(int, int) int{
 		"+": func(i1, i2 int) int { return i1 + i2 },
@@ -46,8 +46,4 @@ func evalRPN(tokens []string) int {
 		}
 	}
 	return stack.Pop()
-}
-
-func main() {
-	log.Print(evalRPN([]string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}))
 }
