@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 type Stack struct {
 	Items []interface{}
 	Top   int
@@ -38,15 +36,15 @@ func (s *Stack) Peek() interface{} {
 	return s.Items[s.Top]
 }
 
-func main() {
-	stack := Constructor()
-	stack.Push("A")
-	stack.Push("B")
-	stack.Push("C")
-	stack.Push("D")
-	log.Printf("stack consists of %v", stack.Items)
-	log.Print(stack.Peek())
-	log.Print(stack.Pop())
-	log.Printf("stack consists of %v", stack.Items)
-	log.Print(stack.Peek())
-}
+// func main() {
+// 	stack := Constructor()
+// 	stack.Push("A")
+// 	stack.Push("B")
+// 	stack.Push("C")
+// 	stack.Push("D")
+// 	log.Printf("stack consists of %v", stack.Items)
+// 	log.Print(stack.Peek())
+// 	log.Print(stack.Pop())
+// 	log.Printf("stack consists of %v", stack.Items)
+// 	log.Print(stack.Peek())
+// }
