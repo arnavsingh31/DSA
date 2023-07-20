@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 func previousGreater(arr []int) []int {
 	stack := []int{}
 	prevGr := make([]int, 0)
@@ -22,5 +20,3 @@ func previousGreater(arr []int) []int {
 	}
 	return prevGr
 }
-
-func main() { log.Print(previousGreater([]int{13, 8, 1, 5, 2, 5, 9, 7, 6, 12})) }
