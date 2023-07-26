@@ -9,7 +9,7 @@ type Node struct {
 /*
 TC--> O(n)
 SC--> O(n)
-Depth First Search(DFS) Algorithm using stack
+Depth First Traversal(DFS) Algorithm using stack
 */
 func dfs(root *Node) []int {
 	stack := []*Node{root}
@@ -31,7 +31,7 @@ func dfs(root *Node) []int {
 }
 
 /*
-DFS using recursion
+Depth First Traversal using recursion
 */
 func dfs2(root *Node) []int {
 	if root == nil {
@@ -45,6 +45,66 @@ func dfs2(root *Node) []int {
 	ans = append(ans, leftNodes...)
 	ans = append(ans, rightNodes...)
 	return ans
+}
+
+/*
+TC--> O(n)
+SC--> O(n)
+*/
+func breadFirstTraversal(root *Node) []int {
+	queue := []*Node{root}
+	ans := []int{}
+
+	for len(queue) > 0 {
+		node := queue[0]
+		ans = append(ans, node.Val)
+		queue = queue[1:]
+
+		if node.Left != nil {
+			queue = append(queue, node.Left)
+		}
+
+		if node.Right != nil {
+			queue = append(queue, node.Right)
+		}
+	}
+	return ans
+}
+
+// breadth first searching
+func searchValue(root *Node, val int) bool {
+	queue := []*Node{root}
+
+	for len(queue) > 0 {
+		node := queue[0]
+		queue = queue[1:]
+
+		if node.Left != nil {
+			queue = append(queue, node.Left)
+		}
+		if node.Right != nil {
+			queue = append(queue, node.Right)
+		}
+
+		if node.Val == val {
+			return true
+		}
+	}
+	return false
+}
+
+// depth first searching (recursive)
+func searchValue2(root *Node, val int) bool {
+	// base cases
+	if root == nil {
+		return false
+	}
+
+	if root.Val == val {
+		return true
+	}
+
+	return searchValue2(root.Left, val) || searchValue2(root.Right, val)
 }
 
 // func main() {
@@ -61,7 +121,8 @@ func dfs2(root *Node) []int {
 // 	node1.Right = node4
 // 	node2.Right = node5
 
-// 	log.Print(dfs2(root))
+// 	log.Print(breadFirstTraversal(root))
+// 	log.Print(searchValue2(root, 4))
 // }
 
 /*
@@ -70,4 +131,7 @@ func dfs2(root *Node) []int {
     2   3
    / \   \
   4   5   6
+
+  Depth first traversal :- [1,2,4,5,3,6]
+  Breadth First traversal :- [1,2,3,4,5,6]
 */
