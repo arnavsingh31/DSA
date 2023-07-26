@@ -4,6 +4,7 @@ package main
 	LC #316
 	TC--->O(n)
 	SC--->O(n)
+	Alternate way of asking question: LC #1081 Smallest Subsequence of Distinct Characters
 */
 func removeDuplicateLetter(s string) string {
 	stack := []rune{}
