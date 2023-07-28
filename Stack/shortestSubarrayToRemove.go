@@ -2,7 +2,7 @@ package main
 
 /*
 	LC #1574
-	Explanation: https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/solutions/830416/java-increasing-from-left-right-and-merge-o-n/
+	Explanation:https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/solutions/830480/c-o-n-sliding-window-explanation-with-illustrations/
 */
 func findLengthOfSubArray(arr []int) int {
 	left := 0
