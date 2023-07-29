@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 /*
 	LC #962
 	TC---> O(n^2)
@@ -53,6 +51,6 @@ func maxWidthRamp2(arr []int) int {
 	return max
 }
 
-func main() {
-	log.Print(maxWidthRamp2([]int{6, 0, 8, 2, 1, 5}))
-}
+// func main() {
+// 	log.Print(maxWidthRamp2([]int{6, 0, 8, 2, 1, 5}))
+// }
