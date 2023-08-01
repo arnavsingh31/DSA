@@ -5,14 +5,16 @@ import (
 	"math"
 )
 
+// very hard
+
 func maxSumMinProduct(nums []int) int {
 	MOD := int(math.Pow10(9) + 7)
 	inc_stack := make([]int, 0)
-	prefixSum := []int{0}
+	prefixSum := make([]int, len(nums)+1)
 	res := 0
 
 	for i := 0; i < len(nums); i++ {
-		prefixSum = append(prefixSum, prefixSum[len(prefixSum)-1]+nums[i])
+		prefixSum[i+1] = prefixSum[i] + nums[i]
 	}
 
 	for i := 0; i < len(nums); i++ {
