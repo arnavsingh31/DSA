@@ -112,12 +112,12 @@ func searchValue2(root *Node, val int) bool {
 }
 
 // func main() {
-// root := &Node{Val: 6}
+// root := &Node{Val: 1}
 // node1 := &Node{Val: 2}
-// node2 := &Node{Val: 5}
+// node2 := &Node{Val: 3}
 // node3 := &Node{Val: 4}
-// node4 := &Node{Val: -2}
-// node5 := &Node{Val: -1}
+// node4 := &Node{Val: 5}
+// node5 := &Node{Val: 6}
 
 // root.Left = node1
 // root.Right = node2
@@ -132,11 +132,11 @@ func searchValue2(root *Node, val int) bool {
 // }
 
 /*
-	 6
+	 1
     /  \
-    2   5
+    2   3
    / \   \
-  4   3   1
+  4   5   6
 
   Depth first traversal :- [1,2,4,5,3,6]
   Breadth First traversal :- [1,2,3,4,5,6]
