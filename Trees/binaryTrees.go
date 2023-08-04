@@ -1,5 +1,9 @@
 package main
 
+import (
+	"math"
+)
+
 type Node struct {
 	Left  *Node
 	Right *Node
@@ -108,30 +112,31 @@ func searchValue2(root *Node, val int) bool {
 }
 
 // func main() {
-// 	root := &Node{Val: 1}
-// 	node1 := &Node{Val: 2}
-// 	node2 := &Node{Val: 3}
-// 	node3 := &Node{Val: 4}
-// 	node4 := &Node{Val: 5}
-// 	node5 := &Node{Val: 6}
+// root := &Node{Val: 6}
+// node1 := &Node{Val: 2}
+// node2 := &Node{Val: 5}
+// node3 := &Node{Val: 4}
+// node4 := &Node{Val: -2}
+// node5 := &Node{Val: -1}
 
-// 	root.Left = node1
-// 	root.Right = node2
-// 	node1.Left = node3
-// 	node1.Right = node4
-// 	node2.Right = node5
+// root.Left = node1
+// root.Right = node2
+// node1.Left = node3
+// node1.Right = node4
+// node2.Right = node5
 
-// 	log.Print(breadFirstTraversal(root))
-// 	log.Print(searchValue2(root, 4))
-// 	log.Print(treeSum(root))
+// log.Print(breadFirstTraversal(root))
+// log.Print(searchValue2(root, 4))
+// log.Print(treeSum2(root))
+// log.Print(treeMin(root))
 // }
 
 /*
-	 1
+	 6
     /  \
-    2   3
+    2   5
    / \   \
-  4   5   6
+  4   3   1
 
   Depth first traversal :- [1,2,4,5,3,6]
   Breadth First traversal :- [1,2,3,4,5,6]
@@ -140,12 +145,12 @@ func searchValue2(root *Node, val int) bool {
 // Iterative approach
 func treeSum(root *Node) int {
 	stack := []*Node{root}
-	allNodesValues := []int{}
+	sum := 0
 
 	for len(stack) > 0 {
 		node := stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		allNodesValues = append(allNodesValues, node.Val)
+		sum += node.Val
 
 		if node.Left != nil {
 			stack = append(stack, node.Left)
@@ -153,11 +158,6 @@ func treeSum(root *Node) int {
 		if node.Right != nil {
 			stack = append(stack, node.Right)
 		}
-	}
-
-	sum := 0
-	for _, num := range allNodesValues {
-		sum += num
 	}
 
 	return sum
@@ -171,4 +171,50 @@ func treeSum2(root *Node) int {
 
 	sum := root.Val + treeSum2(root.Left) + treeSum2(root.Right)
 	return sum
+}
+
+/*
+Finding min value in a binary tree.
+Iterative Approach
+*/
+func treeMin(root *Node) int {
+	stack := []*Node{root}
+	min := math.MaxInt
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		if node.Val < min {
+			min = node.Val
+		}
+
+		if node.Left != nil {
+			stack = append(stack, node.Left)
+		}
+
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+	}
+
+	return min
+}
+
+func treeMin2(root *Node) int {
+	if root == nil {
+		return math.MaxInt
+	}
+
+	min := minVal(root.Val, treeMin2(root.Left))
+	min = minVal(min, treeMin2(root.Right))
+
+	return min
+}
+
+func minVal(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
