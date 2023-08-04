@@ -123,6 +123,7 @@ func searchValue2(root *Node, val int) bool {
 
 // 	log.Print(breadFirstTraversal(root))
 // 	log.Print(searchValue2(root, 4))
+// 	log.Print(treeSum(root))
 // }
 
 /*
@@ -135,3 +136,39 @@ func searchValue2(root *Node, val int) bool {
   Depth first traversal :- [1,2,4,5,3,6]
   Breadth First traversal :- [1,2,3,4,5,6]
 */
+
+// Iterative approach
+func treeSum(root *Node) int {
+	stack := []*Node{root}
+	allNodesValues := []int{}
+
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		allNodesValues = append(allNodesValues, node.Val)
+
+		if node.Left != nil {
+			stack = append(stack, node.Left)
+		}
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+	}
+
+	sum := 0
+	for _, num := range allNodesValues {
+		sum += num
+	}
+
+	return sum
+}
+
+// recursive approach
+func treeSum2(root *Node) int {
+	if root == nil {
+		return 0
+	}
+
+	sum := root.Val + treeSum2(root.Left) + treeSum2(root.Right)
+	return sum
+}

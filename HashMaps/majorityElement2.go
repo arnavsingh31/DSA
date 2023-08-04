@@ -41,9 +41,7 @@ func majorityElement2(nums []int) []int {
 			count1++
 		} else if num == candidate2 {
 			count2++
-		}
-
-		if count1 == 0 {
+		} else if count1 == 0 {
 			candidate1 = num
 			count1++
 		} else if count2 == 0 {
