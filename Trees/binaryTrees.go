@@ -129,6 +129,9 @@ func searchValue2(root *Node, val int) bool {
 // log.Print(searchValue2(root, 4))
 // log.Print(treeSum2(root))
 // log.Print(treeMin(root))
+// log.Print(inorderTraversal(root))
+// log.Print(preOrderTraversal(root))
+// log.Print(postOrderTraversal(root))
 // }
 
 /*
@@ -217,4 +220,40 @@ func minVal(a, b int) int {
 		return a
 	}
 	return b
+}
+
+// left -> root -> right
+func inorderTraversal(root *Node) []int {
+	if root == nil {
+		return []int{}
+	}
+
+	leftNodes := inorderTraversal(root.Left)
+	rightNodes := inorderTraversal(root.Right)
+
+	return append(append(append([]int{}, leftNodes...), root.Val), rightNodes...)
+}
+
+// root -> left -> right (same as depth first traversal)
+func preOrderTraversal(root *Node) []int {
+	if root == nil {
+		return []int{}
+	}
+
+	leftNodes := preOrderTraversal(root.Left)
+	rightNodes := preOrderTraversal(root.Right)
+
+	return append(append(append([]int{}, root.Val), leftNodes...), rightNodes...)
+}
+
+// left -> right -> root
+func postOrderTraversal(root *Node) []int {
+	if root == nil {
+		return []int{}
+	}
+
+	leftNodes := postOrderTraversal(root.Left)
+	rightNodes := postOrderTraversal(root.Right)
+
+	return append(append(append([]int{}, leftNodes...), rightNodes...), root.Val)
 }
