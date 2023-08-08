@@ -3,7 +3,7 @@ package main
 /*
 	LC #116
 	TC---> O(n)
-	SC--->O(n)
+	SC--->O(k), atmost k elements will be in queue where k is the no of leaf nodes.
 */
 type TreeNode struct {
 	Val   int
@@ -39,5 +39,39 @@ func connect(root *TreeNode) *TreeNode {
 		}
 	}
 
+	return root
+}
+
+/*
+**more intuitve BFS same code works for LC 117 as well.
+ */
+func connectTree(root *TreeNode) *TreeNode {
+	if root == nil {
+		return root
+	}
+
+	queue := []*TreeNode{root}
+
+	for len(queue) > 0 {
+		levelLength := len(queue)
+		var prev *TreeNode
+
+		for i := 0; i < levelLength; i++ {
+			node := queue[0]
+			queue = queue[1:]
+
+			if prev != nil {
+				prev.Next = node
+			}
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+
+			prev = node
+		}
+	}
 	return root
 }
