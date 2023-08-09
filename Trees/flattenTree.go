@@ -31,3 +31,31 @@ func preOrderTraversal2(root *Node) []*Node {
 
 	return append(append(append([]*Node{}, root), leftNodes...), rightNodes...)
 }
+
+/*
+	using df traversal with extreme right node first.
+*/
+func flatten2(root *Node) {
+	var prevNode *Node
+	var flatHelper func(*Node)
+
+	flatHelper = func(node *Node) {
+		if node != nil {
+			flatHelper(node.Right)
+			flatHelper(node.Left)
+			node.Right = prevNode
+			node.Left = nil
+			prevNode = node
+		}
+	}
+	flatHelper(root)
+}
+
+/*
+	 1
+    /  \
+    2   5
+   / \   \
+  3   4   6
+
+*/
