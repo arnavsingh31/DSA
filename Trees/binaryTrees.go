@@ -237,7 +237,10 @@ func inorderTraversal(root *Node) []int {
 	return append(append(append([]int{}, leftNodes...), root.Val), rightNodes...)
 }
 
-// root -> left -> right (same as depth first traversal)
+/*
+LC #144
+root -> left -> right (same as depth first traversal)
+*/
 func preOrderTraversal(root *Node) []int {
 	if root == nil {
 		return []int{}
@@ -249,7 +252,10 @@ func preOrderTraversal(root *Node) []int {
 	return append(append(append([]int{}, root.Val), leftNodes...), rightNodes...)
 }
 
-// left -> right -> root
+/*
+LC #145
+left -> right -> root
+*/
 func postOrderTraversal(root *Node) []int {
 	if root == nil {
 		return []int{}
