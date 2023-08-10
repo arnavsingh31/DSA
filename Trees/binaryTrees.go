@@ -222,7 +222,10 @@ func minVal(a, b int) int {
 	return b
 }
 
-// left -> root -> right
+/*
+LC #94
+left -> root -> right
+*/
 func inorderTraversal(root *Node) []int {
 	if root == nil {
 		return []int{}
