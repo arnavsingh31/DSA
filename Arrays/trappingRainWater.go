@@ -1,6 +1,6 @@
 package main
 
-/*	T.C -> O(n) and S.C --> O(n)
+/*	T.C -> O(n) and S.C --> O(n) [More intuitive than two pointer approach].
 	make 2 auxillary arrays then which will we use to determine for any index what is the max height to the left
 	of that index and max height to the right of the index.
 	then we notice that water can only trap at an index if there it is a valley index i.e it has height greater
@@ -26,7 +26,6 @@ func trap(height []int) int {
 	trapped_water := 0
 	for i := 0; i < height_len; i++ {
 		trapped_water += min_height(max_left[i], max_right[i]) - height[i]
-
 	}
 
 	return trapped_water
@@ -46,33 +45,57 @@ func max_height(a, b int) int {
 	return b
 }
 
-// APPROAH #2 Using two pointers. T.C---> O(n), S.C-->O(1)
+/*
+	APPROAH #2 Using two pointers. T.C---> O(n), S.C-->O(1)
+
+	Intuition
+	The intuition behind this algorithm is to use two pointers to scan the height slice from both ends. By focusing on the lower height at each step, we can determine the potential trapped water. We keep track of the maximum height seen on each side and calculate the trapped water based on these maximums. The algorithm efficiently calculates the trapped water without using additional space and runs in linear time, making it an effective solution to the problem.
+
+	Approach
+
+	1. Initialization: We start with two pointers, left and right, initialized to the first and last positions of the height slice, respectively. We also initialize two variables, leftMax and rightMax, to keep track of the maximum height seen so far on the left and right sides, respectively. Lastly, we initialize a variable result to store the total trapped water, initially set to zero.
+
+	2. Processing: The two pointers (left and right) move towards each other until they meet. During this process, we focus on the lower of the two heights at the current positions, as this determines the potential trapped water.
+
+	3. Trapping Water: When the height at the left pointer is smaller than the height at the right pointer, we process the left side. If the current height at the left pointer is greater than or equal to the leftMax, we update leftMax to this current height. If the current height is smaller than leftMax, it means there is a potential trap, so we add the difference between leftMax and the current height to the result, which represents the trapped water at this position. After this, we move the left pointer to the right.
+
+	4. Similarly, when the height at the right pointer is smaller than or equal to the height at the left pointer, we process the right side. We update rightMax or add trapped water to the result as necessary. Then, we move the right pointer to the left.
+
+	Continue the process until left and right meet. At this point, we have calculated the total trapped water, which is stored in the result variable.
+*/
 func trap2(height []int) int {
-	height_len := len(height)
+	left, right := 0, len(height)-1
+	leftMax, rightMax := 0, 0
+	result := 0
 
-	// pointers for left and right elevations
-	left_ptr, right_ptr := 0, height_len-1
-
-	// max value of left and right elevation points
-	max_left_ptr, max_right_ptr := height[left_ptr], height[right_ptr]
-	trapped_water := 0
-
-	// iterate until left elevation point reaches right elevation point or right elevation point reaches left elevation point.
-	for left_ptr < right_ptr {
-		// if max left elevation is smaller than max right elevation
-		if max_left_ptr < max_right_ptr {
-			left_ptr++                           // move the left elevation point by 1
-			if height[left_ptr] > max_left_ptr { // if height of current left elevation after moving is greater than max left elevation
-				max_left_ptr = height[left_ptr] // update the max left elevation with current left elevation point value
+	// Move the left and right pointers towards each other until they meet.
+	for left < right {
+		// When height at left pointer is smaller than height at right pointer,
+		// we process the left side.
+		if height[left] < height[right] {
+			// If the current height at left is greater than or equal to the leftMax,
+			// update the leftMax with the current height.
+			// Otherwise, add the difference between the leftMax and current height to the result,
+			// which represents the trapped water at the current position.
+			if height[left] >= leftMax {
+				leftMax = height[left]
+			} else {
+				result += leftMax - height[left]
 			}
-			trapped_water += max_left_ptr - height[left_ptr] // store water with delta of max left elevation and current left elevation
+			// Move the left pointer to the right.
+			left++
 		} else {
-			right_ptr--                            // decrease the right elevation by 1
-			if height[right_ptr] > max_right_ptr { // if height of current right elevation after decreasing is greater than max right elevation
-				max_right_ptr = height[right_ptr] // update the max right elevation with current right elevation point value
+			// When height at right pointer is smaller than or equal to height at left pointer,
+			// we process the right side.
+			// Similar to the left side, update rightMax or add trapped water to the result.
+			if height[right] >= rightMax {
+				rightMax = height[right]
+			} else {
+				result += rightMax - height[right]
 			}
-			trapped_water += max_right_ptr - height[right_ptr] // store water with delta of max right elevation and current right elevation
+			// Move the right pointer to the left.
+			right--
 		}
 	}
-	return trapped_water
+	return result
 }
