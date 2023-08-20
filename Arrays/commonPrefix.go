@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"strings"
 )
 
 // my solution
@@ -37,24 +38,43 @@ func longestCommonPrefix(strs []string) string {
 	return res
 }
 
-// better solution. simple logic T.C --> O(n.m), where n is the length of strs and m is the length of common prefix.
-// S.C--> O(1)
+/*
+Vertical Scanning.
+TC--->O(S) where S is the sum of all characters in all strings.
+In the worst case there will be n equal strings with length m and the algorithm performs S = m*n character comparisons.
+SC--->O(1)
+*/
 func longestCommonPrefix2(strs []string) string {
-	res := ""
-	for i := 0; i < len(strs[0]); i++ {
-		charByte := strs[0][i]
-		flag := true
+	prefix := strs[0]
+	for i := 0; i < len(prefix); i++ {
+		charByte := prefix[i]
+
 		for j := 1; j < len(strs); j++ {
-			if len(strs[j]) < i+1 || strs[j][i] != charByte {
-				flag = false
-				break
+			if i == len(strs[j]) || strs[j][i] != charByte {
+				return prefix[0:i]
 			}
 		}
-		if !flag {
-			return res
-		}
-		res += string(charByte)
-
 	}
-	return res
+	return prefix
+}
+
+/*
+Horizontal Scanning
+TC--->O(S) where S is the sum of all characters in all strings.
+In the worst case all nnn strings are the same. The algorithm compares the string S1 with the other strings [S2..Sn]. There are S character comparisons, where S is the sum of all characters in the input array.
+SC--->O(1)
+*/
+func longestCommonPrefix3(strs []string) string {
+	prefix := strs[0]
+
+	for i := 1; i < len(strs); i++ {
+		for strings.Index(strs[i], prefix) != 0 {
+			prefix = prefix[:len(prefix)-1]
+		}
+
+		if len(prefix) == 0 {
+			return ""
+		}
+	}
+	return prefix
 }
