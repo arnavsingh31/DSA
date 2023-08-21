@@ -57,3 +57,19 @@ func diagonalSum2(matrix [][]int) int {
 
 	return sum
 }
+
+// since we know it is a square matrix we can eliminate any pointers used in above approaches.
+func diagonalSum3(matrix [][]int) int {
+	rows := len(matrix)
+
+	sum := 0
+	for i := 0; i < rows; i++ {
+		if i == rows-1-i {
+			sum += matrix[i][i]
+		} else {
+			sum += matrix[i][i] + matrix[i][rows-1-i]
+		}
+	}
+
+	return sum
+}
