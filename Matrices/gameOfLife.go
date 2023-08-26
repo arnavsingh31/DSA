@@ -75,4 +75,83 @@ func gameOfLife(board [][]int) {
 
 }
 
-// todo: Implement in constant space
+/*
+	initial  |  new  |  map
+		0		 0		 0
+		0		 1		 2
+		1	     0		 3
+		1		 1		 1
+
+	TC--->O(m*n)
+	SC--->O(1)
+
+*/
+
+func gameOfLife2(board [][]int) {
+	rows := len(board)
+	cols := len(board[0])
+
+	isCellAlive := func(i, j int) bool {
+		cell := board[i][j]
+
+		if cell == 1 || cell == 3 {
+			return true
+		}
+		return false
+	}
+
+	neighbourLiveCount := func(i, j int) int {
+		aliveNeighbours := 0
+
+		if i > 0 && isCellAlive(i-1, j) {
+			aliveNeighbours++
+		}
+		if j > 0 && isCellAlive(i, j-1) {
+			aliveNeighbours++
+		}
+		if i < rows-1 && isCellAlive(i+1, j) {
+			aliveNeighbours++
+		}
+		if j < cols-1 && isCellAlive(i, j+1) {
+			aliveNeighbours++
+		}
+		if i > 0 && j > 0 && isCellAlive(i-1, j-1) {
+			aliveNeighbours++
+		}
+		if i > 0 && j < cols-1 && isCellAlive(i-1, j+1) {
+			aliveNeighbours++
+		}
+		if i < rows-1 && j > 0 && isCellAlive(i+1, j-1) {
+			aliveNeighbours++
+		}
+		if i < rows-1 && j < cols-1 && isCellAlive(i+1, j+1) {
+			aliveNeighbours++
+		}
+
+		return aliveNeighbours
+	}
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			aliveNeighbour := neighbourLiveCount(i, j)
+
+			if board[i][j] == 1 && (aliveNeighbour < 2 || aliveNeighbour > 3) {
+				board[i][j] = 3
+			} else if board[i][j] == 0 && aliveNeighbour == 3 {
+				board[i][j] = 2
+			}
+		}
+	}
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if board[i][j] == 2 {
+				board[i][j] = 1
+			}
+
+			if board[i][j] == 3 {
+				board[i][j] = 0
+			}
+		}
+	}
+}
