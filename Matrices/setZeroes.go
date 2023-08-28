@@ -1,7 +1,7 @@
 package main
 
 /*
-	LC #
+	LC #73
 	TC--->O(m*n)
 	SC--->O(m+n), we use separate row and col array to mark corresponding index of both to 1 (means we have
 	to mark entire row/col of matrix to 0). And later we use these array to set matrix elements to 0.
