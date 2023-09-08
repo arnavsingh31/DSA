@@ -77,15 +77,18 @@ func setZeroes2(matrix [][]int) {
 		}
 	}
 
+	// you need to check matrix[0][0] == 0 BEFORE* row0 == 0 because in case row0 is 0 but matrix[0][0] != 0 then
+	// we will overide the (0,0) cell in matrix and then we will also make enitre first col = 0.
+	if matrix[0][0] == 0 {
+		for i := 0; i < rows; i++ {
+			matrix[i][0] = 0
+		}
+	}
+
 	if row0 == 0 {
 		for j := 0; j < cols; j++ {
 			matrix[0][j] = 0
 		}
 	}
 
-	if matrix[0][0] == 0 {
-		for i := 0; i < rows; i++ {
-			matrix[i][0] = 0
-		}
-	}
 }
