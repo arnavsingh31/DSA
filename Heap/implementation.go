@@ -1,22 +1,17 @@
-package main
+package heap
 
-/*
-	NOTE:
-	Implemented heap following 1 based indexing.
-	If you want to follow zero based indexing then formula for left and right child of a node will
-	change left := 2*i + 1 , right := 2*i + 2.
-*/
-
-func insertInHeap(arr *[]int, val int) {
+// Insert Element in max-heap
+func InsertInMaxHeap(arr *[]int, val int) {
 	// first insert at end
 	*arr = append(*arr, val)
 	index := len(*arr) - 1
 
 	//then find correct position of the val {here using max heap to find val position}
-	for index > 1 {
-		parent := (index) / 2
-		if (*arr)[index] > (*arr)[parent] {
-			(*arr)[index], (*arr)[parent] = (*arr)[parent], (*arr)[index]
+	for index > 0 {
+		parent := (index - 1) / 2
+
+		if (*arr)[parent] < (*arr)[index] {
+			(*arr)[parent], (*arr)[index] = (*arr)[index], (*arr)[parent]
 			index = parent
 		} else {
 			return
@@ -24,7 +19,24 @@ func insertInHeap(arr *[]int, val int) {
 	}
 }
 
-// we always delete a root node.
+// Insert Element in min-heap
+func InsertInMinHeap(arr *[]int, val int) {
+	*arr = append(*arr, val)
+	index := len(*arr) - 1
+
+	for index > 0 {
+		parent := (index - 1) / 2
+
+		if (*arr)[parent] > (*arr)[index] {
+			(*arr)[parent], (*arr)[index] = (*arr)[index], (*arr)[parent]
+			index = parent
+		} else {
+			return
+		}
+	}
+}
+
+// we can delete like this also.
 func deleteFromHeap(arr *[]int) {
 
 	// first copy last node to first node
@@ -57,46 +69,87 @@ func deleteFromHeap(arr *[]int) {
 	}
 }
 
-// heapify algorithm {convert given array into max/min heap}. Below we implemented max heap.
-func heapify(arr *[]int, i int) {
-	left := 2 * i
-	right := 2*i + 1
-	swapIndex := i
+// Delete top(root) element from max-heap
+func DeleteFromMaxHeap(arr *[]int) {
+	lastIndex := len(*arr) - 1
 
-	if left < len(*arr) && (*arr)[swapIndex] < (*arr)[left] {
-		swapIndex = left
-	}
+	// swap first and last
+	(*arr)[0], (*arr)[lastIndex] = (*arr)[lastIndex], (*arr)[0]
+	*arr = (*arr)[:lastIndex]
 
-	if right < len(*arr) && (*arr)[swapIndex] < (*arr)[right] {
-		swapIndex = right
-	}
-
-	if swapIndex != i {
-		(*arr)[i], (*arr)[swapIndex] = (*arr)[swapIndex], (*arr)[i]
-		heapify(arr, swapIndex)
-	}
+	//max-heapify
+	MaxHeapify(arr, 0, len(*arr)-1)
 
 }
 
-// min heap
-func heapify2(arr *[]int, i int) {
-	left := 2 * i
-	right := 2*i + 1
-	swapIndex := i
+// Delete top(root) element from min-heap
+func DeleteFromMinHeap(arr *[]int) {
+	lastIndex := len(*arr) - 1
 
-	if left < len(*arr) && (*arr)[swapIndex] > (*arr)[left] {
-		swapIndex = left
+	// swap first and last
+	(*arr)[0], (*arr)[lastIndex] = (*arr)[lastIndex], (*arr)[0]
+	*arr = (*arr)[:lastIndex]
+
+	//min-heapify
+	MinHeapify(arr, 0, len(*arr)-1)
+
+}
+
+// Max-Heapify {heapify algorithm}
+func MaxHeapify(arr *[]int, i, n int) {
+	left := 2*i + 1
+	right := 2*i + 2
+	largest := i
+
+	if left <= n && (*arr)[largest] < (*arr)[left] {
+		largest = left
 	}
 
-	if right < len(*arr) && (*arr)[swapIndex] > (*arr)[right] {
-		swapIndex = right
+	if right <= n && (*arr)[largest] < (*arr)[right] {
+		largest = right
 	}
 
-	if swapIndex != i {
-		(*arr)[i], (*arr)[swapIndex] = (*arr)[swapIndex], (*arr)[i]
-		heapify2(arr, swapIndex)
+	if largest != i {
+		(*arr)[i], (*arr)[largest] = (*arr)[largest], (*arr)[i]
+		MaxHeapify(arr, largest, n)
+	}
+}
+
+// Min-Heapify {same as max-heapify, just reverse in-equalities}
+func MinHeapify(arr *[]int, i, n int) {
+	left := 2*i + 1
+	right := 2*i + 2
+	smallest := i
+
+	if left <= n && (*arr)[smallest] > (*arr)[left] {
+		smallest = left
 	}
 
+	if right <= n && (*arr)[smallest] > (*arr)[right] {
+		smallest = right
+	}
+
+	if smallest != i {
+		(*arr)[i], (*arr)[smallest] = (*arr)[smallest], (*arr)[i]
+		MinHeapify(arr, smallest, n)
+	}
+}
+
+/*
+	Heap Sort
+	TC-->O(nlogn)
+	1. swap first with last
+	2. now apply heapify algo to move root val to its correct position in array.
+*/
+func HeapSort(arr *[]int, n int) {
+
+	for i := n; i > 0; i-- {
+		// swap first and last element, decrement the size
+		(*arr)[1], (*arr)[i] = (*arr)[i], (*arr)[1]
+		n--
+
+		MaxHeapify(arr, n, 1)
+	}
 }
 
 // func main() {
@@ -113,13 +166,16 @@ func heapify2(arr *[]int, i int) {
 // log.Print(arr)
 
 // heapify algorithm TC--->O(n) how?
-// arr2 := []int{-1, 54, 53, 55, 52, 50}
-// n := len(arr2)
+// arr := []int{-1, 54, 53, 55, 52, 50}
+// n := len(arr)
 // for i := (n - 1) / 2; i > 0; i-- {
-// 	heapify2(&arr2, i)
+// 	heapify2(&arr, i)
 // }
 
 // log.Print(arr2)
+// 	arr := []int{-1, 60, 55, 70, 45, 50}
+// 	HeapSort(&arr, len(arr)-1)
+// 	log.Print(arr)
 // }
 
 /*
