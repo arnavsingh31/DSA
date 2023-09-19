@@ -1,8 +1,8 @@
 package heap
 
-type MinHeap []*Cell
+type CustomMinHeap []*Cell
 
-func (mh *MinHeap) push(c *Cell) {
+func (mh *CustomMinHeap) push(c *Cell) {
 
 	*mh = append(*mh, c)
 	index := len(*mh) - 1
@@ -19,7 +19,7 @@ func (mh *MinHeap) push(c *Cell) {
 	}
 }
 
-func (mh *MinHeap) pop() {
+func (mh *CustomMinHeap) pop() {
 	lastIndex := len(*mh) - 1
 
 	// swap
@@ -31,7 +31,7 @@ func (mh *MinHeap) pop() {
 	mh.Heapify(0, len(*mh)-1)
 }
 
-func (mh *MinHeap) Heapify(index int, n int) {
+func (mh *CustomMinHeap) Heapify(index int, n int) {
 	left := 2*index + 1
 	right := 2*index + 2
 	smallest := index
@@ -50,10 +50,10 @@ func (mh *MinHeap) Heapify(index int, n int) {
 	}
 }
 
-func (mh *MinHeap) top() *Cell {
+func (mh *CustomMinHeap) top() *Cell {
 	return (*mh)[0]
 }
 
-func (mh *MinHeap) swap(i, j int) {
+func (mh *CustomMinHeap) swap(i, j int) {
 	(*mh)[i], (*mh)[j] = (*mh)[j], (*mh)[i]
 }
