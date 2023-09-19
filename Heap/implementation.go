@@ -152,19 +152,6 @@ func HeapSort(arr *[]int, n int) {
 	}
 }
 
-// func main() {
-// arr := make([]int, 1)
-// arr[0] = -1
-// insertInHeap(&arr, 54)
-// insertInHeap(&arr, 53)
-// insertInHeap(&arr, 55)
-// insertInHeap(&arr, 52)
-// insertInHeap(&arr, 50)
-// log.Print(arr)
-
-// deleteFromHeap(&arr)
-// log.Print(arr)
-
 // heapify algorithm TC--->O(n) how?
 // arr := []int{-1, 54, 53, 55, 52, 50}
 // n := len(arr)
@@ -172,18 +159,137 @@ func HeapSort(arr *[]int, n int) {
 // 	heapify2(&arr, i)
 // }
 
-// log.Print(arr2)
 // 	arr := []int{-1, 60, 55, 70, 45, 50}
 // 	HeapSort(&arr, len(arr)-1)
 // 	log.Print(arr)
 // }
 
 /*
-	 50
-	/  \
-   53   55
-  /  \
- 52  54
-
-
+----------------------------------------------MIN-HEAP IMPLEMENTATION----------------------------------------
 */
+type MinHeap []int
+
+// Inserting an element in heap.
+func (mh *MinHeap) push(val int) {
+	*mh = append(*mh, val)
+
+	index := len(*mh) - 1
+
+	for index > 0 {
+		parent := (index - 1) / 2
+
+		if (*mh)[parent] > (*mh)[index] {
+			mh.swap(parent, index)
+			index = parent
+		} else {
+			return
+		}
+	}
+}
+
+// Deleting top from heap.
+func (mh *MinHeap) pop() {
+	lastIndex := len(*mh) - 1
+
+	//swap first and last nodes
+	mh.swap(0, lastIndex)
+
+	// pop last node
+	*mh = (*mh)[:lastIndex]
+
+	// heapify root index i.e 0
+	mh.heapify(0, len(*mh)-1)
+}
+
+// Returns top of the heap
+func (mh *MinHeap) top() int {
+	return (*mh)[0]
+}
+
+func (mh *MinHeap) heapify(index int, n int) {
+	left := 2*index + 1
+	right := 2*index + 2
+	smallest := index
+
+	if left <= n && (*mh)[smallest] > (*mh)[left] {
+		smallest = left
+	}
+
+	if right <= n && (*mh)[smallest] > (*mh)[right] {
+		smallest = right
+	}
+
+	if smallest != index {
+		mh.swap(smallest, index)
+		mh.heapify(smallest, n)
+	}
+}
+
+func (mh *MinHeap) swap(i, j int) {
+	(*mh)[i], (*mh)[j] = (*mh)[j], (*mh)[i]
+}
+
+/*
+----------------------------------------------MAX-HEAP IMPLEMENTATION----------------------------------------
+*/
+type MaxHeap []int
+
+// Inserting an element in heap.
+func (mh *MaxHeap) push(val int) {
+	*mh = append(*mh, val)
+
+	index := len(*mh) - 1
+
+	for index > 0 {
+		parent := (index - 1) / 2
+
+		if (*mh)[parent] < (*mh)[index] {
+			mh.swap(parent, index)
+			index = parent
+		} else {
+			return
+		}
+	}
+}
+
+// Deleting top from heap.
+func (mh *MaxHeap) pop() {
+	lastIndex := len(*mh) - 1
+
+	//swap first and last nodes
+	mh.swap(0, lastIndex)
+
+	// pop last node
+	*mh = (*mh)[:lastIndex]
+
+	// heapify root index i.e 0
+	mh.heapify(0, len(*mh)-1)
+}
+
+// Returns top of the heap
+func (mh *MaxHeap) top() int {
+	return (*mh)[0]
+}
+
+func (mh *MaxHeap) heapify(index int, n int) {
+	left := 2*index + 1
+	right := 2*index + 2
+	largest := index
+
+	if left <= n && (*mh)[largest] < (*mh)[left] {
+		largest = left
+	}
+
+	if right <= n && (*mh)[largest] < (*mh)[right] {
+		largest = right
+	}
+
+	if largest != index {
+		mh.swap(largest, index)
+		mh.heapify(largest, n)
+	}
+}
+
+func (mh *MaxHeap) swap(i, j int) {
+	(*mh)[i], (*mh)[j] = (*mh)[j], (*mh)[i]
+}

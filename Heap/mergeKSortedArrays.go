@@ -16,7 +16,7 @@ func MergeKSortedArray(matrix [][]int) []int {
 	rows := len(matrix)
 	ans := make([]int, 0)
 
-	minHeap := make(MinHeap, 0)
+	minHeap := make(CustomMinHeap, 0)
 
 	// O(klogk)
 	for i := 0; i < rows; i++ {

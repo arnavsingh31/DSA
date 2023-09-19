@@ -15,7 +15,7 @@ Using min-heap
 func SmallestRangeCoveringKLists(matrix [][]int) []int {
 	smallestRange := make([]int, 2)
 
-	minHeap := make(MinHeap, 0)
+	minHeap := make(CustomMinHeap, 0)
 	max := math.MinInt
 	min := math.MaxInt
 
