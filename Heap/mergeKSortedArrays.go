@@ -6,12 +6,6 @@ package heap
 	SC--->O(k + n*k) {min-heap + ans array} ~ O(n*k)
 */
 
-type Cell struct {
-	row int
-	col int
-	val int
-}
-
 func MergeKSortedArray(matrix [][]int) []int {
 	rows := len(matrix)
 	ans := make([]int, 0)

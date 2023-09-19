@@ -1,5 +1,11 @@
 package heap
 
+type Cell struct {
+	row int
+	col int
+	val int
+}
+
 type CustomMinHeap []*Cell
 
 func (mh *CustomMinHeap) push(c *Cell) {
