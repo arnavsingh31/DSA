@@ -14,6 +14,8 @@ func FindPathsInMaze(grid [][]int) []string {
 	cols := len(grid[0])
 	ans := []string{}
 	visited := make(map[Pos]bool)
+	directions := [][]int{{1, 0}, {0, -1}, {0, 1}, {-1, 0}}
+	move := []string{"D", "L", "R", "U"}
 
 	isCellValid := func(i, j int) bool {
 		return i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j] == 1
@@ -28,20 +30,12 @@ func FindPathsInMaze(grid [][]int) []string {
 
 		visited[Pos{i, j}] = true
 
-		if isCellValid(i+1, j) && !visited[Pos{i + 1, j}] {
-			dfs(i+1, j, path+"D")
-		}
+		for k, dir := range directions {
+			newX, newY := i+dir[0], j+dir[1]
 
-		if isCellValid(i, j-1) && !visited[Pos{i, j - 1}] {
-			dfs(i, j-1, path+"L")
-		}
-
-		if isCellValid(i, j+1) && !visited[Pos{i, j + 1}] {
-			dfs(i, j+1, path+"R")
-		}
-
-		if isCellValid(i-1, j) && !visited[Pos{i - 1, j}] {
-			dfs(i-1, j, path+"U")
+			if isCellValid(newX, newY) && !visited[Pos{newX, newY}] {
+				dfs(newX, newY, path+move[k])
+			}
 		}
 
 		visited[Pos{i, j}] = false
