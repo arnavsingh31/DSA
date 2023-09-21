@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #106
 	TC---> O(n)
 	SC---> O(n)
 */
-func buildTree2(inorder, postorder []int) *Node {
+func BuildTree2(inorder, postorder []int) *Node {
 	if len(inorder) == 0 {
 		return nil
 	}
@@ -18,8 +18,8 @@ func buildTree2(inorder, postorder []int) *Node {
 		}
 	}
 
-	root.Left = buildTree2(inorder[:i], postorder[:i])
-	root.Right = buildTree2(inorder[i+1:], postorder[i:len(postorder)-1])
+	root.Left = BuildTree2(inorder[:i], postorder[:i])
+	root.Right = BuildTree2(inorder[i+1:], postorder[i:len(postorder)-1])
 
 	return root
 }

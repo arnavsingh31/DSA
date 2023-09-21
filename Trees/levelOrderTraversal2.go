@@ -1,9 +1,11 @@
-package main
+package trees
 
 /*
 	LC #107
+	TC--->O(n)
+	SC--->O(n+ 2d array{ans})
 */
-func levelOrderTraversal2(root *Node) [][]int {
+func LevelOrderTraversal2(root *Node) [][]int {
 	if root == nil {
 		return [][]int{}
 	}

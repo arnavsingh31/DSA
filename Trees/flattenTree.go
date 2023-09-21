@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #114
 	TC---> O(n) traversing through each node twice.
 	SC---> O(n) for call stack and storing nodes in array.
 */
-func flatten(root *Node) {
+func Flatten(root *Node) {
 	if root == nil {
 		return
 	}
@@ -35,7 +35,7 @@ func preOrderTraversal2(root *Node) []*Node {
 /*
 	using df traversal with extreme right node first.
 */
-func flatten2(root *Node) {
+func Flatten2(root *Node) {
 	var prevNode *Node
 	var flatHelper func(*Node)
 

@@ -1,11 +1,13 @@
-package main
+package trees
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	TC--->O(n)
 	SC--->O(n)
 	recursive
 */
-func maxRootToLeafPathSum(root *Node) int {
+func MaxRootToLeafPathSum(root *Node) int {
 	return helper(root, 0)
 }
 
@@ -16,12 +18,5 @@ func helper(root *Node, sum int) int {
 
 	leftPathSum := helper(root.Left, root.Val+sum)
 	rightPathSum := helper(root.Right, root.Val+sum)
-	return maxSum(leftPathSum, rightPathSum)
-}
-
-func maxSum(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	return util.Max(leftPathSum, rightPathSum)
 }

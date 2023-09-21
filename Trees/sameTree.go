@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #100
 	TC---> O(n)
 	SC---> O(n)
 */
-func isSameTree(p, q *Node) bool {
+func IsSameTree(p, q *Node) bool {
 	if p == nil && q == nil {
 		return true
 	}
@@ -14,5 +14,5 @@ func isSameTree(p, q *Node) bool {
 		return false
 	}
 
-	return isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
+	return IsSameTree(p.Left, q.Left) && IsSameTree(p.Right, q.Right)
 }

@@ -1,4 +1,4 @@
-package main
+package trees
 
 import "math"
 
@@ -7,7 +7,7 @@ import "math"
 	TC---> < O(n), where n is the number of nodes, since we are not traversing every node in tree.
 	SC---> < O(n)
 */
-func countNodes(root *Node) int {
+func CountNodes(root *Node) int {
 	if root == nil {
 		return 0
 	}
@@ -27,6 +27,6 @@ func countNodes(root *Node) int {
 	if rightHeight == leftHeight {
 		return int(math.Pow(2, float64(leftHeight))) - 1
 	}
-	return 1 + countNodes(root.Left) + countNodes(root.Right)
+	return 1 + CountNodes(root.Left) + CountNodes(root.Right)
 
 }

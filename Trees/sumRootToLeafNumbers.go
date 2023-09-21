@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #129
 	TC--->O(n)
 	SC--->O(n)
 */
-func sumNumbers(root *Node) int {
+func SumNumbers(root *Node) int {
 	return helperSum(root, 0)
 }
 

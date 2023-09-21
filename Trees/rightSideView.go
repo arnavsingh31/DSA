@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #199
 	TC---> O(n)
 	SC---> O(n)
 */
-func rightSideView(root *Node) []int {
+func RightSideView(root *Node) []int {
 	if root == nil {
 		return []int{}
 	}
