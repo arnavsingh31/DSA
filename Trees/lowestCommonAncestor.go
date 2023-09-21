@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #236
 	TC---> O(n)
 	SC---> O(n)
 */
-func lowestCommonAncestor(root, p, q *Node) *Node {
+func LowestCommonAncestor(root, p, q *Node) *Node {
 	if root == nil {
 		return nil
 	}
@@ -14,8 +14,8 @@ func lowestCommonAncestor(root, p, q *Node) *Node {
 		return root
 	}
 
-	left := lowestCommonAncestor(root.Left, p, q)
-	right := lowestCommonAncestor(root.Right, p, q)
+	left := LowestCommonAncestor(root.Left, p, q)
+	right := LowestCommonAncestor(root.Right, p, q)
 
 	if left != nil && right != nil {
 		return root

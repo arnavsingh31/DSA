@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #101
 	TC---> O(n)
 	SC---> O(n)
 */
-func isSymmetric(root *Node) bool {
+func IsSymmetric(root *Node) bool {
 	return symHelper(root.Left, root.Right)
 }
 

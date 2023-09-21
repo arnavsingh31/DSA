@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #103
 	TC--> O(n)
 	SC--> O(n)
 */
-func zigZagTraversal(root *Node) [][]int {
+func ZigZagTraversal(root *Node) [][]int {
 	if root == nil {
 		return [][]int{}
 	}

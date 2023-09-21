@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #637
 	TC---> O(n)
 	SC---> O(n)
 */
-func findAverage(root *Node) []float64 {
+func FindAverage(root *Node) []float64 {
 	queue := []*Node{root}
 	ans := []float64{}
 	for len(queue) > 0 {

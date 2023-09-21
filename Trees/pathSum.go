@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #112
 	TC---> O(n)
 	SC--->O(n)
 */
-func hasPathSum(root *Node, target int) bool {
+func HasPathSum(root *Node, target int) bool {
 	if root == nil {
 		return false
 	}
@@ -16,5 +16,5 @@ func hasPathSum(root *Node, target int) bool {
 		return target == 0
 	}
 
-	return hasPathSum(root.Left, target) || hasPathSum(root.Right, target)
+	return HasPathSum(root.Left, target) || HasPathSum(root.Right, target)
 }

@@ -1,4 +1,4 @@
-package main
+package trees
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ LC #257
 TC--->O(n)
 SC--->O(n)
 */
-func binaryTreePaths(root *Node) []string {
+func BinaryTreePaths(root *Node) []string {
 	res := []string{}
 
 	pathHelper(root, "", &res)
@@ -36,5 +36,4 @@ func pathHelper(root *Node, path string, res *[]string) {
 
 	pathHelper(root.Left, path, res)
 	pathHelper(root.Right, path, res)
-
 }

@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #117
 	TC---> O(n)
 	SC---> O(k)
 */
-func connect2(root *TreeNode) *TreeNode {
+func Connect2(root *TreeNode) *TreeNode {
 	if root == nil {
 		return root
 	}

@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #113
 	TC--> O(n)
 	SC--> O(n)
 */
-func pathSum(root *Node, targetSum int) [][]int {
+func PathSum(root *Node, targetSum int) [][]int {
 	res := [][]int{}
 	findPath(root, targetSum, []int{}, &res)
 	return res

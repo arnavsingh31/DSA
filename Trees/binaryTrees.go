@@ -1,21 +1,17 @@
-package main
+package trees
 
 import (
 	"math"
-)
 
-type Node struct {
-	Left  *Node
-	Right *Node
-	Val   int
-}
+	util "github.com/arnavsingh31/DSA/Util"
+)
 
 /*
 TC--> O(n)
 SC--> O(n)
 Depth First Traversal(DFS) Algorithm using stack
 */
-func dfs(root *Node) []int {
+func TreeDepthFirstTraversal(root *Node) []int {
 	stack := []*Node{root}
 	visited := make([]int, 0)
 
@@ -37,13 +33,13 @@ func dfs(root *Node) []int {
 /*
 Depth First Traversal using recursion
 */
-func dfs2(root *Node) []int {
+func TreeDepthFirstTraversal2(root *Node) []int {
 	if root == nil {
 		return []int{}
 	}
 
-	leftNodes := dfs2(root.Left)
-	rightNodes := dfs2(root.Right)
+	leftNodes := TreeDepthFirstTraversal(root.Left)
+	rightNodes := TreeDepthFirstTraversal(root.Right)
 
 	ans := []int{root.Val}
 	ans = append(ans, leftNodes...)
@@ -55,7 +51,7 @@ func dfs2(root *Node) []int {
 TC--> O(n)
 SC--> O(n)
 */
-func breadFirstTraversal(root *Node) []int {
+func BreadFirstTraversal(root *Node) []int {
 	queue := []*Node{root}
 	ans := []int{}
 
@@ -76,7 +72,7 @@ func breadFirstTraversal(root *Node) []int {
 }
 
 // breadth first searching
-func searchValue(root *Node, val int) bool {
+func Bfs(root *Node, val int) bool {
 	queue := []*Node{root}
 
 	for len(queue) > 0 {
@@ -98,7 +94,7 @@ func searchValue(root *Node, val int) bool {
 }
 
 // depth first searching (recursive)
-func searchValue2(root *Node, val int) bool {
+func Dfs(root *Node, val int) bool {
 	// base cases
 	if root == nil {
 		return false
@@ -108,7 +104,7 @@ func searchValue2(root *Node, val int) bool {
 		return true
 	}
 
-	return searchValue2(root.Left, val) || searchValue2(root.Right, val)
+	return Dfs(root.Left, val) || Dfs(root.Right, val)
 }
 
 // func main() {
@@ -146,7 +142,7 @@ func searchValue2(root *Node, val int) bool {
 */
 
 // Iterative approach
-func treeSum(root *Node) int {
+func TreeSum(root *Node) int {
 	stack := []*Node{root}
 	sum := 0
 
@@ -167,12 +163,12 @@ func treeSum(root *Node) int {
 }
 
 // recursive approach
-func treeSum2(root *Node) int {
+func TreeSum2(root *Node) int {
 	if root == nil {
 		return 0
 	}
 
-	sum := root.Val + treeSum2(root.Left) + treeSum2(root.Right)
+	sum := root.Val + TreeSum2(root.Left) + TreeSum2(root.Right)
 	return sum
 }
 
@@ -180,7 +176,7 @@ func treeSum2(root *Node) int {
 Finding min value in a binary tree.
 Iterative Approach
 */
-func treeMin(root *Node) int {
+func TreeMin(root *Node) int {
 	stack := []*Node{root}
 	min := math.MaxInt
 
@@ -204,59 +200,52 @@ func treeMin(root *Node) int {
 	return min
 }
 
-func treeMin2(root *Node) int {
+func TreeMin2(root *Node) int {
 	if root == nil {
 		return math.MaxInt
 	}
 
-	min := minVal(root.Val, treeMin2(root.Left))
-	min = minVal(min, treeMin2(root.Right))
+	min := util.Min(root.Val, TreeMin2(root.Left))
+	min = util.Min(min, TreeMin2(root.Right))
 
 	return min
-}
-
-func minVal(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }
 
 /*
 LC #94
 left -> root -> right
 */
-func inorderTraversal(root *Node) []int {
+func InorderTraversal(root *Node) []int {
 	if root == nil {
 		return []int{}
 	}
 
-	leftNodes := inorderTraversal(root.Left)
-	rightNodes := inorderTraversal(root.Right)
+	leftNodes := InorderTraversal(root.Left)
+	rightNodes := InorderTraversal(root.Right)
 
 	return append(append(append([]int{}, leftNodes...), root.Val), rightNodes...)
 }
 
 // root -> left -> right (same as depth first traversal)
-func preOrderTraversal(root *Node) []int {
+func PreOrderTraversal(root *Node) []int {
 	if root == nil {
 		return []int{}
 	}
 
-	leftNodes := preOrderTraversal(root.Left)
-	rightNodes := preOrderTraversal(root.Right)
+	leftNodes := PreOrderTraversal(root.Left)
+	rightNodes := PreOrderTraversal(root.Right)
 
 	return append(append(append([]int{}, root.Val), leftNodes...), rightNodes...)
 }
 
 // left -> right -> root
-func postOrderTraversal(root *Node) []int {
+func PostOrderTraversal(root *Node) []int {
 	if root == nil {
 		return []int{}
 	}
 
-	leftNodes := postOrderTraversal(root.Left)
-	rightNodes := postOrderTraversal(root.Right)
+	leftNodes := PostOrderTraversal(root.Left)
+	rightNodes := PostOrderTraversal(root.Right)
 
 	return append(append(append([]int{}, leftNodes...), rightNodes...), root.Val)
 }

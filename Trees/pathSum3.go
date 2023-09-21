@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #437
 	TC--->O(n^2)
 	SC--->O(logn)
 */
-func pathSum3(root *Node, targetSum int) int {
+func PathSum3(root *Node, targetSum int) int {
 	res := 0
 	preOrder(root, targetSum, &res)
 	return res
@@ -39,7 +39,7 @@ func helperPathSum3(root *Node, targetSum int, res *int) {
 	SC--->O(n)
 	optimised using hashmap to store sum from root to each node.
 */
-func pathSum3_2(root *Node, targetSum int) int {
+func PathSum3_2(root *Node, targetSum int) int {
 	pathSumMap := make(map[int]int)
 	pathSumMap[0] = 1
 	res := 0

@@ -1,17 +1,17 @@
-package main
+package trees
 
 /*
 	LC #226
 	TC---> O(n)
 	SC---> O(n)
 */
-func invertTree(root *Node) *Node {
+func InvertTree(root *Node) *Node {
 	if root == nil {
 		return root
 	}
 
 	root.Left, root.Right = root.Right, root.Left
-	invertTree(root.Left)
-	invertTree(root.Right)
+	InvertTree(root.Left)
+	InvertTree(root.Right)
 	return root
 }

@@ -1,11 +1,11 @@
-package main
+package trees
 
 /*
 	LC #404
 	TC--->O(n)
 	SC--->O(n)
 */
-func sumOfLeftLeaves(root *Node) int {
+func SumOfLeftLeaves(root *Node) int {
 	return helperLeftLeaf(root, false)
 }
 

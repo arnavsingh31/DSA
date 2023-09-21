@@ -1,18 +1,12 @@
-package main
+package trees
 
 /*
 	LC #116
 	TC---> O(n)
 	SC--->O(k), atmost k elements will be in queue where k is the no of leaf nodes.
 */
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-	Next  *TreeNode
-}
 
-func connect(root *TreeNode) *TreeNode {
+func Connect(root *TreeNode) *TreeNode {
 	queue := []*TreeNode{root}
 
 	addToQueue := func(node *TreeNode) {
@@ -45,7 +39,7 @@ func connect(root *TreeNode) *TreeNode {
 /*
 **more intuitve BFS same code works for LC 117 as well.
  */
-func connectTree(root *TreeNode) *TreeNode {
+func ConnectTree(root *TreeNode) *TreeNode {
 	if root == nil {
 		return root
 	}

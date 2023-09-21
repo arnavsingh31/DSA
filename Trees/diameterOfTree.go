@@ -1,4 +1,4 @@
-package main
+package trees
 
 import util "github.com/arnavsingh31/DSA/Util"
 
