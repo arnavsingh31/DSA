@@ -1,7 +1,7 @@
-package main
+package linkedlist
 
 // Solution is not optimal redo it after learning stack data structure.
-func nextGreater(head *ListNode) []int {
+func NextGreater(head *ListNode) []int {
 	var searchNode *ListNode
 	ans := []int{}
 	currNode := head
@@ -33,7 +33,7 @@ func nextGreater(head *ListNode) []int {
 	S.C--> O(n)
 
 */
-func nextGreater2(head *ListNode) []int {
+func NextGreater2(head *ListNode) []int {
 	stack := []int{}
 	arr := make([]int, 0)
 	nextGr := make([]int, 0)

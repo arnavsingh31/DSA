@@ -1,10 +1,10 @@
-package main
+package linkedlist
 
-func removeNthFromEnd(head *ListNode, n int) *ListNode {
+func RemoveNthFromEnd(head *ListNode, n int) *ListNode {
 	if head == nil {
 		return head
 	}
-	length := lengthOfList(head)
+	length := LengthOfList(head)
 
 	pos := length - n
 	dummy := &ListNode{Next: head}
@@ -31,7 +31,7 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 /*
 Two-Pointer approach.
 */
-func removeNthFromEnd2(head *ListNode, n int) *ListNode {
+func RemoveNthFromEnd2(head *ListNode, n int) *ListNode {
 	if head == nil {
 		return head
 	}

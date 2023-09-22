@@ -1,4 +1,4 @@
-package main
+package linkedlist
 
 type DoubleLinkedListNode struct {
 	Key       int

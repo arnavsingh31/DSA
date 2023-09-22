@@ -1,7 +1,7 @@
-package main
+package linkedlist
 
 // LC #24
-func swapNodesInPairs(head *ListNode) *ListNode {
+func SwapNodesInPairs(head *ListNode) *ListNode {
 	dummyNode := &ListNode{Next: head}
 	prevNode := dummyNode
 	var tempNode, groupPrevNode *ListNode

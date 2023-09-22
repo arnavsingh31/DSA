@@ -1,7 +1,7 @@
-package main
+package linkedlist
 
 // LC #1669
-func mergeInBetween(list1, list2 *ListNode, a, b int) *ListNode {
+func MergeInBetween(list1, list2 *ListNode, a, b int) *ListNode {
 	dummyNode := &ListNode{Next: list1}
 	prevNode := dummyNode
 	curr1 := prevNode.Next

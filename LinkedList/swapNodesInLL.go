@@ -1,13 +1,14 @@
-package main
+package linkedlist
 
 // LC #1721
-func swapNodes(head *ListNode, k int) *ListNode {
+func SwapNodes(head *ListNode, k int) *ListNode {
 	var nodeFromBeg, nodeFromEnd, prev1, prev2 *ListNode
 	dummyNode := &ListNode{Next: head}
 	prev := dummyNode
 	currNode := prev.Next
-	length := lenOfList(head)
+	length := LengthOfList(head)
 	count := 0
+
 	for currNode != nil {
 		count++
 
@@ -28,19 +29,4 @@ func swapNodes(head *ListNode, k int) *ListNode {
 	nodeFromBeg.Next, nodeFromEnd.Next = nodeFromEnd.Next, nodeFromBeg.Next
 
 	return dummyNode.Next
-}
-
-func lenOfList(head *ListNode) int {
-	if head == nil {
-		return 0
-	}
-	len := 0
-	currNode := head
-
-	for currNode != nil {
-		len++
-		currNode = currNode.Next
-	}
-
-	return len
 }

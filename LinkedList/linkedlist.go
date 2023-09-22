@@ -1,56 +1,76 @@
-package main
+package linkedlist
 
-import (
-	"fmt"
-)
+import "fmt"
 
-type Node struct {
-	next *Node
-	data interface{}
-}
-
-type LinkedList struct {
-	head *Node
-}
-
-func (list *LinkedList) AddNode(d interface{}) {
-	newNode := &Node{data: d, next: nil}
-
+func (list *LinkedList) AddNode(num int) {
+	newNode := &ListNode{Val: num}
 	if list.head == nil {
 		list.head = newNode
 	} else {
-		n := list.head
-
-		for n.next != nil {
-			n = n.next
+		currNode := list.head
+		for currNode.Next != nil {
+			currNode = currNode.Next
 		}
-		n.next = newNode
+		currNode.Next = newNode
 	}
 }
 
 func (list *LinkedList) Traverse() {
-	n := list.head
+	currNode := list.head
 
-	for n != nil {
-		// fmt.Printf("( %v, currentNodeAddres:[%p] )-> ", *n, &*n)
-		fmt.Printf("%v -> ", *n)
-		n = n.next
+	for currNode != nil {
+		if currNode.Next == nil {
+			fmt.Printf(" %v ", currNode.Val)
+			fmt.Println()
+		} else {
+			fmt.Printf(" %v -->", currNode.Val)
+		}
+		currNode = currNode.Next
 	}
+}
+
+func ReverseLinkedList(head *ListNode) *ListNode {
+	var prevNode *ListNode
+	currNode := head
+
+	for currNode != nil {
+		tempNode := currNode.Next
+		currNode.Next = prevNode
+		prevNode = currNode
+		currNode = tempNode
+	}
+	head = currNode
+
+	return head
+}
+
+func LengthOfList(head *ListNode) int {
+	if head == nil {
+		return 0
+	}
+
+	len := 0
+	currNode := head
+	for currNode != nil {
+		currNode = currNode.Next
+		len++
+	}
+	return len
 }
 
 func (list *LinkedList) MoveLastToFront() {
 	n := list.head
-	lastNode := &Node{}
+	lastNode := &ListNode{}
 
-	for n.next != nil {
-		n = n.next
-		if n.next.next == nil {
-			lastNode = n.next
-			n.next = nil
+	for n.Next != nil {
+		n = n.Next
+		if n.Next.Next == nil {
+			lastNode = n.Next
+			n.Next = nil
 		}
 	}
 
-	lastNode.next = list.head
+	lastNode.Next = list.head
 	list.head = lastNode
 }
 
@@ -64,127 +84,86 @@ func (list *LinkedList) PopulateList(k int) {
 	}
 }
 
-func (list *LinkedList) ReverseLinkedList() {
-	tempNode := &Node{}
-	currNode := list.head
-	prevNode := list.head
-
-	for currNode.next != nil {
-		tempNode.next = currNode.next
-		if currNode == list.head {
-			currNode.next = nil
-			currNode = tempNode.next
-		} else {
-			tempNode.next, currNode.next = currNode.next, prevNode
-			prevNode = currNode
-			currNode = tempNode.next
-		}
-	}
-	currNode.next = prevNode
-	list.head = currNode
-}
-
 func (list *LinkedList) DeleteGivenKey(key int) {
 	currNode := list.head
 	prevNode := list.head
-	// tempNode := &Node{}
 
-	for currNode.data != key {
+	for currNode.Val != key {
 		prevNode = currNode
-		currNode = currNode.next
+		currNode = currNode.Next
 	}
 
-	prevNode.next = currNode.next
-	currNode.next = nil
+	prevNode.Next = currNode.Next
+	currNode.Next = nil
 }
 
 func (list *LinkedList) DeleteKeyAtGivenLocation(pos int) {
 	currPos := 0
 	currNode := list.head
-	prevNode := &Node{}
+	prevNode := &ListNode{}
 
 	for currPos != pos-1 {
 		prevNode = currNode
-		currNode = currNode.next
+		currNode = currNode.Next
 		currPos++
 	}
 
-	prevNode.next = currNode.next
-	currNode.next = nil
+	prevNode.Next = currNode.Next
+	currNode.Next = nil
 }
 
-func (list *LinkedList) InsertionKeyAtGivenPosition(key interface{}, pos int) {
-	newNode := &Node{data: key, next: nil}
+func (list *LinkedList) InsertionKeyAtGivenPosition(key int, pos int) {
+	newNode := &ListNode{Val: key, Next: nil}
 	if pos == 1 {
-		newNode.next = list.head
+		newNode.Next = list.head
 		list.head = newNode
 		return
 	}
-	prevNode := &Node{}
+	prevNode := &ListNode{}
 	currNode := list.head
 	currPos := 0
 	for currPos != pos-1 {
 		prevNode = currNode
-		currNode = currNode.next
+		currNode = currNode.Next
 		currPos++
 	}
 
-	newNode.next = prevNode.next
-	prevNode.next = newNode
+	newNode.Next = prevNode.Next
+	prevNode.Next = newNode
 }
 
-func (list *LinkedList) InsertionAfterGivenNode(key interface{}, after int) {
-	newNode := &Node{data: key, next: nil}
+func (list *LinkedList) InsertionAfterGivenNode(key int, after int) {
+	newNode := &ListNode{Val: key, Next: nil}
 	currNode := list.head
 
-	for currNode.data != after {
-		currNode = currNode.next
+	for currNode.Val != after {
+		currNode = currNode.Next
 	}
-	newNode.next = currNode.next
-	currNode.next = newNode
-
-}
-
-func main() {
-	newList := initList()
-	newList.PopulateList(2)
-	newList.Traverse()
-	// newList.MoveLastToFront()
-	// newList.ReverseLinkedList()
-	// newList.DeleteGivenKey(3)
-	// newList.DeleteKeyAtGivenLocation(4)
-	// newList.InsertionKeyAtGivenPosition(0, 1)
-	// newList.InsertionAfterGivenNode(4.5, 4)
-	fmt.Println()
-	newList.Traverse()
+	newNode.Next = currNode.Next
+	currNode.Next = newNode
 
 }
 
 // checks whether the linked list has a cycle or not
-func hasCycle(head *Node) bool {
+func HasCycle(head *ListNode) bool {
 	if head == nil {
 		return false
 	}
 	currNode := head
-	visited := make(map[*Node]bool)
+	visited := make(map[*ListNode]bool)
 
-	for currNode.next != nil {
+	for currNode.Next != nil {
 		if visited[currNode] {
 			return true
 		}
 		visited[currNode] = true
-		currNode = currNode.next
+		currNode = currNode.Next
 	}
 
 	return false
 }
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	carry := 0
 	head := &ListNode{}
 	prevNode := &ListNode{}
@@ -237,7 +216,7 @@ func addDigits(d1, d2, prevCarry int) (sum, carry int) {
 	return
 }
 
-func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+func MergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	prevNode := &ListNode{}
 	head := &ListNode{}
 

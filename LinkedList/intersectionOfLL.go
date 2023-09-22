@@ -1,4 +1,4 @@
-package main
+package linkedlist
 
 /*
 	LC #160
@@ -9,7 +9,7 @@ package main
 	LL. Once the either pointer finish traversing their current LL and become nil we immediately point them to
 	their start of other LL. This way they both pointer will meet at a node which will be our intersecting node.
 */
-func intersectingNode(headA, headB *ListNode) *ListNode {
+func IntersectingNode(headA, headB *ListNode) *ListNode {
 	currNodeA := headA
 	currNodeB := headB
 
@@ -35,8 +35,8 @@ func intersectingNode(headA, headB *ListNode) *ListNode {
 	we iterate through LL with larger length till diff. Now both pointers A and B will have to travel
 	same distance till intersecting node. Hence when they become equal we have found our intersecting node.
 */
-func intersectingNode2(headA, headB *ListNode) *ListNode {
-	lenA, lenB := lengthOfLinkedList(headA), lengthOfLinkedList(headB)
+func IntersectingNode2(headA, headB *ListNode) *ListNode {
+	lenA, lenB := LengthOfList(headA), LengthOfList(headB)
 	currNodeA := headA
 	currNodeB := headB
 
@@ -58,20 +58,6 @@ func intersectingNode2(headA, headB *ListNode) *ListNode {
 	}
 
 	return currNodeA
-}
-
-func lengthOfLinkedList(head *ListNode) int {
-	if head == nil {
-		return 0
-	}
-
-	len := 0
-	currNode := head
-	for currNode != nil {
-		currNode = currNode.Next
-		len++
-	}
-	return len
 }
 
 func maxWithDiff(x, y int) (int, int) {

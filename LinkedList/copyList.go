@@ -1,12 +1,6 @@
-package main
+package linkedlist
 
-type SpecialNode struct {
-	Val    int
-	Next   *SpecialNode
-	Random *SpecialNode
-}
-
-func copyList(head *SpecialNode) *SpecialNode {
+func CopyList(head *SpecialNode) *SpecialNode {
 	copyHead := &SpecialNode{}
 	currNode := copyHead
 	originalNode := head

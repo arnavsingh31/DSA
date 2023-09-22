@@ -1,7 +1,7 @@
-package main
+package linkedlist
 
 // LC #203
-func removeElements(head *ListNode, val int) *ListNode {
+func RemoveElements(head *ListNode, val int) *ListNode {
 	dummyNode := &ListNode{Next: head}
 	prevNode := dummyNode
 	currNode := prevNode.Next

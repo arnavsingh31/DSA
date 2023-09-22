@@ -1,6 +1,6 @@
-package main
+package linkedlist
 
-func partitionList(head *ListNode, x int) *ListNode {
+func PartitionList(head *ListNode, x int) *ListNode {
 	if head == nil {
 		return head
 	}

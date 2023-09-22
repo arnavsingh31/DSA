@@ -1,32 +1,16 @@
-package main
+package linkedlist
 
 // Initial solution I came up with.
 // T.C---> O(n^2)[outer loop will run (n-1)times for n number of nodes in the list and reverseList
 // itself has T.C-->O(n) where n is number of nodes in the list.], S.C--->O(1).
 // here we are simply reversing the nodes after the current node till we reach end of list. after reaching
 // end our list will be modified with nodes in the desired positons.
-func reorderList(head *ListNode) {
+func ReorderList(head *ListNode) {
 	mainCurr := head
 	for mainCurr != nil {
-		mainCurr.Next = reverseList(mainCurr.Next)
+		mainCurr.Next = ReverseLinkedList(mainCurr.Next)
 		mainCurr = mainCurr.Next
 	}
-}
-
-func reverseList(start *ListNode) *ListNode {
-	var prevNode *ListNode
-	currNode := start
-
-	for currNode != nil {
-		tempNode := currNode.Next
-		currNode.Next = prevNode
-		prevNode = currNode
-		currNode = tempNode
-	}
-
-	start = prevNode
-
-	return start
 }
 
 /*
@@ -42,7 +26,7 @@ func reverseList(start *ListNode) *ListNode {
 	firstHalf list. **OR we can simply point slow.Next = nil as we know it is the last node in the firstHalf.
 	T.C---> O(n), S.C---->O(1)
 */
-func reorderList2(head *ListNode) {
+func ReorderList2(head *ListNode) {
 	slow := head
 	fast := head
 
@@ -52,7 +36,7 @@ func reorderList2(head *ListNode) {
 	}
 
 	// reverse second half
-	secondHalf := reverseList(slow.Next)
+	secondHalf := ReverseLinkedList(slow.Next)
 	slow.Next = secondHalf
 	firstHalf := head
 	for secondHalf != nil {

@@ -1,12 +1,12 @@
-package main
+package linkedlist
 
 // APPROACH #1 using recurrsion. S.C ---> O(k) ; T.C ---> O(n.k){i think so}
-func rotateList(head *ListNode, k int) *ListNode {
-	if head == nil || (k == lengthOfList(head)) {
+func RotateList(head *ListNode, k int) *ListNode {
+	if head == nil || (k == LengthOfList(head)) {
 		return head
 	}
 
-	k %= lengthOfList(head)
+	k %= LengthOfList(head)
 
 	head = recursionRotate(head, k)
 
@@ -37,8 +37,8 @@ func recursionRotate(head *ListNode, k int) *ListNode {
 }
 
 // APPROACH #2 without using extra space .ie S.C.--> O(1) and T.C---> O(n)
-func rotateList2(head *ListNode, k int) *ListNode {
-	length := lengthOfList(head)
+func RotateList2(head *ListNode, k int) *ListNode {
+	length := LengthOfList(head)
 	if head == nil || k == 0 || (k == length) || (length == 1) {
 		return head
 	}
