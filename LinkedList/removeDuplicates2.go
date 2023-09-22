@@ -1,6 +1,6 @@
-package main
+package linkedlist
 
-func removeDuplicatesFromSortedList2(head *ListNode) *ListNode {
+func RemoveDuplicatesFromSortedList2(head *ListNode) *ListNode {
 	if head == nil {
 		return head
 	}

@@ -1,12 +1,12 @@
-package main
+package linkedlist
 
-// LC #725
 /*
+	LC #725
 	T.C--->  O(N + k), where N is the number of nodes in the given list.
 	If k is large, it could still require creating many new empty lists.
 	S.C---> O(k), the additional space used in writing the answer.
 */
-func splitList(root *ListNode, k int) []*ListNode {
+func SplitList(root *ListNode, k int) []*ListNode {
 	ans := []*ListNode{}
 	var nilNode *ListNode
 	var partSize, extra int

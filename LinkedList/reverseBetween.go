@@ -1,6 +1,6 @@
-package main
+package linkedlist
 
-func reverseBetween(head *ListNode, left, right int) *ListNode {
+func ReverseBetween(head *ListNode, left, right int) *ListNode {
 	if head == nil {
 		return head
 	}

@@ -1,8 +1,8 @@
-package main
+package linkedlist
 
 // LC #328
 // Approach I came up with.
-func oddEvenList(head *ListNode) *ListNode {
+func OddEvenList(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
 	}

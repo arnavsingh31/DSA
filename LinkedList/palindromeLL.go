@@ -1,11 +1,11 @@
-package main
+package linkedlist
 
 /*
 	we make number from value in LL nodes twice, first we make num by simply iterating the LL and
 	while iterating we also reverse the LL. Then we make another reverse_num by iterating from start
 	of reveresed LL. If both numbers are same, return true else return false.
 */
-func isPalindrome(head *ListNode) bool {
+func IsPalindrome(head *ListNode) bool {
 	var prevNode, tempNode *ListNode
 	num, reverse_num := 0, 0
 	currNode := head
@@ -35,7 +35,7 @@ func isPalindrome(head *ListNode) bool {
 	till second half is not nil. While iterating we compare node value of firstHalf and second half of LL.
 	If at any point value are not equal we return false. Else at the end we return true.
 */
-func isPalindrome2(head *ListNode) bool {
+func IsPalindrome2(head *ListNode) bool {
 	fast, slow := head, head
 
 	for fast.Next != nil && fast.Next.Next != nil {

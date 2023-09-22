@@ -1,6 +1,6 @@
-package main
+package linkedlist
 
-func cycleStart(head *ListNode) *ListNode {
+func CycleStart(head *ListNode) *ListNode {
 	if head == nil {
 		return head
 	}
@@ -20,7 +20,7 @@ func cycleStart(head *ListNode) *ListNode {
 
 // if cycle is present reset fast to head and keep slow at it current node and now move slow and fast at
 // same pace and where they will meet is the starting node of cycle.
-func cycleStart2(head *ListNode) *ListNode {
+func CycleStart2(head *ListNode) *ListNode {
 	if head == nil {
 		return head
 	}

@@ -1,6 +1,6 @@
-package main
+package linkedlist
 
-func add2Numbers(list1, list2 *ListNode) *ListNode {
+func Add2Numbers(list1, list2 *ListNode) *ListNode {
 	var ansHead, ansPrev *ListNode
 
 	curr1 := revLinkedList(list1)

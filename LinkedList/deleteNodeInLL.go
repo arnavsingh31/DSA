@@ -1,7 +1,7 @@
-package main
+package linkedlist
 
 // LC #237
-func deleteNode(node *ListNode) {
+func DeleteNode(node *ListNode) {
 	var prevNode *ListNode
 	currNode := node
 

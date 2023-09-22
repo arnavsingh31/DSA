@@ -1,30 +1,16 @@
-package main
+package linkedlist
 
 // APPROACH #1 Recursion.
 // T.C---> O(n) as each node is visited only once.
 // S.C---> O(n/k) as in each recursive call we reverse k nodes so to reverse 'n' nodes call stack will use space of n/k.
 // We will reverse first k nodes rest recursion will handle.
-func reverseKGroup(head *ListNode, k int) *ListNode {
+func ReverseKGroup(head *ListNode, k int) *ListNode {
 
-	intitialDiff := lengthOfList(head)
+	intitialDiff := LengthOfList(head)
 
 	head = helper(head, k, intitialDiff)
 
 	return head
-}
-
-func lengthOfList(head *ListNode) int {
-	if head == nil {
-		return 0
-	}
-
-	len := 0
-	currNode := head
-	for currNode != nil {
-		currNode = currNode.Next
-		len++
-	}
-	return len
 }
 
 func helper(head *ListNode, k, diff int) *ListNode {
@@ -63,7 +49,7 @@ func helper(head *ListNode, k, diff int) *ListNode {
 // APPROACH #2
 // T.C---> O(n)
 // S.C---> O(1)
-func reverseKGroup2(head *ListNode, k int) *ListNode {
+func ReverseKGroup2(head *ListNode, k int) *ListNode {
 	if head == nil {
 		return head
 	}
