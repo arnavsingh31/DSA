@@ -29,7 +29,7 @@ func OddEvenList(head *ListNode) *ListNode {
 }
 
 // Simplified version of above. T.C--> same as above O(n) and S.C--> O(1)
-func oddEvenList2(head *ListNode) *ListNode {
+func OddEvenList2(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
 	}
