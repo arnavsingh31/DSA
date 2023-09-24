@@ -4,6 +4,7 @@ import (
 	"container/heap"
 	"math"
 
+	linkedlist "github.com/arnavsingh31/DSA/LinkedList"
 	trees "github.com/arnavsingh31/DSA/Trees"
 	util "github.com/arnavsingh31/DSA/Util"
 )
@@ -471,3 +472,347 @@ func smallestRange(matrix [][]int) []int {
 // -------------------------------------------------------------------------------------------------------//
 
 // Linked list revision
+
+func add2Num(l1 *linkedlist.ListNode, l2 *linkedlist.ListNode) *linkedlist.ListNode {
+	sum, carry := 0, 0
+	var head, tail *linkedlist.ListNode
+
+	for l1 != nil || l2 != nil {
+		if l1 != nil {
+			sum += l1.Val
+			l1 = l1.Next
+		}
+
+		if l2 != nil {
+			sum += l2.Val
+			l2 = l2.Next
+		}
+
+		carry = sum / 10
+		sum = sum % 10
+
+		newNode := &linkedlist.ListNode{
+			Val:  sum,
+			Next: nil,
+		}
+
+		if head == nil {
+			head = newNode
+			tail = newNode
+		} else {
+			tail.Next = newNode
+			tail = newNode
+		}
+		sum = carry
+	}
+
+	if carry > 0 {
+		newNode := &linkedlist.ListNode{
+			Val:  carry,
+			Next: nil,
+		}
+		tail.Next = newNode
+		tail = newNode
+	}
+
+	return head
+}
+
+func copyListRandom(head *linkedlist.SpecialNode) *linkedlist.SpecialNode {
+	if head == nil {
+		return nil
+	}
+
+	var newHead, newTail *linkedlist.SpecialNode
+	oldToNewNodeMap := make(map[*linkedlist.SpecialNode]*linkedlist.SpecialNode)
+
+	currNode := head
+	for currNode != nil {
+		newNode := &linkedlist.SpecialNode{Val: currNode.Val}
+
+		// populate both maps
+		oldToNewNodeMap[currNode] = newNode
+
+		if newHead == nil {
+			newHead = newNode
+			newTail = newNode
+		} else {
+			newTail.Next = newNode
+			newTail = newNode
+		}
+
+		currNode = currNode.Next
+	}
+
+	// iterate over both list and populate random pointer
+	currNode = head
+	copyCurr := newHead
+	for currNode != nil {
+		copyCurr.Random = oldToNewNodeMap[currNode.Random]
+		currNode = currNode.Next
+		copyCurr = copyCurr.Next
+	}
+
+	return newHead
+}
+
+func deleteNfromEnd(head *linkedlist.ListNode, n int) *linkedlist.ListNode {
+	if head == nil {
+		return nil
+	}
+
+	slow, fast := head, head
+
+	for n > 0 {
+		fast = fast.Next
+		n--
+	}
+
+	if fast == nil {
+		return head.Next
+	}
+
+	for fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+
+	slow.Next = slow.Next.Next
+	return head
+}
+
+func deletedNode(node *linkedlist.ListNode) {
+	prevNode := node
+
+	for node.Next != nil {
+		node.Val = node.Next.Val
+		prevNode = node
+		node = node.Next
+	}
+
+	prevNode.Val = node.Val
+	prevNode.Next = nil
+}
+
+func intersection(headA, headB *linkedlist.ListNode) *linkedlist.ListNode {
+	currA := headA
+	currB := headB
+
+	for currA != currB {
+		if currA != nil {
+			currA = currA.Next
+		} else {
+			currA = headB
+		}
+
+		if currB != nil {
+			currB = currB.Next
+		} else {
+			currB = headA
+		}
+	}
+
+	return currA
+}
+
+func cycle2(head *linkedlist.ListNode) *linkedlist.ListNode {
+	fast := head
+	slow := head
+
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+		if fast == slow {
+			break
+		}
+	}
+
+	if fast == nil || fast.Next == nil {
+		return nil
+	}
+
+	fast = head
+	for fast != slow {
+		fast = fast.Next
+		slow = slow.Next
+	}
+
+	return fast
+}
+
+func mergeBetween(list1, list2 *linkedlist.ListNode, a int, b int) *linkedlist.ListNode {
+	curr1 := list1
+	curr2 := list2
+
+	for curr2.Next != nil {
+		curr2 = curr2.Next
+	}
+
+	var start, prev *linkedlist.ListNode
+	count := 0
+
+	for count <= b {
+		if count == a {
+			start = prev
+		}
+
+		prev = curr1
+		curr1 = curr1.Next
+		count++
+	}
+
+	start.Next = list2
+	curr2.Next = curr1
+
+	return list1
+}
+
+func nextGreaterNode(head *linkedlist.ListNode) []int {
+	// using monotonic stack we can find next greater node for each node in the list
+	stack := make([]int, 0)
+	temp := make([]int, 0)
+	count := 0
+	currNode := head
+
+	for currNode != nil {
+		temp = append(temp, currNode.Val)
+		count++
+		currNode = currNode.Next
+	}
+
+	ans := make([]int, count)
+	for i := 0; i < len(temp); i++ {
+		for len(stack) > 0 && temp[stack[len(stack)-1]] < temp[i] {
+			topIndex := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			ans[topIndex] = temp[i]
+		}
+
+		stack = append(stack, i)
+	}
+
+	return ans
+}
+
+func oddEvenList(head *linkedlist.ListNode) *linkedlist.ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	odd := head
+	even := head.Next
+
+	evenHead := even
+
+	for even != nil && even.Next != nil {
+		odd.Next = even.Next
+		odd = odd.Next
+		even.Next = odd.Next
+		even = even.Next
+	}
+	odd.Next = evenHead
+	return head
+
+}
+
+func isPalindrome(head *linkedlist.ListNode) bool {
+	var prev *linkedlist.ListNode
+	currNode := head
+	length := 0
+	count := 0
+
+	for currNode != nil {
+		length++
+		currNode = currNode.Next
+	}
+
+	// reverse till half of length
+	currNode = head
+	for count < length/2 {
+		temp := currNode.Next
+		currNode.Next = prev
+		prev = currNode
+		currNode = temp
+		count++
+	}
+
+	// in case length of ll is odd then move the second half list starting by 1 node (as this node is common)
+	if length%2 != 0 {
+		currNode = currNode.Next
+	}
+
+	currNode2 := prev
+	for currNode2 != nil && currNode != nil {
+		if currNode2.Val != currNode.Val {
+			return false
+		}
+		currNode2 = currNode2.Next
+		currNode = currNode.Next
+	}
+
+	return true
+}
+
+func partitionList(head *linkedlist.ListNode, x int) *linkedlist.ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	var smallHead, bigHead, smallCurr, bigCurr *linkedlist.ListNode
+	currNode := head
+
+	for currNode != nil {
+		if x <= currNode.Val {
+			if bigHead == nil {
+				bigHead = currNode
+				bigCurr = currNode
+			} else {
+				bigCurr.Next = currNode
+				bigCurr = currNode
+			}
+		} else {
+			if smallHead == nil {
+				smallHead = currNode
+				smallCurr = currNode
+			} else {
+				smallCurr.Next = currNode
+				smallCurr = currNode
+			}
+		}
+		currNode = currNode.Next
+	}
+
+	if smallHead == nil {
+		return bigHead
+	}
+
+	smallCurr.Next = bigHead
+
+	if bigHead != nil {
+		bigCurr.Next = nil
+	}
+
+	return smallHead
+}
+
+// func removeDuplicates(head *linkedlist.ListNode) *linkedlist.ListNode {
+// 	if head == nil && head.Next == nil {
+// 		return head
+// 	}
+
+// 	nodeCountMap := make(map[int]int)
+// 	currNode := head
+// 	for currNode != nil {
+// 		nodeCountMap[currNode.Val] += 1
+// 		currNode = currNode.Next
+// 	}
+
+// 	currNode = head
+
+// 	for currNode != nil{
+// 		if nodeCountMap[currNode.Val] == 1 {
+
+// 		}
+// 	}
+
+// }

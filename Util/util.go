@@ -28,3 +28,10 @@ func Signum(a, b int) int {
 		return -1
 	}
 }
+
+func GetSumWithCarry(a, b, prevCarry int) (sum, carry int) {
+	sum = (a + b + prevCarry)
+	carry = sum / 10
+	sum = sum % 10
+	return
+}
