@@ -905,3 +905,136 @@ func reorder2(head *linkedlist.ListNode) {
 		currNodeRev = tempRev
 	}
 }
+
+func reverseBetween(head *linkedlist.ListNode, left, right int) *linkedlist.ListNode {
+	if head.Next == nil {
+		return head
+	}
+
+	dummy := &linkedlist.ListNode{Next: head}
+	prev := dummy
+	currNode := prev.Next
+	count := 1
+
+	for count < left {
+		prev = currNode
+		currNode = currNode.Next
+		count++
+	}
+	nodeBeforeLeft := prev
+
+	leftNode := currNode
+	//now reverse from left to right
+	for count < right {
+		temp := currNode.Next
+		currNode.Next = prev
+		prev = currNode
+		currNode = temp
+		count++
+	}
+
+	nodeBeforeLeft.Next = prev
+	leftNode.Next = currNode
+
+	return dummy.Next
+}
+
+func reverseInKGroup(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
+	currNode := head
+	len := 0
+	for currNode != nil {
+		len++
+		currNode = currNode.Next
+	}
+
+	return helper1(head, k, len)
+}
+
+func helper1(head *linkedlist.ListNode, k int, totalNodes int) *linkedlist.ListNode {
+	if head == nil || head.Next == nil || totalNodes < k {
+		return head
+	}
+
+	// reversed first k nodes
+	var prev, temp *linkedlist.ListNode
+	currNode := head
+	count := 1
+
+	for count <= k {
+		temp = currNode.Next
+		currNode.Next = prev
+		prev = currNode
+		currNode = temp
+		count++
+	}
+
+	head.Next = helper1(temp, k, totalNodes-k)
+
+	return prev
+}
+
+func rotateList(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
+	len := 0
+	currNode := head
+	for currNode != nil {
+		len++
+		currNode = currNode.Next
+	}
+
+	k = k % len
+	if k == 0 {
+		return head
+	}
+
+	return helper2(head, k)
+}
+
+func helper2(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
+
+	var prev *linkedlist.ListNode
+	currNode := head
+
+	for currNode.Next != nil {
+		prev = currNode
+		currNode = currNode.Next
+	}
+
+	prev.Next = nil
+	currNode.Next = head
+	head = currNode
+
+	return helper2(head, k-1)
+}
+
+func rotateList2(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
+	len := 0
+	originalHead := head
+	currNode := head
+	for currNode != nil {
+		len++
+		currNode = currNode.Next
+	}
+
+	if head == nil || k == 0 || k == len || len == 1 || k%len == 0 {
+		return head
+	}
+
+	k = k % len
+	n := len - k - 1
+	currNode = head
+	for currNode.Next != nil && n > 0 {
+		currNode = currNode.Next
+		n--
+	}
+
+	head = currNode.Next
+	currNode.Next = nil
+
+	currNode = head
+	for currNode.Next != nil {
+		currNode = currNode.Next
+	}
+	currNode.Next = originalHead
+
+	return head
+}
