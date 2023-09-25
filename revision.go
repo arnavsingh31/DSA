@@ -795,24 +795,113 @@ func partitionList(head *linkedlist.ListNode, x int) *linkedlist.ListNode {
 	return smallHead
 }
 
-// func removeDuplicates(head *linkedlist.ListNode) *linkedlist.ListNode {
-// 	if head == nil && head.Next == nil {
-// 		return head
-// 	}
+func removeDuplicates(head *linkedlist.ListNode) *linkedlist.ListNode {
+	if head == nil && head.Next == nil {
+		return head
+	}
 
-// 	nodeCountMap := make(map[int]int)
-// 	currNode := head
-// 	for currNode != nil {
-// 		nodeCountMap[currNode.Val] += 1
-// 		currNode = currNode.Next
-// 	}
+	dummy := &linkedlist.ListNode{Next: head}
+	prev := dummy
+	currNode := prev.Next
 
-// 	currNode = head
+	for currNode != nil {
+		if currNode.Next != nil && currNode.Val == currNode.Next.Val {
+			for currNode.Next != nil && currNode.Val == currNode.Next.Val {
+				currNode = currNode.Next
+			}
+			prev.Next = currNode.Next
+		} else {
+			prev = currNode
+		}
+		currNode = currNode.Next
+	}
 
-// 	for currNode != nil{
-// 		if nodeCountMap[currNode.Val] == 1 {
+	return dummy.Next
+}
 
-// 		}
-// 	}
+func removeElements(head *linkedlist.ListNode, val int) *linkedlist.ListNode {
+	if head == nil {
+		return head
+	}
 
-// }
+	dummy := &linkedlist.ListNode{Next: head}
+	prev := dummy
+	currNode := prev.Next
+
+	for currNode != nil {
+		if currNode.Val == val {
+			prev.Next = currNode.Next
+		} else {
+			prev = currNode
+		}
+		currNode = currNode.Next
+
+	}
+	return dummy.Next
+}
+
+func reorder(head *linkedlist.ListNode) {
+	if head.Next == nil {
+		return
+	}
+
+	currNode := head
+	for currNode != nil {
+		newHead := reverse(currNode.Next)
+		currNode.Next = newHead
+		currNode = currNode.Next
+	}
+}
+
+func reverse(head *linkedlist.ListNode) *linkedlist.ListNode {
+	if head == nil {
+		return head
+	}
+	var prev *linkedlist.ListNode
+	currNode := head
+	for currNode != nil {
+		temp := currNode.Next
+		currNode.Next = prev
+		prev = currNode
+		currNode = temp
+	}
+
+	return prev
+}
+
+func reorder2(head *linkedlist.ListNode) {
+	if head.Next == nil {
+		return
+	}
+
+	slow := head
+	fast := head
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	// reverse 2 nd half
+	currNodeRev := slow.Next
+	var prev *linkedlist.ListNode
+	slow.Next = nil
+	for currNodeRev != nil {
+		temp := currNodeRev.Next
+		currNodeRev.Next = prev
+		prev = currNodeRev
+		currNodeRev = temp
+	}
+
+	currNode := head
+	currNodeRev = prev
+	for currNodeRev != nil {
+		temp := currNode.Next
+		tempRev := currNodeRev.Next
+
+		currNode.Next = currNodeRev
+		currNodeRev.Next = temp
+
+		currNode = temp
+		currNodeRev = tempRev
+	}
+}
