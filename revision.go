@@ -1038,3 +1038,207 @@ func rotateList2(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
 
 	return head
 }
+
+func split(head *linkedlist.ListNode, k int) []*linkedlist.ListNode {
+	ans := make([]*linkedlist.ListNode, 0)
+	length := 0
+	currNode := head
+	for currNode != nil {
+		length++
+		currNode = currNode.Next
+	}
+
+	minGroupSize := length / k
+	extraNode := length % k
+
+	currNode = head
+	for currNode != nil {
+		// handle extra nodes after equal division of nodes
+		count := minGroupSize
+		if extraNode >= 1 {
+			count += 1
+			extraNode--
+		}
+
+		// add head of each group
+
+		ans = append(ans, head)
+
+		for count > 1 {
+			currNode = currNode.Next
+			count--
+		}
+
+		head = currNode.Next
+		currNode.Next = nil
+		currNode = head
+	}
+
+	for len(ans) < k {
+		ans = append(ans, nil)
+	}
+
+	return ans
+}
+
+func swapNode(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
+	var ktnNodeFromBeg, kthNodeFromEnd *linkedlist.ListNode
+	slow, fast := head, head
+	n := k
+	for n > 1 {
+		fast = fast.Next
+		n--
+	}
+	ktnNodeFromBeg = fast
+
+	for fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+	kthNodeFromEnd = slow
+
+	ktnNodeFromBeg.Val, kthNodeFromEnd.Val = kthNodeFromEnd.Val, ktnNodeFromBeg.Val
+
+	return head
+}
+
+func swapPairs(head *linkedlist.ListNode) *linkedlist.ListNode {
+	return helper3(head, 2)
+}
+
+func helper3(head *linkedlist.ListNode, k int) *linkedlist.ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	var prev *linkedlist.ListNode
+	currNode := head
+	for k > 0 {
+		k--
+		temp := currNode.Next
+		currNode.Next = prev
+		prev = currNode
+		currNode = temp
+	}
+	head.Next = helper3(currNode, 2)
+
+	return prev
+}
+
+//-----------------------------------------Trees-----------------------------------------------------------//
+
+func averageOfLevel(root *trees.Node) []float64 {
+	ans := make([]float64, 0)
+
+	if root == nil {
+		return ans
+	}
+
+	queue := []*trees.Node{root}
+
+	for len(queue) > 0 {
+		levelLength := len(queue)
+		sum := 0.0
+		for i := 0; i < levelLength; i++ {
+			node := queue[0]
+			queue = queue[1:]
+			sum += float64(node.Val)
+
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+
+		ans = append(ans, sum/float64(levelLength))
+	}
+
+	return ans
+}
+
+func buildTree(preorder []int, inorder []int) *trees.Node {
+	root := &trees.Node{Val: preorder[0]}
+	i := 0
+
+	for ; i < len(inorder); i++ {
+		if inorder[i] == root.Val {
+			break
+		}
+	}
+
+	root.Left = buildTree(preorder[1:i+1], inorder[:i])
+	root.Right = buildTree(preorder[i+1:], inorder[i+1:])
+	return root
+}
+
+func flatten(root *trees.Node) {
+	helper4(root)
+}
+
+func helper4(root *trees.Node) *trees.Node {
+	if root == nil {
+		return root
+	}
+
+	leftTail := helper4(root.Left)
+	rightTail := helper4(root.Right)
+
+	if root.Left != nil {
+		leftTail.Right = root.Right
+		root.Right = root.Left
+		root.Left = nil
+	}
+
+	if rightTail != nil {
+		return rightTail
+	}
+
+	if leftTail != nil {
+		return leftTail
+	}
+
+	return root
+}
+
+func flatten2(root *trees.Node) {
+	var prev *trees.Node
+
+	var dfs func(*trees.Node)
+	dfs = func(root *trees.Node) {
+		if root == nil {
+			return
+		}
+
+		dfs(root.Right)
+		dfs(root.Left)
+		root.Right = prev
+		root.Left = nil
+		prev = root
+	}
+
+	dfs(root)
+}
+
+func lowestCommonAncestor(root, p, q *trees.Node) *trees.Node {
+	if root == nil {
+		return nil
+	}
+
+	if root == p || root == q {
+		return root
+	}
+
+	left := lowestCommonAncestor(root.Left, p, q)
+	right := lowestCommonAncestor(root.Right, p, q)
+
+	if left == nil {
+		return right
+	} else if right == nil {
+		return left
+	}
+
+	return root
+}
