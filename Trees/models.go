@@ -18,3 +18,8 @@ type NodeInfo struct {
 	hd    int
 	level int
 }
+
+type NodeHorizontalDistance struct {
+	node *Node
+	hd   int
+}
