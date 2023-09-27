@@ -1242,3 +1242,41 @@ func lowestCommonAncestor(root, p, q *trees.Node) *trees.Node {
 
 	return root
 }
+
+func zigZagTraversal(root *trees.Node) [][]int {
+	if root == nil {
+		return [][]int{}
+	}
+
+	queue := []*trees.Node{root}
+	ans := make([][]int, 0)
+
+	leftToRight := true
+	for len(queue) > 0 {
+		levelSize := len(queue)
+		arr := make([]int, levelSize)
+
+		for i := 0; i < levelSize; i++ {
+			node := queue[0]
+			queue = queue[1:]
+
+			if leftToRight {
+				arr[i] = node.Val
+			} else {
+				arr[levelSize-1-i] = node.Val
+			}
+
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
+		}
+
+		ans = append(ans, arr)
+		leftToRight = !leftToRight
+	}
+	return ans
+}
