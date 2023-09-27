@@ -12,3 +12,9 @@ type Node struct {
 	Right *Node
 	Val   int
 }
+
+type NodeInfo struct {
+	node  *Node
+	hd    int
+	level int
+}
