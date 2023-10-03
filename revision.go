@@ -1280,3 +1280,50 @@ func zigZagTraversal(root *trees.Node) [][]int {
 	}
 	return ans
 }
+
+func buildTree2(inorder, postorder []int) *trees.Node {
+	n := len(inorder) // both have same length
+	nodeToIndex := make(map[int]int)
+
+	for i := 0; i < len(inorder); i++ {
+		nodeToIndex[inorder[i]] = i
+	}
+	rootIndex := n - 1
+	return makeTree(inorder, postorder, nodeToIndex, &rootIndex, 0, n-1)
+}
+
+func makeTree(inorder, postorder []int, nodeToIndex map[int]int, index *int, inorderStart, inorderEnd int) *trees.Node {
+	if *index < 0 || inorderStart > inorderEnd {
+		return nil
+	}
+
+	element := postorder[*index]
+	node := &trees.Node{Val: element}
+	pos := nodeToIndex[element]
+	*index--
+
+	node.Right = makeTree(inorder, postorder, nodeToIndex, index, pos+1, inorderEnd)
+	node.Left = makeTree(inorder, postorder, nodeToIndex, index, inorderStart, pos-1)
+
+	return node
+}
+
+func minPathSum(grid [][]int) int {
+	rows := len(grid)
+	cols := len(grid[0])
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if i > 0 && j > 0 {
+				grid[i][j] = grid[i][j] + util.Min(grid[i-1][j], grid[i][j-1])
+			} else if i > 0 {
+				grid[i][j] = grid[i][j] + grid[i-1][j]
+			} else if j > 0 {
+				grid[i][j] = grid[i][j] + grid[i][j-1]
+			}
+
+		}
+	}
+
+	return grid[rows-1][cols-1]
+}
