@@ -1327,3 +1327,94 @@ func minPathSum(grid [][]int) int {
 
 	return grid[rows-1][cols-1]
 }
+
+func numIslands(grid [][]byte) int {
+	rows := len(grid)
+	cols := len(grid[0])
+	visited := make(map[Cell]bool)
+	directions := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}
+
+	isCellValid := func(i, j int) bool {
+		return i >= 0 && j >= 0 && i < rows && j < cols
+	}
+
+	bfs := func(i, j int) {
+		queue := []Cell{{i, j}}
+
+		for len(queue) > 0 {
+			cell := queue[0]
+			queue = queue[1:]
+
+			x, y := cell.row, cell.col
+			visited[cell] = true
+
+			for _, dir := range directions {
+				newX, newY := x+dir[0], y+dir[1]
+
+				if isCellValid(newX, newY) && grid[newX][newY] == '1' && !visited[Cell{newX, newY}] {
+					queue = append(queue, Cell{newX, newY})
+					visited[Cell{newX, newY}] = true
+				}
+			}
+		}
+	}
+
+	islandCount := 0
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if grid[i][j] == '1' && !visited[Cell{i, j}] {
+				bfs(i, j)
+				islandCount++
+			}
+		}
+	}
+
+	return islandCount
+}
+
+type Cell struct {
+	row, col int
+}
+
+func gameOfLife(board [][]int) {
+	rows := len(board)
+	cols := len(board[0])
+	directions := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {-1, 1}, {-1, -1}, {1, -1}, {1, 1}}
+
+	isCellValid := func(i, j int) bool {
+		return i >= 0 && j >= 0 && i < rows && j < cols
+	}
+
+	liveNeighbourCount := func(i, j int) int {
+		count := 0
+		for _, dir := range directions {
+			x, y := i+dir[0], j+dir[1]
+
+			if isCellValid(x, y) && (board[x][y] == 1 || board[x][y] == 3) {
+				count++
+			}
+		}
+		return count
+	}
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			aliveNeighbour := liveNeighbourCount(i, j)
+			if board[i][j] == 1 && (aliveNeighbour > 3 || aliveNeighbour < 2) {
+				board[i][j] = 3
+			} else if board[i][j] == 0 && aliveNeighbour == 3 {
+				board[i][j] = 2
+			}
+		}
+	}
+
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			if board[i][j] == 2 {
+				board[i][j] = 1
+			} else if board[i][j] == 3 {
+				board[i][j] = 0
+			}
+		}
+	}
+}
