@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #48
 	TC--->O(m*n)
 	SC--->O(1)
 */
-func rotate(matrix [][]int) {
+func Rotate(matrix [][]int) {
 	rows := len(matrix)
 	cols := len(matrix[0])
 

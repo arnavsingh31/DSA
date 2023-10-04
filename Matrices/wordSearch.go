@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #79
 	TC--->O(m*n*4^len(word))
 	SC--->O(m*n)
 */
-func wordSearch(board [][]byte, word string) bool {
+func WordSearch(board [][]byte, word string) bool {
 	rows := len(board)
 	cols := len(board[0])
 	path := make(map[Pos]struct{}, 0)

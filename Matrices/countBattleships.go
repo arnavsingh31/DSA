@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #419
 	TC--->O(m*n)
 	SC--->O(m+n), call stack space
 */
-func countBattleships(board [][]byte) int {
+func CountBattleships(board [][]byte) int {
 	rows := len(board)
 	cols := len(board[0])
 	count := 0
@@ -53,7 +53,7 @@ func countBattleships(board [][]byte) int {
 	If both conditions are met, increment the cnt counter. This means we found a new battleship.
 
 */
-func countBattleships2(board [][]int) int {
+func CountBattleships2(board [][]int) int {
 	rows := len(board)
 	cols := len(board[0])
 	count := 0

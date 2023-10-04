@@ -1,4 +1,4 @@
-package main
+package matrices
 
 /*
 	LC #200
@@ -6,7 +6,7 @@ package main
 	SC--->O(m*n)
 */
 
-func numIslands(grid [][]byte) int {
+func NumIslands(grid [][]byte) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	islands := 0
@@ -58,7 +58,7 @@ func numIslands(grid [][]byte) int {
 	return islands
 }
 
-func numIslands2(grid [][]byte) int {
+func NumIslands2(grid [][]byte) int {
 	rows := len(grid)
 	cols := len(grid[0])
 

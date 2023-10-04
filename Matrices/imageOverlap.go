@@ -1,4 +1,4 @@
-package main
+package matrices
 
 import (
 	"fmt"
@@ -23,7 +23,7 @@ T: filtering takes O(N^2). combos takes a double for loop of N^2 * N^2 in the wo
 so N^2 + N^2 * N^2 ---> O(N^4)
 S: O(N^2) for arrays space in the worst case of A and B filled with 1s
 */
-func largestOverlap(img1, img2 [][]int) int {
+func LargestOverlap(img1, img2 [][]int) int {
 	rows := len(img1)
 	cols := len(img1)
 	arr1, arr2 := make([]Pos, 0), make([]Pos, 0)

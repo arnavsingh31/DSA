@@ -1,4 +1,4 @@
-package main
+package matrices
 
 type Pos struct {
 	row int
@@ -10,7 +10,7 @@ LC #289
 TC--->O(m*n)
 SC--->O(m*n)
 */
-func gameOfLife(board [][]int) {
+func GameOfLife(board [][]int) {
 	rows := len(board)
 	cols := len(board[0])
 	currenStateMap := make(map[Pos]int, 0)
@@ -87,7 +87,7 @@ func gameOfLife(board [][]int) {
 
 */
 
-func gameOfLife2(board [][]int) {
+func GameOfLife2(board [][]int) {
 	rows := len(board)
 	cols := len(board[0])
 

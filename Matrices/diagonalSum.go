@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #1572
 	TC--->O(m+n), we are only visiting elements on diagonals.
 	SC--->O(1)
 */
-func diagonalSum(matrix [][]int) int {
+func DiagonalSum(matrix [][]int) int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 
@@ -36,7 +36,7 @@ func diagonalSum(matrix [][]int) int {
 }
 
 // using only 2 pointers.
-func diagonalSum2(matrix [][]int) int {
+func DiagonalSum2(matrix [][]int) int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 
@@ -59,7 +59,7 @@ func diagonalSum2(matrix [][]int) int {
 }
 
 // since we know it is a square matrix we can eliminate any pointers used in above approaches.
-func diagonalSum3(matrix [][]int) int {
+func DiagonalSum3(matrix [][]int) int {
 	rows := len(matrix)
 
 	sum := 0

@@ -1,4 +1,6 @@
-package main
+package matrices
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #221
@@ -6,7 +8,7 @@ package main
 	SC--->O(m*n)
 	2D-DP memoization + recursion
 */
-func maximalSquareArea(matrix [][]byte) int {
+func MaximalSquareArea(matrix [][]byte) int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 	maxSide := 0
@@ -24,12 +26,12 @@ func maximalSquareArea(matrix [][]byte) int {
 
 	var findSquare func(int, int) int
 	findSquare = func(i, j int) int {
-		if dp[i][j] != -1 {
-			return dp[i][j]
-		}
-
 		if i >= rows || j >= cols {
 			return 0
+		}
+
+		if dp[i][j] != -1 {
+			return dp[i][j]
 		}
 
 		right := findSquare(i, j+1)
@@ -37,9 +39,9 @@ func maximalSquareArea(matrix [][]byte) int {
 		down := findSquare(i+1, j)
 
 		if matrix[i][j] == '1' {
-			min := 1 + mininimum(right, mininimum(diagonal, down))
-			maxSide = max(maxSide, min)
-			dp[i][j] = maxSide
+			min := 1 + util.Min(right, util.Min(diagonal, down))
+			maxSide = util.Max(maxSide, min)
+			dp[i][j] = min
 			return min
 		} else {
 			dp[i][j] = 0
@@ -51,24 +53,10 @@ func maximalSquareArea(matrix [][]byte) int {
 	return maxSide * maxSide
 }
 
-func mininimum(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
 /*
 	2d- DP, Tabulation method
 */
-func maximalSquareArea2(matrix [][]int) int {
+func MaximalSquareArea2(matrix [][]int) int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 	dp := make([][]int, rows)
@@ -87,9 +75,9 @@ func maximalSquareArea2(matrix [][]int) int {
 					left := dp[i][j-1]
 					diagonal := dp[i-1][j-1]
 
-					dp[i][j] = 1 + mininimum(top, mininimum(left, diagonal))
+					dp[i][j] = 1 + util.Min(top, util.Min(left, diagonal))
 				}
-				maxSide = max(maxSide, dp[i][j])
+				maxSide = util.Max(maxSide, dp[i][j])
 			}
 		}
 	}

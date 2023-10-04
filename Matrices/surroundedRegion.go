@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #130
 	TC--->O(m*n)
 	SC--->O(m*n)
 */
-func solve(board [][]byte) {
+func Solve(board [][]byte) {
 	rows := len(board)
 	cols := len(board[0])
 

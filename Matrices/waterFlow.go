@@ -1,4 +1,4 @@
-package main
+package matrices
 
 /*
 	LC #417
@@ -6,7 +6,7 @@ package main
 	SC--->O(m*n)
 */
 
-func waterFlow(heights [][]int) [][]int {
+func WaterFlow(heights [][]int) [][]int {
 	rows := len(heights)
 	cols := len(heights[0])
 	pacificQueue := make([]Pos, 0)

@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #463
 	TC--->O(m*n)
 	SC--->O(1)
 */
-func islandPerimeter(grid [][]int) int {
+func IslandPerimeter(grid [][]int) int {
 	perimeter, rows, cols := 0, len(grid), len(grid[0])
 
 	isLand := func(i, j int) bool {

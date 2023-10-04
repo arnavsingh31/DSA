@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #766
 	TC--->O(m*n)
 	SC--->O(1)
 */
-func isToeplitzMatrix(matrix [][]int) bool {
+func IsToeplitzMatrix(matrix [][]int) bool {
 	rows := len(matrix)
 	cols := len(matrix[0])
 

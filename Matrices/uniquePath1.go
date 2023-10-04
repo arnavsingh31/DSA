@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #62
 	TC--->O(m*n)
 	SC--->O(m*n) call stack + cache
 */
-func uniquePath(m int, n int) int {
+func UniquePath(m int, n int) int {
 	cache := make(map[Pos]int, 0)
 	return dpUniquePath(0, 0, m, n, &cache)
 }
@@ -37,7 +37,7 @@ func dpUniquePath(i, j, m, n int, cache *map[Pos]int) int {
 	TC-->O(m*n)
 	SC-->O(m*n) only space required for grid
 */
-func uniquePath_2(m, n int) int {
+func UniquePath_2(m, n int) int {
 	grid := make([][]int, m)
 	for i := 0; i < len(grid); i++ {
 		grid[i] = make([]int, n)

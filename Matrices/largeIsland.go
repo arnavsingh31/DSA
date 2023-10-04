@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #827
 	TC--->O(n^4) {TLE}
 	SC--->O(n^2) {queue + map}
 */
-func largestIsland(grid [][]int) int {
+func LargestIsland(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	directions := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}
@@ -68,7 +68,7 @@ func largestIsland(grid [][]int) int {
 	SC--->O(n^n)
 */
 
-func largestIsland2(grid [][]int) int {
+func LargestIsland2(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	maxArea := 0
