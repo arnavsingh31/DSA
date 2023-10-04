@@ -1,4 +1,4 @@
-package main
+package matrices
 
 /*
 	LC #934
@@ -10,7 +10,7 @@ package main
 	then add it to new Queue. Once iteration ends, set secondBfsQueue = newQueue, and inc distance
 	by 1. repeat bfs on secondBfsQueue(water cells) till we reach island2.
 */
-func shortestBridge(grid [][]int) int {
+func ShortestBridge(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	directions := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}

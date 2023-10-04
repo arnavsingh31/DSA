@@ -1,4 +1,4 @@
-package main
+package matrices
 
 import (
 	"math"
@@ -9,7 +9,7 @@ LC #861
 TC--->O(m*n)
 SC--->O(m+n)
 */
-func matrixScore(matrix [][]int) int {
+func MatrixScore(matrix [][]int) int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 

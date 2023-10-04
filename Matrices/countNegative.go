@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #1351
 	TC--->O(m+n)
 	SC--->O(1)
 */
-func countNegative(grid [][]int) int {
+func CountNegative(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	startingRow := 0

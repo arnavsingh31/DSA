@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #36
 	TC--->O(9^2)
 	SC--->O(9^2)
 */
-func isValidSudoku(board [][]byte) bool {
+func IsValidSudoku(board [][]byte) bool {
 	rows := len(board)
 	cols := len(board[0])
 

@@ -1,4 +1,4 @@
-package main
+package matrices
 
 /*
 	LC #498 Same as zig-zag traversal of binary tree. (BFS level wise)
@@ -6,7 +6,7 @@ package main
 	SC--->O(m*n)
 */
 
-func diagonalTraverse(matrix [][]int) []int {
+func DiagonalTraverse(matrix [][]int) []int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 	visited := make(map[Pos]bool, 0)
@@ -75,7 +75,7 @@ func diagonalTraverse(matrix [][]int) []int {
 	- The head would be the node to the right of the tail of the previous diagonal. Unless the tail lies in the last column of the matrix in which case the head would be the node directly below the tail.
 
 */
-func diagonalTraverse2(matrix [][]int) []int {
+func DiagonalTraverse2(matrix [][]int) []int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 	ans := []int{}

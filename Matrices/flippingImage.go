@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #832
 	TC--->O(m*n)
 	SC--->O(1)
 */
-func flipAndInvertImage(image [][]int) [][]int {
+func FlipAndInvertImage(image [][]int) [][]int {
 	n := len(image)
 
 	for i := 0; i < n; i++ {

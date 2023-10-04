@@ -1,11 +1,13 @@
-package main
+package matrices
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #695
 	TC--->O(m*n)
 	SC--->O(m*n)
 */
-func maxAreaIsland(grid [][]int) int {
+func MaxAreaIsland(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	maxArea := 0
@@ -39,7 +41,7 @@ func maxAreaIsland(grid [][]int) int {
 				grid[x][y+1] = 0
 			}
 		}
-		maxArea = findMax(maxArea, islandArea)
+		maxArea = util.Max(maxArea, islandArea)
 	}
 
 	for i := 0; i < rows; i++ {
@@ -51,11 +53,4 @@ func maxAreaIsland(grid [][]int) int {
 	}
 
 	return maxArea
-}
-
-func findMax(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

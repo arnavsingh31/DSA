@@ -1,4 +1,4 @@
-package main
+package matrices
 
 import "sort"
 
@@ -7,7 +7,7 @@ import "sort"
 	TC--->O(m*n + nlogn)
 	SC--->O(n), n-> number of rows
 */
-func kWeakestRows(matrix [][]int, k int) []int {
+func KWeakestRows(matrix [][]int, k int) []int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 	soldiers := make([][]int, rows)

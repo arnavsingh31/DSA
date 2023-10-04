@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #994, Multi-Source BFS
 	TC--->O(m*n)
 	SC--->O(m*n)
 */
-func rottingOranges(grid [][]int) int {
+func RottingOranges(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	direction := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}

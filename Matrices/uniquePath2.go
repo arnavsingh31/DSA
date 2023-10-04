@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #63
 	TC--->O(m*n)
 	SC--->O(m*n)
 */
-func uniquePath2(grid [][]int) int {
+func UniquePath2(grid [][]int) int {
 	cache := make(map[Pos]int, 0)
 	return dp2(0, 0, grid, &cache)
 }
@@ -34,7 +34,7 @@ func dp2(i, j int, grid [][]int, cache *map[Pos]int) int {
 	TC--->O(m*n)
 	SC--->O(n)-->columns
 */
-func uniquePaths2_2(grid [][]int) int {
+func UniquePaths2_2(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 

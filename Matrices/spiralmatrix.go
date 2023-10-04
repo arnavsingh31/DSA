@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #54 (Simulate the spiral pattern)
 	TC--->O(n*m)
 	SC--->O(1), without considering space of ans
 */
-func spiralMatrix(arr [][]int) []int {
+func SpiralMatrix(arr [][]int) []int {
 	rows := len(arr)
 	cols := len(arr[0])
 	ans := []int{}

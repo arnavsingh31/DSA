@@ -1,4 +1,4 @@
-package main
+package matrices
 
 /*
 	LC #840
@@ -7,7 +7,7 @@ package main
 */
 import "sort"
 
-func numMagicSquaresInside(grid [][]int) int {
+func NumMagicSquaresInside(grid [][]int) int {
 	count := 0
 
 	for i := 0; i < len(grid)-2; i++ {

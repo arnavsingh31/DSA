@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #867
 	TC--->O(m*n), m= rows, n= cols
 	SC--->O(m*n)
 */
-func transpose(matrix [][]int) [][]int {
+func Transpose(matrix [][]int) [][]int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 

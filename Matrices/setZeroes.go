@@ -1,4 +1,4 @@
-package main
+package matrices
 
 /*
 	LC #73
@@ -6,7 +6,7 @@ package main
 	SC--->O(m+n), we use separate row and col array to mark corresponding index of both to 1 (means we have
 	to mark entire row/col of matrix to 0). And later we use these array to set matrix elements to 0.
 */
-func setZeroes(matrix [][]int) {
+func SetZeroes(matrix [][]int) {
 	rows := len(matrix)
 	cols := len(matrix[0])
 
@@ -51,7 +51,7 @@ func setZeroes(matrix [][]int) {
 	serve the purpose of the col array. In my case, entire first row from (0,0) to (0, len(matrix[0])-1) will be our
 	col array and first column from (1,0) to (len(matrix)-1, 0) and row0 will be our row array.
 */
-func setZeroes2(matrix [][]int) {
+func SetZeroes2(matrix [][]int) {
 	rows := len(matrix)
 	cols := len(matrix[0])
 	row0 := 1

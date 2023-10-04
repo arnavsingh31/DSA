@@ -1,11 +1,13 @@
-package main
+package matrices
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #85
 	TC--->O(m*(n+n)) {m rows times {n for second for loop + n for TC of largestHistogramArea}}
 	SC--->O(m*n) {for rach row {m} we use stack space{n}}
 */
-func maximalRectangle(matrix [][]byte) int {
+func MaximalRectangle(matrix [][]byte) int {
 	rows := len(matrix)
 	cols := len(matrix[0])
 	heights := make([]int, cols)
@@ -19,7 +21,7 @@ func maximalRectangle(matrix [][]byte) int {
 				heights[j] = 0
 			}
 		}
-		maxArea = max(maxArea, largestHistogramArea(heights))
+		maxArea = util.Max(maxArea, largestHistogramArea(heights))
 	}
 
 	return maxArea
@@ -52,7 +54,7 @@ func largestHistogramArea(heights []int) int {
 	maxArea := 0
 	for i := 0; i < len(heights); i++ {
 		width := nextSmallerHeight[i] - (prevSmallerHeight[i] + 1)
-		maxArea = max(maxArea, heights[i]*width)
+		maxArea = util.Max(maxArea, heights[i]*width)
 	}
 
 	return maxArea

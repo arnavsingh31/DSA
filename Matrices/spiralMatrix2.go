@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #59
 	TC--->O(m*n)
 	SC--->O(1)
 */
-func generateMatrix(n int) [][]int {
+func GenerateMatrix(n int) [][]int {
 	matrix := make([][]int, n)
 
 	for i := 0; i < n; i++ {

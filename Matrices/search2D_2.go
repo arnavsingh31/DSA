@@ -1,4 +1,4 @@
-package main
+package matrices
 
 /*
 	LC #240
@@ -7,7 +7,7 @@ package main
 
 	Here, we need to begin at end of a row. and then apply binary search algorithm.
 */
-func search2D2(matrix [][]int, target int) bool {
+func Search2D2(matrix [][]int, target int) bool {
 	rows := len(matrix)
 	cols := len(matrix[0])
 

@@ -1,11 +1,11 @@
-package main
+package matrices
 
 /*
 	LC #2643
 	TC--->O(m*n)
 	SC--->O(1)
 */
-func maxOnesRow(matrix [][]int) []int {
+func MaxOnesRow(matrix [][]int) []int {
 	ans := make([]int, 2)
 
 	rows := len(matrix)

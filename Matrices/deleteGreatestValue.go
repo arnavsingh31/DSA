@@ -1,4 +1,4 @@
-package main
+package matrices
 
 import "sort"
 
@@ -8,7 +8,7 @@ import "sort"
 	traversing every element of grid once.
 	SC--->O(1)
 */
-func deleteGreatest(grid [][]int) int {
+func DeleteGreatest(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	sum := 0
