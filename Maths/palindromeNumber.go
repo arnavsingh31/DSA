@@ -1,6 +1,6 @@
-package main
+package maths
 
-func isNumberPalindrome(num int) bool {
+func IsNumberPalindrome(num int) bool {
 	rev := 0
 	x := num
 

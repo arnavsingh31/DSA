@@ -1,10 +1,10 @@
-package main
+package maths
 
 import (
 	"math"
 )
 
-func primeFactors(a int) []int {
+func PrimeFactors(a int) []int {
 	if a <= 1 {
 		return []int{}
 	}
@@ -26,7 +26,7 @@ func primeFactors(a int) []int {
 // T.C--> in worst case number will be prime number so, neither of the two outer loops(loop1&2) will run,
 // only loop 3 will run that too no inner loops (loops inside loop 3) will run. so ony outer loop 3 will
 // run upto square root of 'a' times. Hence, T.C--> O(n^1/2)
-func primeFactors2(a int) []int {
+func PrimeFactors2(a int) []int {
 	ans := []int{}
 	if a <= 1 {
 		return ans
