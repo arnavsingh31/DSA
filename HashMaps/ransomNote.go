@@ -1,11 +1,11 @@
-package main
+package hashmaps
 
 import (
 	"strings"
 )
 
 // using 2 hashmaps
-func ransomNote(ransomNote, magazine string) bool {
+func RansomNote(ransomNote, magazine string) bool {
 	ransomMap := make(map[string]int)
 	magazineMap := make(map[string]int)
 
@@ -39,7 +39,7 @@ func ransomNote(ransomNote, magazine string) bool {
 
 // alternative approach--> using single hashmap.
 
-func ransomNote2(ransomNote, magazine string) bool {
+func RansomNote2(ransomNote, magazine string) bool {
 	ransomMap := make(map[string]int)
 
 	for _, char := range ransomNote {
@@ -70,7 +70,7 @@ func ransomNote2(ransomNote, magazine string) bool {
 }
 
 // APPROACH #3 using Count() function from strings Package to count each letter occurances.
-func ransomNote3(ransomNote, magazine string) bool {
+func RansomNote3(ransomNote, magazine string) bool {
 	for _, char := range ransomNote {
 		if strings.Count(ransomNote, string(char)) > strings.Count(magazine, string(char)) {
 			return false

@@ -1,4 +1,4 @@
-package main
+package hashmaps
 
 /*
 	LC #229
@@ -6,7 +6,7 @@ package main
 	SC--->O(n)
 	Using hashmap
 */
-func majorityElement(nums []int) []int {
+func MajorityElement(nums []int) []int {
 	numCountMap := make(map[int]int)
 	n := len(nums)
 	ans := []int{}
@@ -28,7 +28,7 @@ func majorityElement(nums []int) []int {
 	SC--->O(1)
 	Using Boyer-Moore Majority voting algorithm
 */
-func majorityElement2(nums []int) []int {
+func MajorityElement2(nums []int) []int {
 	ans := []int{}
 	n := len(nums)
 	candidate1 := -1

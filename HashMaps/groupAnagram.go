@@ -1,4 +1,4 @@
-package main
+package hashmaps
 
 import (
 	"sort"
@@ -22,7 +22,7 @@ The outer loop has complexity O(N) as we iterate through each string. Then, we s
 
 Space Complexity: O(NK), the total information content stored in hashMap.
 */
-func groupAnagram(arr []string) [][]string {
+func GroupAnagram(arr []string) [][]string {
 	hashMap := make(map[string][]string)
 
 	for _, str := range arr {
@@ -63,7 +63,7 @@ func groupAnagram(arr []string) [][]string {
 	Space Complexity: O(NK), the total information content stored in hashMap.
 */
 
-func groupAnagram2(arr []string) [][]string {
+func GroupAnagram2(arr []string) [][]string {
 	hashMap := make(map[[26]int][]string)
 
 	for _, str := range arr {

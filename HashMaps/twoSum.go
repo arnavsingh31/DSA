@@ -1,7 +1,7 @@
-package main
+package hashmaps
 
 // 2-PASS
-func twoSum(arr []int, target int) []int {
+func TwoSum(arr []int, target int) []int {
 	hashMap := make(map[int]int)
 
 	for index, value := range arr {
@@ -19,7 +19,7 @@ func twoSum(arr []int, target int) []int {
 }
 
 // 1-PASS
-func twoSum2(arr []int, target int) []int {
+func TwoSum2(arr []int, target int) []int {
 	hashMap := make(map[int]int)
 
 	for index, value := range arr {
