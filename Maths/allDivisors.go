@@ -1,9 +1,9 @@
-package main
+package maths
 
 import "log"
 
 // prints all divisors of a number in ascending order*
-func allDivisors(n int) {
+func AllDivisors(n int) {
 	var i int
 	for i = 1; i*i < n; i++ {
 		if n%i == 0 {

@@ -1,6 +1,8 @@
-package main
+package maths
 
-func trailingZeros(n int) int {
+import util "github.com/arnavsingh31/DSA/Util"
+
+func TrailingZeros(n int) int {
 	count_two := 0
 	count_five := 0
 
@@ -22,14 +24,7 @@ func trailingZeros(n int) int {
 		}
 	}
 
-	return min(count_two, count_five)
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	return util.Min(count_two, count_five)
 }
 
 /*
@@ -58,7 +53,7 @@ func min(a, b int) int {
 	So I just count how many 5 it contains, plus how many 25, plus how many 125, plus....
 */
 
-func trailingZeroes2(n int) int {
+func TrailingZeroes2(n int) int {
 	zeros := 0
 
 	for i := 5; i <= n; i = i * 5 {

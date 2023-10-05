@@ -1,9 +1,9 @@
-package main
+package maths
 
 // Sieve of Eratosthenes algorithm
 // T.C ---> O(n*log(logn)) (proof is too complex)
 // we can avoid extra space by directly printing the prime numbers.
-func primeNumbers(n int) []int {
+func PrimeNumbers(n int) []int {
 	arr := []bool{true, true}
 	for i := 2; i <= n+1; i++ {
 		arr = append(arr, true)
@@ -27,7 +27,7 @@ func primeNumbers(n int) []int {
 
 // T.C ---> O(n*log(logn)) (proof is too complex)
 // we can avoid extra space by directly printing the prime numbers.
-func primeNumbers2(n int) []int {
+func PrimeNumbers2(n int) []int {
 	arr := []bool{true, true}
 	for i := 2; i <= n+1; i++ {
 		arr = append(arr, true)
