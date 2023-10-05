@@ -1,10 +1,10 @@
-package main
+package hashmaps
 
 import (
 	"strings"
 )
 
-func wordPattern(pattern, s string) bool {
+func WordPattern(pattern, s string) bool {
 	words := strings.Fields(s)
 
 	if len(words) != len(pattern) {

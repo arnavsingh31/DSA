@@ -1,7 +1,7 @@
-package main
+package hashmaps
 
 // brute force T.C ---> O(n^3) S.C--->O(1)
-func longestConsecutive(arr []int) int {
+func LongestConsecutive(arr []int) int {
 	if len(arr) == 0 {
 		return 0
 	}
@@ -38,7 +38,7 @@ func arrContains(arr []int, val int) bool {
 // [100, 4, 200, 1, 3, 2]
 
 // Logic is same as brute force sol. but we reduce the lookups by using a hashmap.
-func longestConsecutive2(arr []int) int {
+func LongestConsecutive2(arr []int) int {
 	if len(arr) == 0 {
 		return 0
 	}

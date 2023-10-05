@@ -1,6 +1,6 @@
-package main
+package hashmaps
 
-func containsNearbyDuplicate(arr []int, k int) bool {
+func ContainsNearbyDuplicate(arr []int, k int) bool {
 	hashMap := make(map[int]int)
 
 	for curr_index, num := range arr {

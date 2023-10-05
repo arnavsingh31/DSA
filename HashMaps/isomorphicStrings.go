@@ -1,8 +1,8 @@
-package main
+package hashmaps
 
 // Refer:- https://leetcode.com/problems/isomorphic-strings/editorial/?envType=study-plan-v2&envId=top-interview-150 for better understanding.
 
-func isIsomorphic(s string, t string) bool {
+func IsIsomorphic(s string, t string) bool {
 	hashMap_s_t := make(map[string]string)
 	hashMap_t_s := make(map[string]string)
 

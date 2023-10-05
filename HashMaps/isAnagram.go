@@ -1,6 +1,6 @@
-package main
+package hashmaps
 
-func isAnagram(s, t string) bool {
+func IsAnagram(s, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
@@ -31,7 +31,7 @@ func isAnagram(s, t string) bool {
 }
 
 // APPROACH #2
-func isAnagram2(s, t string) bool {
+func IsAnagram2(s, t string) bool {
 	charsToCountMap := make(map[rune]int)
 
 	if len(s) != len(t) {

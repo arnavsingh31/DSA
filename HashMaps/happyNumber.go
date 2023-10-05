@@ -1,4 +1,4 @@
-package main
+package hashmaps
 
 /*
 	read below explanations to understand T.C of algorithm.
@@ -10,7 +10,7 @@ package main
 	https://stackoverflow.com/questions/50261364/explain-why-time-complexity-for-summing-digits-in-a-number-of-length-n-is-ologn
 */
 
-func isHappy(n int) bool {
+func IsHappy(n int) bool {
 	hashMap := make(map[int]bool)
 	for {
 		if n == 1 {
