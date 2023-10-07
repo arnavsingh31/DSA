@@ -9,8 +9,8 @@ package matrices
 func WaterFlow(heights [][]int) [][]int {
 	rows := len(heights)
 	cols := len(heights[0])
-	pacificQueue := make([]Pos, 0)
-	atlanticQueue := make([]Pos, 0)
+	pacificQueue := make([]Cell, 0)
+	atlanticQueue := make([]Cell, 0)
 	directions := [][]int{
 		{-1, 0}, {0, 1}, {0, -1}, {1, 0},
 	}
@@ -19,11 +19,11 @@ func WaterFlow(heights [][]int) [][]int {
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
 			if i == 0 || j == 0 {
-				pacificQueue = append(pacificQueue, Pos{i, j})
+				pacificQueue = append(pacificQueue, Cell{i, j})
 			}
 
 			if i == rows-1 || j == cols-1 {
-				atlanticQueue = append(atlanticQueue, Pos{i, j})
+				atlanticQueue = append(atlanticQueue, Cell{i, j})
 			}
 		}
 	}
@@ -32,7 +32,7 @@ func WaterFlow(heights [][]int) [][]int {
 		return i >= 0 && j >= 0 && i < rows && j < cols
 	}
 
-	bfs := func(queue []Pos) [][]bool {
+	bfs := func(queue []Cell) [][]bool {
 		visited := make([][]bool, rows)
 
 		for i := 0; i < rows; i++ {
@@ -50,7 +50,7 @@ func WaterFlow(heights [][]int) [][]int {
 				newX, newY := x+directions[i][0], y+directions[i][1]
 
 				if isCellValid(newX, newY) && !visited[newX][newY] && heights[newX][newY] >= heights[x][y] {
-					queue = append(queue, Pos{newX, newY})
+					queue = append(queue, Cell{newX, newY})
 					visited[newX][newY] = true
 				}
 			}

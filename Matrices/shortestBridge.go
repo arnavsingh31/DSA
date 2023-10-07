@@ -14,27 +14,27 @@ func ShortestBridge(grid [][]int) int {
 	rows := len(grid)
 	cols := len(grid[0])
 	directions := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}
-	secondBfsQueue := []Pos{}
+	secondBfsQueue := []Cell{}
 	isCellValid := func(i, j int) bool {
 		return i >= 0 && j >= 0 && i < rows && j < cols
 	}
 
 	bfs := func(i, j int) {
-		queue := []Pos{{i, j}}
+		queue := []Cell{{i, j}}
 
 		for len(queue) > 0 {
 			cell := queue[0]
 			queue = queue[1:]
 
 			x, y := cell.row, cell.col
-			secondBfsQueue = append(secondBfsQueue, Pos{x, y})
+			secondBfsQueue = append(secondBfsQueue, Cell{x, y})
 			grid[x][y] = 2
 
 			for _, dir := range directions {
 				newX, newY := x+dir[0], y+dir[1]
 
 				if isCellValid(newX, newY) && grid[newX][newY] == 1 {
-					queue = append(queue, Pos{newX, newY})
+					queue = append(queue, Cell{newX, newY})
 					grid[newX][newY] = 2
 				}
 			}
@@ -58,7 +58,7 @@ func ShortestBridge(grid [][]int) int {
 
 	distance := 0
 	for len(secondBfsQueue) > 0 {
-		waterCells := []Pos{} // new queue
+		waterCells := []Cell{} // new queue
 
 		for _, cell := range secondBfsQueue {
 			x, y := cell.row, cell.col
@@ -71,7 +71,7 @@ func ShortestBridge(grid [][]int) int {
 					if grid[newX][newY] == 1 {
 						return distance
 					} else if grid[newX][newY] == 0 {
-						waterCells = append(waterCells, Pos{newX, newY})
+						waterCells = append(waterCells, Cell{newX, newY})
 						grid[newX][newY] = -1
 					}
 				}

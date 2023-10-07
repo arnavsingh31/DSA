@@ -14,18 +14,18 @@ Upon visualisation this problem is like finding minPathSum in a binary tree, whe
 But alone dfs is not sufficient so we use memoization technique to avoid TLE.(DP)
 FYI
 
-	type Pos struct {
+	type Cell struct {
 		row int
 		col int
 	}
 */
 func MinPathSum(matrix [][]int) int {
-	pathSumMap := make(map[Pos]int, 0)
+	pathSumMap := make(map[Cell]int, 0)
 	return dp(0, 0, matrix, &pathSumMap)
 }
 
-func dp(i, j int, matrix [][]int, mem *map[Pos]int) int {
-	if val, exist := (*mem)[Pos{i, j}]; exist {
+func dp(i, j int, matrix [][]int, mem *map[Cell]int) int {
+	if val, exist := (*mem)[Cell{i, j}]; exist {
 		return val
 	}
 
@@ -44,7 +44,7 @@ func dp(i, j int, matrix [][]int, mem *map[Pos]int) int {
 	right := dp(i, j+1, matrix, mem)
 	down := dp(i+1, j, matrix, mem)
 
-	(*mem)[Pos{row: i, col: j}] = matrix[i][j] + util.Min(right, down)
+	(*mem)[Cell{row: i, col: j}] = matrix[i][j] + util.Min(right, down)
 
 	return matrix[i][j] + util.Min(right, down)
 }

@@ -9,16 +9,16 @@ package matrices
 func DiagonalTraverse(matrix [][]int) []int {
 	rows := len(matrix)
 	cols := len(matrix[0])
-	visited := make(map[Pos]bool, 0)
+	visited := make(map[Cell]bool, 0)
 	ans := []int{}
 	reverse := false
 
 	isCellVisited := func(i, j int) bool {
-		return visited[Pos{row: i, col: j}]
+		return visited[Cell{row: i, col: j}]
 	}
 
 	bfs := func(i, j int) {
-		queue := []Pos{{row: i, col: j}}
+		queue := []Cell{{row: i, col: j}}
 
 		for len(queue) > 0 {
 			levelLength := len(queue)
@@ -36,13 +36,13 @@ func DiagonalTraverse(matrix [][]int) []int {
 				}
 
 				if cell.row < rows-1 && !isCellVisited(cell.row+1, cell.col) {
-					neighbour := Pos{row: cell.row + 1, col: cell.col}
+					neighbour := Cell{row: cell.row + 1, col: cell.col}
 					queue = append(queue, neighbour)
 					visited[neighbour] = true
 				}
 
 				if cell.col < cols-1 && !isCellVisited(cell.row, cell.col+1) {
-					neighbour := Pos{row: cell.row, col: cell.col + 1}
+					neighbour := Cell{row: cell.row, col: cell.col + 1}
 					queue = append(queue, neighbour)
 					visited[neighbour] = true
 				}

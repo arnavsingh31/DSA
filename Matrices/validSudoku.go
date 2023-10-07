@@ -11,7 +11,7 @@ func IsValidSudoku(board [][]byte) bool {
 
 	rowMap := make(map[int]map[byte]struct{}, rows-1)
 	colMap := make(map[int]map[byte]struct{}, cols-1)
-	gridMap := make(map[Pos]map[byte]struct{}, 0)
+	gridMap := make(map[Cell]map[byte]struct{}, 0)
 
 	for i := 0; i < 9; i++ {
 		rowMap[i] = make(map[byte]struct{}, 0)
@@ -20,7 +20,7 @@ func IsValidSudoku(board [][]byte) bool {
 
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
-			gridMap[Pos{i / 3, j / 3}] = make(map[byte]struct{}, 0)
+			gridMap[Cell{i / 3, j / 3}] = make(map[byte]struct{}, 0)
 		}
 	}
 
@@ -31,7 +31,7 @@ func IsValidSudoku(board [][]byte) bool {
 			}
 
 			// exist in 3x3 grid or not
-			if _, exist := gridMap[Pos{i / 3, j / 3}][board[i][j]]; exist {
+			if _, exist := gridMap[Cell{i / 3, j / 3}][board[i][j]]; exist {
 				return false
 			}
 
@@ -45,7 +45,7 @@ func IsValidSudoku(board [][]byte) bool {
 				return false
 			}
 
-			gridMap[Pos{i / 3, j / 3}][board[i][j]] = struct{}{}
+			gridMap[Cell{i / 3, j / 3}][board[i][j]] = struct{}{}
 			rowMap[i][board[i][j]] = struct{}{}
 			colMap[j][board[i][j]] = struct{}{}
 		}

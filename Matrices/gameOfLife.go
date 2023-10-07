@@ -1,10 +1,5 @@
 package matrices
 
-type Pos struct {
-	row int
-	col int
-}
-
 /*
 LC #289
 TC--->O(m*n)
@@ -13,10 +8,10 @@ SC--->O(m*n)
 func GameOfLife(board [][]int) {
 	rows := len(board)
 	cols := len(board[0])
-	currenStateMap := make(map[Pos]int, 0)
+	currenStateMap := make(map[Cell]int, 0)
 
 	isCellAlive := func(i, j int) bool {
-		if val, exist := currenStateMap[Pos{row: i, col: j}]; exist {
+		if val, exist := currenStateMap[Cell{row: i, col: j}]; exist {
 			return val == 1
 		}
 		return board[i][j] == 1
@@ -56,11 +51,11 @@ func GameOfLife(board [][]int) {
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
 			// populate current state of cell.
-			pos := Pos{
+			Cell := Cell{
 				row: i,
 				col: j,
 			}
-			currenStateMap[pos] = board[i][j]
+			currenStateMap[Cell] = board[i][j]
 
 			// update board state
 			aliveNeighbour := neighbourLiveCount(i, j)
