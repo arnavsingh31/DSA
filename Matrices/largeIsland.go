@@ -17,9 +17,9 @@ func LargestIsland(grid [][]int) int {
 	}
 
 	bfs := func(i, j int) {
-		queue := []Pos{{i, j}}
+		queue := []Cell{{i, j}}
 		area := 0
-		visited := make(map[Pos]bool)
+		visited := make(map[Cell]bool)
 
 		for len(queue) > 0 {
 			cell := queue[0]
@@ -32,9 +32,9 @@ func LargestIsland(grid [][]int) int {
 			for _, dir := range directions {
 				newX, newY := x+dir[0], y+dir[1]
 
-				if isCellValid(newX, newY) && grid[newX][newY] == 1 && !visited[Pos{newX, newY}] {
-					queue = append(queue, Pos{newX, newY})
-					visited[Pos{newX, newY}] = true
+				if isCellValid(newX, newY) && grid[newX][newY] == 1 && !visited[Cell{newX, newY}] {
+					queue = append(queue, Cell{newX, newY})
+					visited[Cell{newX, newY}] = true
 				}
 			}
 		}
@@ -81,7 +81,7 @@ func LargestIsland2(grid [][]int) int {
 	}
 
 	bfs := func(i, j int) {
-		queue := []Pos{{i, j}}
+		queue := []Cell{{i, j}}
 		area := 0
 
 		for len(queue) > 0 {
@@ -96,7 +96,7 @@ func LargestIsland2(grid [][]int) int {
 				newX, newY := x+dir[0], y+dir[1]
 
 				if isCellValid(newX, newY) && grid[newX][newY] == 1 {
-					queue = append(queue, Pos{newX, newY})
+					queue = append(queue, Cell{newX, newY})
 					grid[newX][newY] = regionId
 				}
 			}

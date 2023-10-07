@@ -8,7 +8,7 @@ package matrices
 func WordSearch(board [][]byte, word string) bool {
 	rows := len(board)
 	cols := len(board[0])
-	path := make(map[Pos]struct{}, 0)
+	path := make(map[Cell]struct{}, 0)
 	charArr := []byte(word)
 
 	var dfs func(int, int, int) bool
@@ -17,7 +17,7 @@ func WordSearch(board [][]byte, word string) bool {
 			return true
 		}
 
-		if _, exist := path[Pos{i, j}]; exist {
+		if _, exist := path[Cell{i, j}]; exist {
 			return false
 		}
 		// if our index is out of bound or char at currIndex is not equal to board[i][j] return false
@@ -25,9 +25,9 @@ func WordSearch(board [][]byte, word string) bool {
 			return false
 		}
 
-		path[Pos{i, j}] = struct{}{}
+		path[Cell{i, j}] = struct{}{}
 		res := dfs(i+1, j, currWordIndex+1) || dfs(i, j+1, currWordIndex+1) || dfs(i-1, j, currWordIndex+1) || dfs(i, j-1, currWordIndex+1)
-		delete(path, Pos{i, j})
+		delete(path, Cell{i, j})
 		return res
 	}
 

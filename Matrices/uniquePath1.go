@@ -6,12 +6,12 @@ package matrices
 	SC--->O(m*n) call stack + cache
 */
 func UniquePath(m int, n int) int {
-	cache := make(map[Pos]int, 0)
+	cache := make(map[Cell]int, 0)
 	return dpUniquePath(0, 0, m, n, &cache)
 }
 
-func dpUniquePath(i, j, m, n int, cache *map[Pos]int) int {
-	if val, exist := (*cache)[Pos{i, j}]; exist {
+func dpUniquePath(i, j, m, n int, cache *map[Cell]int) int {
+	if val, exist := (*cache)[Cell{i, j}]; exist {
 		return val
 	}
 
@@ -28,7 +28,7 @@ func dpUniquePath(i, j, m, n int, cache *map[Pos]int) int {
 
 	right := dpUniquePath(i, j+1, m, n, cache)
 	down := dpUniquePath(i+1, j, m, n, cache)
-	(*cache)[Pos{i, j}] = right + down
+	(*cache)[Cell{i, j}] = right + down
 
 	return right + down
 }

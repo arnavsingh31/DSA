@@ -13,7 +13,7 @@ func MaxAreaIsland(grid [][]int) int {
 	maxArea := 0
 
 	bfs := func(i, j int) {
-		queue := []Pos{{i, j}}
+		queue := []Cell{{i, j}}
 		islandArea := 0
 
 		for len(queue) > 0 {
@@ -25,19 +25,19 @@ func MaxAreaIsland(grid [][]int) int {
 			grid[x][y] = 0
 
 			if x > 0 && grid[x-1][y] == 1 {
-				queue = append(queue, Pos{x - 1, y})
+				queue = append(queue, Cell{x - 1, y})
 				grid[x-1][y] = 0
 			}
 			if y > 0 && grid[x][y-1] == 1 {
-				queue = append(queue, Pos{x, y - 1})
+				queue = append(queue, Cell{x, y - 1})
 				grid[x][y-1] = 0
 			}
 			if x < rows-1 && grid[x+1][y] == 1 {
-				queue = append(queue, Pos{x + 1, y})
+				queue = append(queue, Cell{x + 1, y})
 				grid[x+1][y] = 0
 			}
 			if y < cols-1 && grid[x][y+1] == 1 {
-				queue = append(queue, Pos{x, y + 1})
+				queue = append(queue, Cell{x, y + 1})
 				grid[x][y+1] = 0
 			}
 		}

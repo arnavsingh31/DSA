@@ -10,7 +10,7 @@ func Solve(board [][]byte) {
 	cols := len(board[0])
 
 	dfs := func(i, j int) {
-		stack := []Pos{{i, j}}
+		stack := []Cell{{i, j}}
 
 		for len(stack) > 0 {
 			cell := stack[len(stack)-1]
@@ -19,16 +19,16 @@ func Solve(board [][]byte) {
 			board[x][y] = 'F'
 
 			if x > 0 && board[x-1][y] == 'O' {
-				stack = append(stack, Pos{x - 1, y})
+				stack = append(stack, Cell{x - 1, y})
 			}
 			if y > 0 && board[x][y-1] == 'O' {
-				stack = append(stack, Pos{x, y - 1})
+				stack = append(stack, Cell{x, y - 1})
 			}
 			if x < rows-1 && board[x+1][y] == 'O' {
-				stack = append(stack, Pos{x + 1, y})
+				stack = append(stack, Cell{x + 1, y})
 			}
 			if y < cols-1 && board[x][y+1] == 'O' {
-				stack = append(stack, Pos{x, y + 1})
+				stack = append(stack, Cell{x, y + 1})
 			}
 		}
 	}

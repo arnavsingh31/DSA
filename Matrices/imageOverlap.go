@@ -26,7 +26,7 @@ S: O(N^2) for arrays space in the worst case of A and B filled with 1s
 func LargestOverlap(img1, img2 [][]int) int {
 	rows := len(img1)
 	cols := len(img1)
-	arr1, arr2 := make([]Pos, 0), make([]Pos, 0)
+	arr1, arr2 := make([]Cell, 0), make([]Cell, 0)
 	transformationVectorMap := make(map[string]int, 0)
 	overlaps := 0
 
@@ -34,10 +34,10 @@ func LargestOverlap(img1, img2 [][]int) int {
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
 			if img1[i][j] == 1 {
-				arr1 = append(arr1, Pos{i, j})
+				arr1 = append(arr1, Cell{i, j})
 			}
 			if img2[i][j] == 1 {
-				arr2 = append(arr2, Pos{i, j})
+				arr2 = append(arr2, Cell{i, j})
 			}
 		}
 	}
