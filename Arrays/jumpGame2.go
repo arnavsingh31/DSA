@@ -1,4 +1,6 @@
-package main
+package arrays
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 type Interval struct {
 	first  int
@@ -6,7 +8,7 @@ type Interval struct {
 }
 
 // watch erichto video on YT.
-func jumpGame2(arr []int) (jump int) {
+func JumpGame2(arr []int) (jump int) {
 	n := len(arr)
 	if n <= 1 {
 		return 0
@@ -15,12 +17,12 @@ func jumpGame2(arr []int) (jump int) {
 	interval := &Interval{first: 0, second: 0}
 	jump = 0
 
-	for true {
+	for {
 		jump++
 		can_reach := -1
 
 		for i := interval.first; i < interval.second; i++ {
-			can_reach = max(can_reach, i+arr[i])
+			can_reach = util.Max(can_reach, i+arr[i])
 		}
 
 		if can_reach >= n-1 {
@@ -34,12 +36,4 @@ func jumpGame2(arr []int) (jump int) {
 			return can_reach // we are stuck
 		}
 	}
-	return
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }

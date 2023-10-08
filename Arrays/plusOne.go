@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func plusOne(digits []int) []int {
+func PlusOne(digits []int) []int {
 	n := len(digits)
 	carry := 1
 

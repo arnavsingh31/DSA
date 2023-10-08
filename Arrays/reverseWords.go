@@ -1,4 +1,4 @@
-package main
+package arrays
 
 /*
 	Approach: start from back and first find index of first char and then find index of first space and then
@@ -7,7 +7,7 @@ package main
 	TC--->O(n)
 	SC--->O(1), not counting space for answer.
 */
-func reverseWords(s string) string {
+func ReverseWords(s string) string {
 	i := len(s) - 1
 	var j int
 	ans := ""

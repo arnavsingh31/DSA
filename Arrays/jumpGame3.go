@@ -1,11 +1,11 @@
-package main
+package arrays
 
 /*
 	LC #1306
 	TC--->O(n)
 	SC--->O(n)
 */
-func jumpGame3(arr []int, start int) bool {
+func JumpGame3(arr []int, start int) bool {
 	queue := []int{start}
 
 	for len(queue) > 0 {

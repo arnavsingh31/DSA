@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func distanceTraveled(mainTank int, additionalTank int) int {
+func DistanceTraveled(mainTank int, additionalTank int) int {
 	mileage := 10
 
 	if mainTank < 5 {

@@ -1,12 +1,11 @@
-package main
+package arrays
 
 import (
-	"log"
 	"strings"
 )
 
 // my solution
-func longestCommonPrefix(strs []string) string {
+func LongestCommonPrefix(strs []string) string {
 	IndexToCharMap := make(map[int]byte)
 	res := ""
 	first := strs[0]
@@ -34,7 +33,7 @@ func longestCommonPrefix(strs []string) string {
 			res = matchStr
 		}
 	}
-	log.Printf("common prefix is :%s", res)
+
 	return res
 }
 
@@ -44,7 +43,7 @@ TC--->O(S) where S is the sum of all characters in all strings.
 In the worst case there will be n equal strings with length m and the algorithm performs S = m*n character comparisons.
 SC--->O(1)
 */
-func longestCommonPrefix2(strs []string) string {
+func LongestCommonPrefix2(strs []string) string {
 	prefix := strs[0]
 	for i := 0; i < len(prefix); i++ {
 		charByte := prefix[i]
@@ -64,7 +63,7 @@ TC--->O(S) where S is the sum of all characters in all strings.
 In the worst case all nnn strings are the same. The algorithm compares the string S1 with the other strings [S2..Sn]. There are S character comparisons, where S is the sum of all characters in the input array.
 SC--->O(1)
 */
-func longestCommonPrefix3(strs []string) string {
+func LongestCommonPrefix3(strs []string) string {
 	prefix := strs[0]
 
 	for i := 1; i < len(strs); i++ {

@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func searchInsert(nums []int, target int) int {
+func SearchInsert(nums []int, target int) int {
 	low, high := 0, len(nums)-1
 
 	for low <= high {

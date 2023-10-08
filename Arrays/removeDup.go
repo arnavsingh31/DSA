@@ -1,11 +1,11 @@
-package main
+package arrays
 
 /*
 	LC #26
 	TC--->O(n)
 	SC--->O(1)
 */
-func removeDuplicates(nums []int) int {
+func RemoveDuplicates(nums []int) int {
 	pos := 1
 
 	for i := 1; i < len(nums); i++ {

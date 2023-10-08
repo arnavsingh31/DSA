@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func romanToInt(s string) int {
+func RomanToInt(s string) int {
 	roman_To_Int_Map := map[byte]int{
 		'I': 1,
 		'V': 5,

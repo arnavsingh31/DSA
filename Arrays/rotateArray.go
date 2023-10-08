@@ -1,11 +1,11 @@
-package main
+package arrays
 
 /*
 	LC #189
 	TC---> O(n)
 	SC--->O(1)
 */
-func rotate(arr []int, k int) {
+func Rotate(arr []int, k int) {
 	k = k % len(arr)
 
 	reverse(&arr, 0, len(arr)-1)

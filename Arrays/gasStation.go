@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func canCompleteCircuit(gas []int, cost []int) int {
+func CanCompleteCircuit(gas []int, cost []int) int {
 	var tank, curr_pos int
 	for start := 0; start < len(gas); start++ {
 		tank = gas[start]
@@ -32,7 +32,7 @@ func canCompleteCircuit(gas []int, cost []int) int {
 	return -1
 }
 
-func canCompleteCircuit2(gas, cost []int) int {
+func CanCompleteCircuit2(gas, cost []int) int {
 	curr_gain, total_gain := 0, 0
 	var pos int
 
