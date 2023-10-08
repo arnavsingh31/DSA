@@ -1,9 +1,7 @@
-package main
-
-import "log"
+package arrays
 
 // Brute force approach T.C = O(n^2) S.C= O(n). Get TLE for large input.
-func productArray(arr []int) []int {
+func ProductArray(arr []int) []int {
 
 	res := []int{}
 
@@ -24,7 +22,7 @@ func productArray(arr []int) []int {
 // [7,2,3,4]
 // Approach create prefix_array_product and post_array_product and simply multiply both for each i in arr
 // You can make two separate array for prefix and postfix but then our S.C will be O(n).
-func productArray2(arr []int) []int {
+func ProductArray2(arr []int) []int {
 	res := make([]int, len(arr))
 
 	temp := 1
@@ -40,6 +38,6 @@ func productArray2(arr []int) []int {
 		res[i] = res[i] * temp
 		temp = temp * arr[i]
 	}
-	log.Printf("res--->%v", res)
+
 	return res
 }

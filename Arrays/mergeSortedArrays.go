@@ -1,11 +1,11 @@
-package main
+package arrays
 
 /*
 	LC #88
 	TC--->O(m+n)
 	SC--->O(1)
 */
-func merge(arr1, arr2 []int, m, n int) {
+func Merge(arr1, arr2 []int, m, n int) {
 	index := m + n - 1
 	m--
 	n--

@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func lastWordLen(s string) int {
+func LastWordLen(s string) int {
 	start, end := -1, -1
 
 	for i := len(s) - 1; i >= 0; i-- {

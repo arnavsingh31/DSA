@@ -1,11 +1,11 @@
-package main
+package arrays
 
 /*
 	LC #80
 	TC--->O(n)
 	SC--->O(1)
 */
-func removeDup2(nums []int) int {
+func RemoveDup2(nums []int) int {
 	pos := 1
 	i := 1
 	count := 1

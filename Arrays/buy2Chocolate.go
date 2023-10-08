@@ -1,7 +1,7 @@
-package main
+package arrays
 
 // approach using two pointers
-func buyChoco(prices []int, money int) int {
+func BuyChoco(prices []int, money int) int {
 	left, right := 0, len(prices)-1
 
 	savings := -1

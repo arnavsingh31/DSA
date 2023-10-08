@@ -1,4 +1,6 @@
-package main
+package arrays
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*	T.C -> O(n) and S.C --> O(n) [More intuitive than two pointer approach].
 	make 2 auxillary arrays then which will we use to determine for any index what is the max height to the left
@@ -7,7 +9,7 @@ package main
 	to its left and right. Amount of max water that can be trapped will be equal to the
 	= min(max_height to left of index, max_height to the right of index) - current height of the index.
 */
-func trap(height []int) int {
+func Trap(height []int) int {
 	height_len := len(height)
 	max_left := make([]int, height_len)
 	max_right := make([]int, height_len)
@@ -15,34 +17,20 @@ func trap(height []int) int {
 	// populate max_left
 	max_left[0] = height[0]
 	for i := 1; i < height_len; i++ {
-		max_left[i] = max_height(height[i], max_left[i-1])
+		max_left[i] = util.Max(height[i], max_left[i-1])
 	}
 
 	max_right[height_len-1] = height[height_len-1]
 	for i := height_len - 2; i >= 0; i-- {
-		max_right[i] = max_height(height[i], max_right[i+1])
+		max_right[i] = util.Max(height[i], max_right[i+1])
 	}
 
 	trapped_water := 0
 	for i := 0; i < height_len; i++ {
-		trapped_water += min_height(max_left[i], max_right[i]) - height[i]
+		trapped_water += util.Min(max_left[i], max_right[i]) - height[i]
 	}
 
 	return trapped_water
-}
-
-func min_height(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func max_height(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
 
 /*
@@ -63,7 +51,7 @@ func max_height(a, b int) int {
 
 	Continue the process until left and right meet. At this point, we have calculated the total trapped water, which is stored in the result variable.
 */
-func trap2(height []int) int {
+func Trap2(height []int) int {
 	left, right := 0, len(height)-1
 	leftMax, rightMax := 0, 0
 	result := 0

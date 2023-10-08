@@ -10,7 +10,7 @@ func LongestPalindrome(s string) string {
 		return s
 	}
 
-	maxLen := 0
+	ans := ""
 	for i := 0; i < len(s); i++ {
 		oddStr := expand(i, i, s)
 		if len(ans) < len(oddStr) {

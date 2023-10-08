@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func candy(ratings []int) int {
+func Candy(ratings []int) int {
 	if len(ratings) <= 1 {
 		return 1
 	}

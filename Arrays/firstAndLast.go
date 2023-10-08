@@ -1,7 +1,7 @@
-package main
+package arrays
 
 // T.C--> O(n)
-func firstAndLastIndex(nums []int, target int) []int {
+func FirstAndLastIndex(nums []int, target int) []int {
 	if len(nums) == 0 {
 		return []int{-1, -1}
 	}
@@ -28,7 +28,7 @@ func firstAndLastIndex(nums []int, target int) []int {
 }
 
 // T.C---> O(logn) using 2 binary search
-func firstAndLastIndex2(nums []int, target int) []int {
+func FirstAndLastIndex2(nums []int, target int) []int {
 	if len(nums) == 0 {
 		return []int{-1, -1}
 	}
@@ -69,6 +69,20 @@ func firstAndLastIndex2(nums []int, target int) []int {
 // Approach 3 is improved version of binary search used in above approach. here we find first positon of
 // greaterThanOrEqual(>=target)---> this give us first index of target and (>=target+1)---> this gives us
 // first index of target+1, then we decrement it by 1 to get the last index of target.
+func FirstAndLastIndex3(nums []int, target int) []int {
+	if len(nums) == 0 {
+		return []int{-1, -1}
+	}
+
+	first_pos := greaterThanEqualPos(nums, target)
+	last_pos := greaterThanEqualPos(nums, target+1) - 1
+
+	if first_pos <= last_pos {
+		return []int{first_pos, last_pos}
+	}
+	return []int{-1, -1}
+}
+
 func greaterThanEqualPos(arr []int, target int) int {
 	n := len(arr)
 	low := 0
@@ -87,18 +101,4 @@ func greaterThanEqualPos(arr []int, target int) int {
 	}
 
 	return first_pos
-}
-
-func firstAndLastIndex3(nums []int, target int) []int {
-	if len(nums) == 0 {
-		return []int{-1, -1}
-	}
-
-	first_pos := greaterThanEqualPos(nums, target)
-	last_pos := greaterThanEqualPos(nums, target+1) - 1
-
-	if first_pos <= last_pos {
-		return []int{first_pos, last_pos}
-	}
-	return []int{-1, -1}
 }

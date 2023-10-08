@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func firstOccurence(haystack, needle string) int {
+func FirstOccurence(haystack, needle string) int {
 	firstIndex := -1
 
 	for i := 0; i < len(haystack); i++ {

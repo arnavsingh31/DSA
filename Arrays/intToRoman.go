@@ -1,4 +1,4 @@
-package main
+package arrays
 
 import (
 	"strings"
@@ -9,7 +9,7 @@ type IntRoman struct {
 	RomanVal string
 }
 
-func intToRoman(num int) string {
+func IntToRoman(num int) string {
 	arr := []IntRoman{{
 		IntVal:   1000,
 		RomanVal: "M",

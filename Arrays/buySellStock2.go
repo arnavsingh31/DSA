@@ -1,11 +1,11 @@
-package main
+package arrays
 
 /*
 	LC #122
 	TC--->O(n)
 	SC--->O(1)
 */
-func maxProfit2(prices []int) int {
+func MaxProfit2(prices []int) int {
 	profit := 0
 	minPrice := prices[0]
 

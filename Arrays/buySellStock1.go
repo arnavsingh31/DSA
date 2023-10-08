@@ -1,11 +1,13 @@
-package main
+package arrays
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #121
 	TC--->O(n)
 	SC--->O(1)
 */
-func maxProfit(prices []int) int {
+func MaxProfit(prices []int) int {
 	maxProfit := 0
 	minPrice := prices[0]
 
@@ -14,20 +16,8 @@ func maxProfit(prices []int) int {
 			minPrice = currPrice
 		} else {
 			profit := currPrice - minPrice
-			maxProfit = maxPrice(maxProfit, profit)
+			maxProfit = util.Max(maxProfit, profit)
 		}
 	}
 	return maxProfit
 }
-
-func maxPrice(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-/*
-
-
- */
