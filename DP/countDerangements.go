@@ -1,4 +1,4 @@
-package main
+package dp
 
 /*
 	GFG Problem. {Watch video for concept}
@@ -8,7 +8,7 @@ package main
 	TLE
 	TC--> exponential
 */
-func countDerangements(n int) int {
+func CountDerangements(n int) int {
 	if n == 1 {
 		return 0
 	}
@@ -17,7 +17,7 @@ func countDerangements(n int) int {
 		return 1
 	}
 
-	ans := (n - 1) * (countDerangements(n-1) + countDerangements(n-2))
+	ans := (n - 1) * (CountDerangements(n-1) + CountDerangements(n-2))
 
 	return ans
 }
@@ -27,7 +27,7 @@ func countDerangements(n int) int {
 	TC--->O(n)
 	SC--->O(n)+O(n){call stack + dp}
 */
-func countDerangements2(n int) int {
+func CountDerangements2(n int) int {
 	dp := make([]int, n+1)
 
 	for i := 0; i <= n; i++ {
@@ -60,7 +60,7 @@ func solveDerangements(n int, dp *[]int) int {
 	TC--->O(n)
 	SC--->O(n)
 */
-func countDerangements3(n int) int {
+func CountDerangements3(n int) int {
 	dp := make([]int, n+1)
 	dp[1] = 0
 	dp[2] = 1
@@ -77,7 +77,7 @@ func countDerangements3(n int) int {
 	TC--->O(n)
 	SC--->O(1)
 */
-func countDerangements4(n int) int {
+func CountDerangements4(n int) int {
 	x1, x2 := 0, 1
 
 	for i := 2; i <= n; i++ {

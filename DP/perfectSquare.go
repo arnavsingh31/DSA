@@ -1,14 +1,16 @@
-package main
+package dp
 
 import (
 	"math"
+
+	util "github.com/arnavsingh31/DSA/Util"
 )
 
 /*
 LC #279, Same as Coin Change
 TC--->O()TLE
 */
-func perfectSquares(n int) int {
+func PerfectSquares(n int) int {
 	squares := make([]int, 0)
 
 	for i := 1; i*i < n; i++ {
@@ -28,7 +30,7 @@ func solveSquares(arr []int, target int) int {
 		if arr[i] <= target {
 			count := solveSquares(arr, target-arr[i])
 			if count != math.MaxInt {
-				minCount = min(1+count, minCount)
+				minCount = util.Min(1+count, minCount)
 			}
 		}
 	}
@@ -39,7 +41,7 @@ func solveSquares(arr []int, target int) int {
 /*
 recursion + memoization
 */
-func perfectSquares2(n int) int {
+func PerfectSquares2(n int) int {
 	squares := make([]int, 0)
 	dp := make([]int, n+1)
 
@@ -68,7 +70,7 @@ func solveSquaresMem(arr []int, target int, dp *[]int) int {
 		if arr[i] <= target {
 			count := solveSquaresMem(arr, target-arr[i], dp)
 			if count != math.MaxInt {
-				minCount = min(minCount, 1+count)
+				minCount = util.Min(minCount, 1+count)
 			}
 		}
 	}
@@ -83,7 +85,7 @@ Tabulation method
 TC--->O(n*len(squares))
 SC--->O(n)
 */
-func perfectSquares3(n int) int {
+func PerfectSquares3(n int) int {
 	dp := make([]int, n+1)
 	for i := 0; i < len(dp); i++ {
 		dp[i] = math.MaxInt
@@ -98,7 +100,7 @@ func perfectSquares3(n int) int {
 	for i := 1; i < n+1; i++ {
 		for j := 0; j < len(squares); j++ {
 			if squares[j] <= i && dp[i-squares[j]] != math.MaxInt {
-				dp[i] = min(1+dp[i-squares[j]], dp[i])
+				dp[i] = util.Min(1+dp[i-squares[j]], dp[i])
 			}
 		}
 	}

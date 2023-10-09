@@ -1,14 +1,18 @@
-package main
+package dp
 
-import "math"
+import (
+	"math"
+
+	util "github.com/arnavsingh31/DSA/Util"
+)
 
 /*
-	LC #322
-	TC---> exponential {very slow}
-	SC--->O(n) {call stack}
-	Using recursion only. [will give TLE]
+LC #322
+TC---> exponential {very slow}
+SC--->O(n) {call stack}
+Using recursion only. [will give TLE]
 */
-func coinChange(coins []int, amount int) int {
+func CoinChange(coins []int, amount int) int {
 	minCoin := helperRec(coins, amount)
 
 	if minCoin == math.MaxInt {
@@ -30,25 +34,18 @@ func helperRec(coins []int, amount int) int {
 			ans := helperRec(coins, amount-coins[i])
 
 			if ans != math.MaxInt {
-				count = min(count, 1+ans)
+				count = util.Min(count, 1+ans)
 			}
 		}
 	}
 	return count
 }
 
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
 /*
-	Recursion + Memoization
-	TC--->O(amount*len(coins))
+Recursion + Memoization
+TC--->O(amount*len(coins))
 */
-func coinChange2(coins []int, amount int) int {
+func CoinChange2(coins []int, amount int) int {
 	dp := make([]int, amount+1)
 	for i := 0; i <= amount; i++ {
 		dp[i] = -1
@@ -74,7 +71,7 @@ func helperMem(coins []int, amount int, dp *[]int) int {
 		if coins[i] <= amount {
 			ans := helperMem(coins, amount-coins[i], dp)
 			if ans != math.MaxInt {
-				count = min(count, 1+ans)
+				count = util.Min(count, 1+ans)
 			}
 		}
 	}
@@ -84,11 +81,11 @@ func helperMem(coins []int, amount int, dp *[]int) int {
 }
 
 /*
-	Tabulation method
-	TC--->O(amount*len(coins))
-	SC--->O(amount)
+Tabulation method
+TC--->O(amount*len(coins))
+SC--->O(amount)
 */
-func coinChange3(coins []int, amount int) int {
+func CoinChange3(coins []int, amount int) int {
 	dp := make([]int, amount+1)
 	for i := range dp {
 		dp[i] = math.MaxInt
@@ -99,7 +96,7 @@ func coinChange3(coins []int, amount int) int {
 	for val := 1; val < amount+1; val++ {
 		for i := 0; i < len(coins); i++ {
 			if amount >= coins[i] && dp[val-coins[i]] != math.MaxInt {
-				dp[val] = min(1+dp[val-coins[i]], dp[val])
+				dp[val] = util.Min(1+dp[val-coins[i]], dp[val])
 			}
 		}
 	}

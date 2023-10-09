@@ -1,14 +1,16 @@
-package main
+package dp
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #213
 	TC--->O(2^n exponential) {TLE}, recursive sol.
 	SC--->O(n)
 */
-func robHouseCircular(arr []int) int {
+func RobHouseCircular(arr []int) int {
 	rob1 := arr[0] + robRec(arr, 2, true)
 	dontRob1 := robRec(arr, 1, false)
-	return max(rob1, dontRob1)
+	return util.Max(rob1, dontRob1)
 }
 
 func robRec(arr []int, i int, robbedFirst bool) int {
@@ -24,7 +26,7 @@ func robRec(arr []int, i int, robbedFirst bool) int {
 	rob := arr[i] + robRec(arr, i+2, robbedFirst)
 	dontRob := robRec(arr, i+1, robbedFirst)
 
-	return max(rob, dontRob)
+	return util.Max(rob, dontRob)
 }
 
 /*
@@ -32,7 +34,7 @@ func robRec(arr []int, i int, robbedFirst bool) int {
 	TC--->O(n)
 	SC--->O(2n)
 */
-func robHouseCircular2(arr []int) int {
+func RobHouseCircular2(arr []int) int {
 	dp := make([][]int, len(arr))
 
 	for i := 0; i < len(dp); i++ {
@@ -48,7 +50,7 @@ func robHouseCircular2(arr []int) int {
 	rob1 := arr[0] + robHouseMem(arr, 2, 1, &dp)
 	dontRob1 := robHouseMem(arr, 1, 0, &dp)
 
-	return max(rob1, dontRob1)
+	return util.Max(rob1, dontRob1)
 }
 
 func robHouseMem(arr []int, i int, robbedFirst int, dp *[][]int) int {
@@ -67,7 +69,7 @@ func robHouseMem(arr []int, i int, robbedFirst int, dp *[][]int) int {
 	rob := arr[i] + robHouseMem(arr, i+2, robbedFirst, dp)
 	dontRob := robHouseMem(arr, i+1, robbedFirst, dp)
 
-	(*dp)[i][robbedFirst] = max(rob, dontRob)
+	(*dp)[i][robbedFirst] = util.Max(rob, dontRob)
 
 	return (*dp)[i][robbedFirst]
 }
@@ -77,7 +79,7 @@ func robHouseMem(arr []int, i int, robbedFirst int, dp *[][]int) int {
 	SC--->O(1)
 	We used house robber 1 solution twice.
 */
-func robHouseCircular3(arr []int) int {
+func RobHouseCircular3(arr []int) int {
 	if len(arr) == 1 {
 		return arr[0]
 	}
@@ -88,7 +90,7 @@ func robHouseCircular3(arr []int) int {
 	//if we rob last house then we remove first house from array
 	robLast := solveHouseRobber1(arr[1:])
 
-	return max(robFirst, robLast)
+	return util.Max(robFirst, robLast)
 }
 
 func solveHouseRobber1(arr []int) int {
@@ -99,7 +101,7 @@ func solveHouseRobber1(arr []int) int {
 		dontRob := prev1
 
 		prev2 = prev1
-		prev1 = max(rob, dontRob)
+		prev1 = util.Max(rob, dontRob)
 	}
 
 	return prev1

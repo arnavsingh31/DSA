@@ -5,7 +5,7 @@ import util "github.com/arnavsingh31/DSA/Util"
 /*
 	LC #300
 */
-func lengthOfLIS(nums []int) int {
+func LengthOfLIS(nums []int) int {
 	dp := make([][]int, len(nums))
 
 	for i := 0; i < len(dp); i++ {
