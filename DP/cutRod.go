@@ -1,14 +1,18 @@
-package main
+package dp
 
-import "math"
+import (
+	"math"
+
+	util "github.com/arnavsingh31/DSA/Util"
+)
 
 /*
-	{GFG question}
-	Given a rod of length L, the task is to cut the rod in such a way that the total number of segments of length x, y, and z is maximized. The segments can only be of length x, y, and z.
+{GFG question}
+Given a rod of length L, the task is to cut the rod in such a way that the total number of segments of length x, y, and z is maximized. The segments can only be of length x, y, and z.
 
-	Recurive sol {TLE}
+Recurive sol {TLE}
 */
-func cutRod(n, x, y, z int) int {
+func CutRod(n, x, y, z int) int {
 	segments := solveRodRec(n, x, y, z)
 
 	if segments < 0 {
@@ -31,15 +35,15 @@ func solveRodRec(n, x, y, z int) int {
 	b := 1 + solveRodRec(n-y, x, y, z)
 	c := 1 + solveRodRec(n-y, x, y, z)
 
-	ans := max(a, max(b, c))
+	ans := util.Max(a, util.Max(b, c))
 
 	return ans
 }
 
 /*
-	Recursion + Memoization
+Recursion + Memoization
 */
-func cutRod2(n, x, y, z int) int {
+func CutRod2(n, x, y, z int) int {
 	dp := make([]int, n+1)
 
 	for i := 0; i <= n; i++ {
@@ -72,15 +76,15 @@ func solveRodMem(n, x, y, z int, dp *[]int) int {
 	b := 1 + solveRodMem(n-y, x, y, z, dp)
 	c := 1 + solveRodMem(n-y, x, y, z, dp)
 
-	(*dp)[n] = max(a, max(b, c))
+	(*dp)[n] = util.Max(a, util.Max(b, c))
 
 	return (*dp)[n]
 }
 
 /*
-	Tabulation method
+Tabulation method
 */
-func cutRod3(n, x, y, z int) int {
+func CutRod3(n, x, y, z int) int {
 	dp := make([]int, n+1)
 
 	for i := 0; i <= n; i++ {
@@ -91,14 +95,14 @@ func cutRod3(n, x, y, z int) int {
 
 	for i := 1; i <= n; i++ {
 		if i-x >= 0 {
-			dp[i] = max(1+dp[i-x], dp[i])
+			dp[i] = util.Max(1+dp[i-x], dp[i])
 		}
 		if i-y >= 0 {
-			dp[i] = max(1+dp[i-y], dp[i])
+			dp[i] = util.Max(1+dp[i-y], dp[i])
 		}
 
 		if i-z >= 0 {
-			dp[i] = max(1+dp[i-z], dp[i])
+			dp[i] = util.Max(1+dp[i-z], dp[i])
 		}
 	}
 

@@ -1,11 +1,11 @@
-package main
+package dp
 
 /*
 	LC #118
 	TC--->O(n*n)
 	SC--->O(n*n)
 */
-func generate(numRows int) [][]int {
+func Generate(numRows int) [][]int {
 	ans := [][]int{{1}}
 
 	for i := 0; i < numRows-1; i++ {

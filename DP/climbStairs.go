@@ -1,4 +1,6 @@
-package main
+package dp
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #746
@@ -6,12 +8,12 @@ package main
 	SC--->O(n)
 	Recursion {TLE}
 */
-func minCostClimbingStairs(cost []int) int {
+func MinCostClimbingStairs(cost []int) int {
 	top := len(cost)
-	return min(solveRec(cost, top-1), solveRec(cost, top-2))
+	return util.Min(solveRec1(cost, top-1), solveRec1(cost, top-2))
 }
 
-func solveRec(cost []int, pos int) int {
+func solveRec1(cost []int, pos int) int {
 	if pos < 0 {
 		return 0
 	}
@@ -19,7 +21,7 @@ func solveRec(cost []int, pos int) int {
 		return cost[pos]
 	}
 
-	ans := min(solveRec(cost, pos-1), solveRec(cost, pos-2))
+	ans := util.Min(solveRec1(cost, pos-1), solveRec1(cost, pos-2))
 	return ans + cost[pos]
 }
 
@@ -28,13 +30,13 @@ func solveRec(cost []int, pos int) int {
 	TC--->O(n)
 	SC--->O(n)+O(n)~ O(n) {call stack + dp array}
 */
-func minCostClimbingStairs2(cost []int) int {
+func MinCostClimbingStairs2(cost []int) int {
 	top := len(cost)
 	dp := make([]int, len(cost)+1)
 	for i := 0; i < len(dp); i++ {
 		dp[i] = -1
 	}
-	return min(solveMem(cost, top-1, &dp), solveMem(cost, top-2, &dp))
+	return util.Min(solveMem(cost, top-1, &dp), solveMem(cost, top-2, &dp))
 }
 
 func solveMem(cost []int, pos int, dp *[]int) int {
@@ -50,7 +52,7 @@ func solveMem(cost []int, pos int, dp *[]int) int {
 		return (*dp)[pos]
 	}
 
-	ans := min(solveMem(cost, pos-1, dp), solveMem(cost, pos-2, dp))
+	ans := util.Min(solveMem(cost, pos-1, dp), solveMem(cost, pos-2, dp))
 	(*dp)[pos] = ans + cost[pos]
 
 	return (*dp)[pos]
@@ -63,16 +65,16 @@ func solveMem(cost []int, pos int, dp *[]int) int {
 	SC--->O(n) {only dp array}
 */
 
-func minCostClimbingStairs3(cost []int) int {
+func MinCostClimbingStairs3(cost []int) int {
 	top := len(cost)
 	dp := make([]int, top+1)
 	dp[0], dp[1] = cost[0], cost[1]
 
 	for i := 2; i < top; i++ {
-		dp[i] = cost[i] + min(dp[i-1], dp[i-2])
+		dp[i] = cost[i] + util.Min(dp[i-1], dp[i-2])
 	}
 
-	return min(dp[top-1], dp[top-2])
+	return util.Min(dp[top-1], dp[top-2])
 }
 
 /*
@@ -80,16 +82,16 @@ func minCostClimbingStairs3(cost []int) int {
 	TC--->O(n)
 	SC--->O(1)
 */
-func minCostClimbingStairs4(cost []int) int {
+func MinCostClimbingStairs4(cost []int) int {
 	top := len(cost)
 	prev1 := cost[1]
 	prev2 := cost[0]
 
 	for i := 2; i < top; i++ {
-		curr := cost[i] + min(prev1, prev2)
+		curr := cost[i] + util.Min(prev1, prev2)
 		prev2 = prev1
 		prev1 = curr
 	}
 
-	return min(prev1, prev2)
+	return util.Min(prev1, prev2)
 }
