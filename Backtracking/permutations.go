@@ -31,5 +31,21 @@ func solveRecPer(arr []int, per []int, isTaken map[int]bool, ans *[][]int) {
 }
 
 func Permute2(nums []int) [][]int {
+	ans := make([][]int, 0)
+	solveRecPer2(nums, 0, &ans)
+	return ans
+}
 
+func solveRecPer2(arr []int, index int, ans *[][]int) {
+	if index >= len(arr) {
+		temp := append([]int{}, arr...)
+		*ans = append(*ans, temp)
+		return
+	}
+
+	for i := index; i < len(arr); i++ {
+		arr[i], arr[index] = arr[index], arr[i]
+		solveRecPer2(arr, index+1, ans)
+		arr[i], arr[index] = arr[index], arr[i]
+	}
 }
