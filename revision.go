@@ -1418,3 +1418,109 @@ func gameOfLife(board [][]int) {
 		}
 	}
 }
+
+func getAllSubsequence(arr []int, target int) [][]int {
+	ans := make([][]int, 0)
+	solveRecSub(arr, target, 0, &ans, []int{}, 0)
+	return ans
+}
+
+func solveRecSub(arr []int, target, sum int, ans *[][]int, temp []int, index int) {
+	if index == len(arr) {
+		if sum == target {
+			new := append([]int{}, temp...)
+			*ans = append(*ans, new)
+		}
+		return
+	}
+
+	// take
+	sum += arr[index]
+	temp = append(temp, arr[index])
+	solveRecSub(arr, target, sum, ans, temp, index+1)
+
+	temp = temp[:len(temp)-1]
+	sum -= arr[index]
+
+	// not take
+	solveRecSub(arr, target, sum, ans, temp, index+1)
+}
+
+func solveNQueens(n int) [][]string {
+	board := make([][]string, n)
+	ans := make([][]string, 0)
+
+	for i := 0; i < n; i++ {
+		board[i] = make([]string, n)
+		for j := 0; j < n; j++ {
+			board[i][j] = "."
+		}
+	}
+
+	generateBoard(0, n, board, &ans)
+	return ans
+}
+
+func generateBoard(col, n int, board [][]string, ans *[][]string) {
+	if col >= n {
+		sol := genAns(board, n)
+		*ans = append(*ans, sol)
+		return
+	}
+
+	for i := 0; i < n; i++ {
+		if canPlaceQueen(i, col, n, board) {
+			board[i][col] = "Q"
+			generateBoard(col+1, n, board, ans)
+			board[i][col] = "."
+		}
+	}
+}
+
+func canPlaceQueen(i, j, n int, board [][]string) bool {
+	// check  row
+	x, y := i, j
+	for y >= 0 {
+		if board[x][y] == "Q" {
+			return false
+		}
+		y--
+	}
+
+	// check top-left diagonal
+	x, y = i, j
+	for x >= 0 && y >= 0 {
+		if board[x][y] == "Q" {
+			return false
+		}
+		x--
+		y--
+	}
+
+	// check bottom-left diagonal
+	x, y = i, j
+	for x < n && y >= 0 {
+		if board[x][y] == "Q" {
+			return false
+		}
+		x++
+		y--
+	}
+
+	return true
+}
+
+func genAns(board [][]string, n int) []string {
+	arr := make([]string, 0)
+
+	for i := 0; i < n; i++ {
+		temp := ""
+		for j := 0; j < n; j++ {
+			temp += board[i][j]
+		}
+
+		arr = append(arr, temp)
+	}
+
+	return arr
+}
