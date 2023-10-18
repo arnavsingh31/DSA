@@ -1,6 +1,9 @@
 package linkedlist
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 func (list *LinkedList) AddNode(num int) {
 	newNode := &ListNode{Val: num}
@@ -257,4 +260,13 @@ func MergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	return head.Next
+}
+
+func PrintList(head *ListNode) {
+	curr := head
+
+	for curr != nil {
+		log.Print(curr.Val)
+		curr = curr.Next
+	}
 }
