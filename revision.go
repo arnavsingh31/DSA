@@ -3,6 +3,7 @@ package main
 import (
 	"container/heap"
 	"math"
+	"sort"
 
 	linkedlist "github.com/arnavsingh31/DSA/LinkedList"
 	trees "github.com/arnavsingh31/DSA/Trees"
@@ -1523,4 +1524,33 @@ func genAns(board [][]string, n int) []string {
 	}
 
 	return arr
+}
+
+type Car struct {
+	Position int
+	Speed    int
+}
+
+func carFleet(target int, position, speed []int) int {
+	arr := make([]Car, 0)
+
+	for i := 0; i < len(position); i++ {
+		arr = append(arr, Car{Position: position[i], Speed: speed[i]})
+	}
+
+	sort.Slice(arr, func(i, j int) bool {
+		return arr[i].Position > arr[j].Position
+	})
+
+	prevTimeToReachTarget := 0.0
+	fleets := 0
+	for _, car := range arr {
+		time := float64(target-car.Position) / float64(car.Speed)
+
+		if time > prevTimeToReachTarget {
+			fleets++
+			prevTimeToReachTarget = time
+		}
+	}
+	return fleets
 }
