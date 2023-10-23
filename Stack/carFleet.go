@@ -67,7 +67,3 @@ func carFleet(target int, postion, speed []int) int {
 	}
 	return fleet
 }
-
-// func main() {
-// 	carFleet(12, []int{10, 8, 0, 5, 3}, []int{2, 4, 1, 1, 3})
-// }
