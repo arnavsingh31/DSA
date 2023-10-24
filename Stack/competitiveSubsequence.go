@@ -9,7 +9,7 @@ package main
 func mostCompetitveSubsequence(arr []int, k int) []int {
 	inc_stack := make([]int, 0)
 
-	for i := 0; i < len(arr)-1; i++ {
+	for i := 0; i < len(arr); i++ {
 		for len(inc_stack) > 0 && (inc_stack[len(inc_stack)-1] > arr[i]) && k-len(inc_stack) < len(arr)-i {
 			inc_stack = inc_stack[:len(inc_stack)-1]
 		}

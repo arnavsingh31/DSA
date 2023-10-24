@@ -1554,3 +1554,32 @@ func carFleet(target int, position, speed []int) int {
 	}
 	return fleets
 }
+
+func removeDuplicateLetter(s string) string {
+	freqMap := make(map[rune]int)
+	stackContains := make(map[rune]bool)
+	stack := make([]rune, 0)
+
+	for _, r := range s {
+		freqMap[r] += 1
+	}
+
+	for _, r := range s {
+		_, exist := stackContains[r]
+
+		for !exist && len(stack) > 0 && stack[len(stack)-1] > r && freqMap[stack[len(stack)-1]] != 0 {
+			char := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			delete(stackContains, char)
+		}
+
+		if !exist {
+			stack = append(stack, r)
+			stackContains[r] = true
+		}
+
+		freqMap[r] -= 1
+	}
+
+	return string(stack)
+}
