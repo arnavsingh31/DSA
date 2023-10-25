@@ -7,12 +7,8 @@ package main
 	T.C--> O(n), S.C---> O(n)
 */
 func dailyTemperature(temp []int) []int {
-	waitDay := []int{}
+	waitDay := make([]int, len(temp))
 	stack := []int{}
-
-	for i := 0; i < len(temp); i++ {
-		waitDay = append(waitDay, 0)
-	}
 
 	for i, t := range temp {
 		for len(stack) > 0 && temp[stack[len(stack)-1]] < t {
