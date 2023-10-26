@@ -1583,3 +1583,25 @@ func removeDuplicateLetter(s string) string {
 
 	return string(stack)
 }
+
+func repeatedNum(arr []int) int {
+	fast := arr[0]
+	slow := arr[0]
+
+	for {
+		fast = arr[arr[fast]]
+		slow = arr[slow]
+
+		if fast == slow {
+			break
+		}
+	}
+
+	fast = arr[0]
+	for slow != fast {
+		slow = arr[slow]
+		fast = arr[fast]
+	}
+
+	return slow
+}
