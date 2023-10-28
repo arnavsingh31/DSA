@@ -1,9 +1,9 @@
-package main
+package twopointer
 
 import "sort"
 
 // fix first number then use two pointer approach to get next 2 numbers of a triplet.
-func threeSum(arr []int) [][]int {
+func ThreeSum(arr []int) [][]int {
 	sort.Ints(arr)
 	res := [][]int{}
 	for i := 0; i < len(arr)-2; i++ {

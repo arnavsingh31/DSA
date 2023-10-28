@@ -1,4 +1,4 @@
-package main
+package twopointer
 
 import (
 	"math"
@@ -9,7 +9,7 @@ import (
 	T.C---> O(n) S.C--> O(n)
 */
 
-func kDifferentPairs(nums []int, k int) int {
+func KDifferentPairs(nums []int, k int) int {
 	numFreqMap := make(map[int]int)
 
 	for _, num := range nums {
@@ -36,7 +36,7 @@ func kDifferentPairs(nums []int, k int) int {
 T.C--> O(nlogn) S.C---> O(1)
 https://leetcode.com/problems/k-diff-pairs-in-an-array/solutions/1756874/c-multiple-approaches-maps-two-pointer/
 */
-func kDifferentPairs2(nums []int, k int) int {
+func KDifferentPairs2(nums []int, k int) int {
 	sort.Ints(nums)
 
 	left, right := 0, 1

@@ -1,4 +1,4 @@
-package main
+package twopointer
 
 // LC #287
 /*
@@ -6,7 +6,7 @@ package main
 	pointer and reset fast pointer to nums[0] and move both pointer at same pace. The point where they meet
 	is the beginning of cycle in nums/our duplicate number.
 */
-func findDuplicate(nums []int) int {
+func FindDuplicate(nums []int) int {
 	slow, fast := nums[0], nums[0]
 
 	for {

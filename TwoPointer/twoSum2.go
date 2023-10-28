@@ -1,6 +1,6 @@
-package main
+package twopointer
 
-func twoSum(arr []int, target int) []int {
+func TwoSum(arr []int, target int) []int {
 	start := 0
 	end := len(arr) - 1
 

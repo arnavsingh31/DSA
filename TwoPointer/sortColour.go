@@ -1,8 +1,8 @@
-package main
+package twopointer
 
 // LeetCode #75
 
-func sortColour(arr []int) {
+func SortColour(arr []int) {
 	colourCountMap := make(map[int]int)
 
 	for _, color := range arr {
@@ -24,7 +24,7 @@ func sortColour(arr []int) {
 }
 
 // 3 pointer approach
-func sortColour2(arr []int) {
+func SortColour2(arr []int) {
 	left, i, right := 0, 0, len(arr)-1
 
 	for i <= right {
