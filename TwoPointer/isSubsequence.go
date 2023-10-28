@@ -1,6 +1,6 @@
-package main
+package twopointer
 
-func isSubsequence(s, t string) bool {
+func IsSubsequence(s, t string) bool {
 	if len(t) < len(s) {
 		return false
 	}

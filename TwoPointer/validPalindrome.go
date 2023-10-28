@@ -1,11 +1,11 @@
-package main
+package twopointer
 
 import (
 	"regexp"
 	"strings"
 )
 
-func validPalindrome(s string) bool {
+func ValidPalindrome(s string) bool {
 	s = strings.ToLower(s)
 	newStr := ""
 
@@ -34,7 +34,7 @@ func validPalindrome(s string) bool {
 }
 
 // this code is shorter version of the code above.
-func isPalindrome(s string) bool {
+func IsPalindrome(s string) bool {
 	s = strings.ToLower(s)
 	for left, right := 0, len(s)-1; left < right; left, right = left+1, right-1 {
 		for left < right && !isValid(s[left]) {
@@ -55,7 +55,7 @@ func isValid(char byte) bool {
 }
 
 // using regexp
-func validPalindrome2(s string) bool {
+func ValidPalindrome2(s string) bool {
 	s = strings.ToLower(s)
 	newStr := clearString(s)
 

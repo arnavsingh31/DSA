@@ -1,9 +1,9 @@
-package main
+package twopointer
 
 import "sort"
 
 // T.C---> O(nlogn) S.C---> O(1) if both arrays are sorted then T.C--> O(n)
-func intersectionOfArrays(nums1, nums2 []int) []int {
+func IntersectionOfArrays(nums1, nums2 []int) []int {
 	ans := []int{}
 
 	sort.Ints(nums1)
@@ -28,7 +28,7 @@ func intersectionOfArrays(nums1, nums2 []int) []int {
 }
 
 // T.C---> O(n)  S.C--->O(n)
-func intersectionOfArrays2(nums1, nums2 []int) []int {
+func IntersectionOfArrays2(nums1, nums2 []int) []int {
 	ans := []int{}
 
 	array_map := make(map[int]bool)
