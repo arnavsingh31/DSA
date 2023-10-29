@@ -1,7 +1,9 @@
-package main
+package slidingwindow
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 // my solution sliding window.
-func minSubArrayLen(target int, arr []int) int {
+func MinSubArrayLen(target int, arr []int) int {
 	if len(arr) == 1 {
 		if arr[0] >= target {
 			return 1
@@ -20,7 +22,7 @@ func minSubArrayLen(target int, arr []int) int {
 			right++
 		} else if sum >= target {
 
-			minLen = getMinLen(right-left+1, minLen)
+			minLen = util.Min(right-left+1, minLen)
 			sum -= arr[left]
 			left++
 		} else {
@@ -35,23 +37,16 @@ func minSubArrayLen(target int, arr []int) int {
 	return minLen
 }
 
-func getMinLen(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
 // actual way to implement sliding window algorithm. Note: ***T.C is O(n) not O(n^2)
 // Read from this for recalling ---> https://leetcode.com/explore/featured/card/leetcodes-interview-crash-course-data-structures-and-algorithms/703/arraystrings/4502/
-func minSubArrayLen2(target int, arr []int) int {
+func MinSubArrayLen2(target int, arr []int) int {
 	left, sum, minLen := 0, 0, len(arr)+1
 
 	for right := 0; right < len(arr); right++ {
 		sum += arr[right]
 
 		for sum >= target {
-			minLen = getMinLen(right-left+1, minLen)
+			minLen = util.Min(right-left+1, minLen)
 			sum -= arr[left]
 			left++
 		}

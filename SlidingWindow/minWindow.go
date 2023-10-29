@@ -1,9 +1,9 @@
-package main
+package slidingwindow
 
 // T.C----->O(m+n) m = length of s and n = length of t. S.C ---->O(m+n).
 // please refere the link for better understanding:
 // https://leetcode.com/problems/minimum-window-substring/editorial/?envType=study-plan-v2&envId=top-interview-150
-func minWindow(s string, t string) string {
+func MinWindow(s string, t string) string {
 
 	sLen := len(s)
 	tLen := len(t)
@@ -65,7 +65,7 @@ type Pair struct {
 	charByte byte
 }
 
-func minWindow2(s, t string) string {
+func MinWindow2(s, t string) string {
 	sLen := len(s)
 	tLen := len(t)
 

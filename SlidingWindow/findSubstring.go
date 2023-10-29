@@ -1,6 +1,6 @@
-package main
+package slidingwindow
 
-func findSubstring(s string, words []string) []int {
+func FindSubstring(s string, words []string) []int {
 	stringLen := len(s)
 	wordArrayLen := len(words)
 	wordLen := len(words[0])
