@@ -1,6 +1,8 @@
-package main
+package slidingwindow
 
-func longestSubstring(s string) int {
+import util "github.com/arnavsingh31/DSA/Util"
+
+func LongestSubstring(s string) int {
 	if len(s) <= 1 {
 		return len(s)
 	}
@@ -18,21 +20,14 @@ func longestSubstring(s string) int {
 			}
 		}
 
-		maxLen = getMaxLen(maxLen, right-left+1)
+		maxLen = util.Max(maxLen, right-left+1)
 	}
 
 	return maxLen
 }
 
-func getMaxLen(a, b int) int {
-	if b > a {
-		return b
-	}
-	return a
-}
-
 // Optimsed
-func longestSubstring2(s string) int {
+func LongestSubstring2(s string) int {
 	if len(s) <= 1 {
 		return len(s)
 	}
@@ -52,7 +47,7 @@ func longestSubstring2(s string) int {
 		}
 		hashMap[curr] = right
 
-		maxLen = getMaxLen(maxLen, right-left+1)
+		maxLen = util.Max(maxLen, right-left+1)
 	}
 
 	return maxLen
