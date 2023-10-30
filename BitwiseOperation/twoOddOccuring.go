@@ -1,7 +1,7 @@
-package main
+package bitwiseoperation
 
 // T.C---> theta(n)
-func twoOddOccuring(arr []int) []int {
+func TwoOddOccuring(arr []int) []int {
 	res := 0
 
 	for _, num := range arr {
