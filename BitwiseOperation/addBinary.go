@@ -1,11 +1,11 @@
-package main
+package bitwiseoperation
 
 import (
 	"strconv"
 )
 
 // Use full-adder implementation
-func addBinaryString(a, b string) string {
+func AddBinaryString(a, b string) string {
 	var result string
 	aIndex := len(a) - 1
 	bIndex := len(b) - 1

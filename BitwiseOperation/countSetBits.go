@@ -1,9 +1,9 @@
-package main
+package bitwiseoperation
 
 import "log"
 
 // T.C---> Theta(d) d= no. of bits from LSB to MSB.
-func count(n int) int {
+func Count(n int) int {
 	count := 0
 	for n > 0 {
 		if n%2 != 0 {
@@ -18,7 +18,7 @@ func count(n int) int {
 	Brian Kerningam's algorithm.
 	T.C--> Theta(no. of set bits)
 */
-func count2(n uint32) int {
+func Count2(n uint32) int {
 	count := 0
 	log.Print(n)
 	for n > 0 {
@@ -48,7 +48,7 @@ func count2(n uint32) int {
 
 */
 
-func count3(n uint32) int {
+func Count3(n uint32) int {
 
 	setBitCountMap := make(map[uint32]int)
 	res := 0

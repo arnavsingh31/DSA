@@ -1,6 +1,6 @@
-package main
+package bitwiseoperation
 
-func missingNumber(arr []int) int {
+func MissingNumber(arr []int) int {
 	n := len(arr)
 	sum := (n * (n + 1)) / 2
 	hasZero := false
@@ -20,7 +20,7 @@ func missingNumber(arr []int) int {
 }
 
 // using bit-operation
-func missingNumber2(arr []int) int {
+func MissingNumber2(arr []int) int {
 	sum := 0
 
 	for i := 0; i <= len(arr); i++ {

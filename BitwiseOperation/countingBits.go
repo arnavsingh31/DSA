@@ -1,8 +1,8 @@
-package main
+package bitwiseoperation
 
 // using Brian Kerningam's algorithm.
 // T.C--> O(n*k) where k is the no of set bits in binary representation of i
-func countBits(n int) []int {
+func CountBits(n int) []int {
 	res := []int{}
 	for i := 0; i <= n; i++ {
 		count := 0
@@ -27,7 +27,7 @@ func countBits(n int) []int {
 	How many 1s are in x? Well, it's the number of 1s in ones[x>>1] PLUS an extra 1 IF the number is odd.
 	To add the missing 1, we can use the binary and operator x&1.
 */
-func countBits2(n int) []int {
+func CountBits2(n int) []int {
 	res := make([]int, n+1)
 
 	for i := 0; i <= n; i++ {

@@ -1,6 +1,6 @@
-package main
+package bitwiseoperation
 
-func isPowOf2(n int) bool {
+func IsPowOf2(n int) bool {
 	if n == 0 {
 		return false
 	}
@@ -16,7 +16,7 @@ func isPowOf2(n int) bool {
 	return true
 }
 
-func isPowerOf2(n int) bool {
+func IsPowerOf2(n int) bool {
 	if n == 0 {
 		return false
 	}
