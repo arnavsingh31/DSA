@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #739
@@ -6,7 +6,7 @@ package main
 	and next higher index in waitDay array.
 	T.C--> O(n), S.C---> O(n)
 */
-func dailyTemperature(temp []int) []int {
+func DailyTemperature(temp []int) []int {
 	waitDay := make([]int, len(temp))
 	stack := []int{}
 

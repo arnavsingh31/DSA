@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #2487
@@ -12,7 +12,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func removeNodes(head *ListNode) *ListNode {
+func RemoveNodes(head *ListNode) *ListNode {
 	dec_stack := make([]*ListNode, 0)
 	currNode := head
 

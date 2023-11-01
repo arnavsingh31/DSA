@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #456
@@ -8,7 +8,7 @@ package main
 	find min[j] (which is our possible arr[i]) & if this min[j] < num (which is arr[k]) then we have a 132
 	pattern and we return true.
 */
-func is132Pattern(arr []int) bool {
+func Is132Pattern(arr []int) bool {
 	min := make([]int, len(arr))
 	stack := []int{}
 

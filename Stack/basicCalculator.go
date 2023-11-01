@@ -1,4 +1,4 @@
-package main
+package stack
 
 type ComputeStack struct {
 	Items []int
@@ -17,7 +17,7 @@ func (cs *ComputeStack) Pop() int {
 	return topVal
 }
 
-func calculate(s string) int {
+func Calculate(s string) int {
 	stack := &ComputeStack{
 		Items: make([]int, 0),
 		Top:   -1,

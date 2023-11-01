@@ -1,4 +1,4 @@
-package main
+package stack
 
 import (
 	"sort"
@@ -44,7 +44,7 @@ type Car struct {
 	Speed    int
 }
 
-func carFleet(target int, postion, speed []int) int {
+func CarFleet(target int, postion, speed []int) int {
 	arr := []Car{}
 
 	for i := 0; i < len(postion); i++ {

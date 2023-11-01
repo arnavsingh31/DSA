@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #769
@@ -7,7 +7,7 @@ package main
 	chunk.
 	TC-->O(n), SC-->O(1)
 */
-func maxChunks(arr []int) int {
+func MaxChunks(arr []int) int {
 	chunks := 0
 	max := 0
 

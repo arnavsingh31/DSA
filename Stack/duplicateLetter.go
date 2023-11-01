@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #316
@@ -6,7 +6,7 @@ package main
 	SC--->O(n)
 	Alternate way of asking question: LC #1081 Smallest Subsequence of Distinct Characters
 */
-func removeDuplicateLetter(s string) string {
+func RemoveDuplicateLetter(s string) string {
 	stack := []rune{}
 	freqMap := make(map[rune]int)
 	stackContainsMap := make(map[rune]bool)

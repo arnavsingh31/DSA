@@ -1,7 +1,7 @@
-package main
+package stack
 
 // LC #20 T.C--->O(n), S.C--->O(n)
-func isValid(s string) bool {
+func IsValid(s string) bool {
 	if len(s) == 0 || len(s)%2 != 0 {
 		return false
 	}

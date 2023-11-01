@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #1475
@@ -6,7 +6,7 @@ package main
 	SC--->O(n)
 	Using monotonic increasing stack
 */
-func finalPrice(prices []int) []int {
+func FinalPrice(prices []int) []int {
 	ans := make([]int, len(prices))
 	inc_stack := make([]int, len(prices))
 
