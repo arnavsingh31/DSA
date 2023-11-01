@@ -1,4 +1,4 @@
-package main
+package stack
 
 import "math"
 
@@ -8,7 +8,7 @@ import "math"
 	SC--->O(n)
 	Using monotonic increasing stack
 */
-func sumSubarrayMins(arr []int) int {
+func SumSubarrayMins(arr []int) int {
 	MOD := int(math.Pow10(9) + 7)
 	sum := 0
 	inc_stack := make([]int, len(arr))

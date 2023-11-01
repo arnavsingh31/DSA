@@ -1,4 +1,6 @@
-package main
+package stack
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #962
@@ -6,12 +8,12 @@ package main
 	SC---> O(1)
 	Bruteforce approach
 */
-func maxWidthRamp(arr []int) int {
+func MaxWidthRamp(arr []int) int {
 	max := -1
 	for i := 0; i < len(arr); i++ {
 		for j := i + 1; j < len(arr); j++ {
 			if arr[i] <= arr[j] {
-				max = maxRamp(max, j-i)
+				max = util.Max(max, j-i)
 			}
 		}
 	}
@@ -24,14 +26,7 @@ func maxWidthRamp(arr []int) int {
 	Monotonic stack approach
 */
 
-func maxRamp(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func maxWidthRamp2(arr []int) int {
+func MaxWidthRamp2(arr []int) int {
 	max := -1
 	stack := make([]int, 0)
 
@@ -43,7 +38,7 @@ func maxWidthRamp2(arr []int) int {
 
 	for j := len(arr) - 1; j >= 0; j-- {
 		for len(stack) > 0 && arr[j] >= arr[stack[len(stack)-1]] {
-			max = maxRamp(max, j-stack[len(stack)-1])
+			max = util.Max(max, j-stack[len(stack)-1])
 			stack = stack[:len(stack)-1]
 		}
 	}

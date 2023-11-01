@@ -1,11 +1,11 @@
-package main
+package stack
 
 /*
 	LC #2104
 	TC---> O(n)
 	SC ---> O(n)
 */
-func subArrayRanges(nums []int) int64 {
+func SubArrayRanges(nums []int) int64 {
 	var sum int64
 	sum = 0
 	stack := make([]int, 0)
@@ -42,7 +42,7 @@ func subArrayRanges(nums []int) int64 {
 }
 
 // refactored code.
-func subArrayRanges2(nums []int) int64 {
+func SubArrayRanges2(nums []int) int64 {
 	var sum int64
 	sum = 0
 	dec_stack := make([]int, 0)

@@ -1,6 +1,6 @@
-package main
+package stack
 
-func previousGreater(arr []int) []int {
+func PreviousGreater(arr []int) []int {
 	stack := []int{}
 	prevGr := make([]int, 0)
 

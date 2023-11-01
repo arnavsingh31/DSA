@@ -1,7 +1,7 @@
-package main
+package stack
 
 // LC #503
-func nextGreaterCircular(nums []int) []int {
+func NextGreaterCircular(nums []int) []int {
 	nextGr := []int{}
 	stack := []int{}
 

@@ -1,7 +1,7 @@
-package main
+package stack
 
 // LC #496
-func nextGreaterElement(nums1, nums2 []int) []int {
+func NextGreaterElement(nums1, nums2 []int) []int {
 	nextGr := map[int]int{}
 	stack := []int{}
 

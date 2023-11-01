@@ -1,8 +1,10 @@
-package main
+package stack
 
 import (
 	"math"
 	"sort"
+
+	util "github.com/arnavsingh31/DSA/Util"
 )
 
 /*
@@ -10,29 +12,15 @@ LC #581
 TC--> O(n^2)
 SC--> O(1)
 */
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func findUnsortedSubarray1(arr []int) int {
+func FindUnsortedSubarray1(arr []int) int {
 	left := len(arr)
 	right := 0
 
 	for i := 0; i < len(arr); i++ {
 		for j := i + 1; j < len(arr); j++ {
 			if arr[j] < arr[i] {
-				left = min(left, i)
-				right = max(right, j)
+				left = util.Min(left, i)
+				right = util.Max(right, j)
 			}
 		}
 	}
@@ -47,7 +35,7 @@ func findUnsortedSubarray1(arr []int) int {
 TC--> O(nlogn + n) ~ O(nlogn)
 SC--> O(n) since we are making copy of original array
 */
-func findUnsortedSubarray2(arr []int) int {
+func FindUnsortedSubarray2(arr []int) int {
 	arrSorted := make([]int, len(arr))
 	copy(arrSorted, arr)
 	sort.Ints(arrSorted)
@@ -56,8 +44,8 @@ func findUnsortedSubarray2(arr []int) int {
 	right := 0
 	for i := 0; i < len(arr); i++ {
 		if arr[i] != arrSorted[i] {
-			left = min(left, i)
-			right = max(right, i)
+			left = util.Min(left, i)
+			right = util.Max(right, i)
 		}
 	}
 
@@ -72,13 +60,13 @@ func findUnsortedSubarray2(arr []int) int {
 	SC---> O(n) using stack
 */
 
-func findUnsortedSubarray3(arr []int) int {
+func FindUnsortedSubarray3(arr []int) int {
 	stack := []int{}
 	left := len(arr)
 	right := 0
 	for i, num := range arr {
 		for len(stack) > 0 && arr[stack[len(stack)-1]] > num {
-			left = min(left, stack[len(stack)-1])
+			left = util.Min(left, stack[len(stack)-1])
 			stack = stack[:len(stack)-1]
 		}
 
@@ -91,7 +79,7 @@ func findUnsortedSubarray3(arr []int) int {
 
 	for i := len(arr) - 1; i >= 0; i-- {
 		for len(stack) > 0 && arr[stack[len(stack)-1]] < arr[i] {
-			right = max(right, stack[len(stack)-1])
+			right = util.Max(right, stack[len(stack)-1])
 			stack = stack[:len(stack)-1]
 		}
 
@@ -110,7 +98,7 @@ SC---> O(1)
 Watch this: https://leetcode.com/problems/shortest-unsorted-continuous-subarray/editorial/comments/562497
 for reference.
 */
-func findUnsortedSubarray4(arr []int) int {
+func FindUnsortedSubarray4(arr []int) int {
 	var left, right int
 	min := math.MaxInt
 	max := math.MinInt

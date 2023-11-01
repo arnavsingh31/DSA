@@ -1,11 +1,11 @@
-package main
+package stack
 
 import (
 	"strings"
 )
 
 // LC #71
-func simplifyPath(path string) string {
+func SimplifyPath(path string) string {
 	stack := []string{}
 
 	for _, str := range strings.Split(path, "/") {
@@ -19,7 +19,7 @@ func simplifyPath(path string) string {
 	return "/" + strings.Join(stack, "/")
 }
 
-func simplifyPath2(path string) string {
+func SimplifyPath2(path string) string {
 	stack := []string{}
 	curr := ""
 	for _, char := range path + "/" {

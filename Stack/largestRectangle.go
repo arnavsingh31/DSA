@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #84
@@ -12,7 +12,7 @@ type Dimensions struct {
 	Index  int
 }
 
-func largestRectangleArea(heights []int) int {
+func LargestRectangleArea(heights []int) int {
 	stack := make([]Dimensions, 0)
 	maxArea := 0
 
@@ -52,7 +52,7 @@ func calculateMaxArea(height, width, maxArea int) int {
 	for every histogram find previous smaller and next smaller histogram index (which will give the range upto
 	which our currents histogram can expand i.e required width).
 */
-func largestRectangleArea2(heights []int) int {
+func LargestRectangleArea2(heights []int) int {
 	nextSmaller := make([]int, 0)
 	prevSmaller := make([]int, 0)
 	stack := []int{}
@@ -83,7 +83,3 @@ func largestRectangleArea2(heights []int) int {
 	}
 	return maxArea
 }
-
-// func main() {
-// 	log.Print(largestRectangleArea2([]int{2, 1, 5, 6, 2, 3}))
-// }

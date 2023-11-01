@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #1673
@@ -6,7 +6,7 @@ package main
 	SC--->O(n) (if we exclude result array which is same stack then complexity reduces to O(1))
 	Using monotonic increasing stack
 */
-func mostCompetitveSubsequence(arr []int, k int) []int {
+func MostCompetitveSubsequence(arr []int, k int) []int {
 	inc_stack := make([]int, 0)
 
 	for i := 0; i < len(arr); i++ {

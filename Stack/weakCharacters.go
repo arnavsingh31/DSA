@@ -1,4 +1,4 @@
-package main
+package stack
 
 import (
 	"sort"
@@ -9,7 +9,7 @@ LC #1996
 TC---> O(nlogn)
 SC---> O(1)
 */
-func numberOfWeakCharacters(properties [][]int) int {
+func NumberOfWeakCharacters(properties [][]int) int {
 	sort.Slice(properties, func(i, j int) bool {
 		if properties[i][0] != properties[j][0] {
 			// sorting on basis of decreasing attack attribute if they are not equal

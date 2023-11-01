@@ -1,4 +1,4 @@
-package main
+package stack
 
 import (
 	"strconv"
@@ -22,7 +22,7 @@ func (s *RPNStack) Pop() int {
 }
 
 // LC #150
-func evalRPN(tokens []string) int {
+func EvalRPN(tokens []string) int {
 	arithematicOperatorMap := map[string]func(int, int) int{
 		"+": func(i1, i2 int) int { return i1 + i2 },
 		"-": func(i1, i2 int) int { return i1 - i2 },

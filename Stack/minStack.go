@@ -1,6 +1,10 @@
-package main
+package stack
 
-import "math"
+import (
+	"math"
+
+	util "github.com/arnavsingh31/DSA/Util"
+)
 
 // Implemented using singly-linked list
 type MinStack struct {
@@ -22,7 +26,7 @@ func MinStackConstructor() MinStack {
 }
 
 func (ms *MinStack) Push(val int) {
-	min := Min(ms.head.Min, val)
+	min := util.Min(ms.head.Min, val)
 	ms.head = &Node{
 		Val:  val,
 		Prev: ms.head,
@@ -30,12 +34,6 @@ func (ms *MinStack) Push(val int) {
 	}
 }
 
-func Min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
 func (ms *MinStack) Pop() {
 	tempNode := ms.head.Prev
 	ms.head.Prev = nil

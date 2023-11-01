@@ -1,10 +1,12 @@
-package main
+package stack
+
+import util "github.com/arnavsingh31/DSA/Util"
 
 /*
 	LC #1574
 	Explanation:https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/solutions/830480/c-o-n-sliding-window-explanation-with-illustrations/
 */
-func findLengthOfSubArray(arr []int) int {
+func FindLengthOfSubArray(arr []int) int {
 	left := 0
 	right := len(arr) - 1
 
@@ -18,13 +20,13 @@ func findLengthOfSubArray(arr []int) int {
 	for right > left && arr[right] >= arr[right-1] {
 		right--
 	}
-	res := minLen(right, len(arr)-left-1)
+	res := util.Min(right, len(arr)-left-1)
 
 	i := 0
 	j := right
 	for i <= left && j <= len(arr)-1 {
 		if arr[j] >= arr[i] {
-			res = minLen(res, j-i-1)
+			res = util.Min(res, j-i-1)
 			i++
 		} else {
 			j++
@@ -33,14 +35,3 @@ func findLengthOfSubArray(arr []int) int {
 
 	return res
 }
-
-func minLen(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-// func main() {
-// 	log.Print(findLengthOfSubArray([]int{5, 4, 3, 2, 1}))
-// }

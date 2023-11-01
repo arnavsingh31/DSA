@@ -1,4 +1,4 @@
-package main
+package stack
 
 /*
 	LC #402
@@ -39,7 +39,7 @@ package main
 	But since 3 has more weightage since it more siginificant digit than 8, so we remove 3. We get resulting
 	number = 2181
 */
-func removeKDigits(s string, k int) string {
+func RemoveKDigits(s string, k int) string {
 	if len(s) == k {
 		return "0"
 	}
