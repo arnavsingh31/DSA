@@ -15,6 +15,12 @@ func SearchInRotatedSortedArray(nums []int, target int) bool {
 			return true
 		}
 
+		if nums[mid] == nums[left] && nums[mid] == nums[right] {
+			left++
+			right--
+			continue
+		}
+
 		// left array is sorted
 		if nums[left] <= nums[mid] {
 			if nums[left] <= target && target < nums[mid] {
