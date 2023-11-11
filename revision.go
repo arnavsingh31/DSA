@@ -1617,3 +1617,20 @@ func isSameTree(p, q *trees.Node) bool {
 
 	return isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 }
+
+// binary search method (find max int which on squaring is less than equal to n)
+func sqrtOfInt(n int) int {
+	left, right := 1, n
+
+	for left < right {
+		mid := (left + right) / 2
+
+		if mid*mid <= n {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+
+	return right
+}
