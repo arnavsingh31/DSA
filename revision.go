@@ -1634,3 +1634,22 @@ func sqrtOfInt(n int) int {
 
 	return right
 }
+
+func minInRotatedSortedArray(arr []int) int {
+	left, right := 0, len(arr)-1
+	ans := math.MaxInt
+
+	for left <= right {
+		mid := (left + right) / 2
+
+		if arr[mid] >= arr[left] {
+			ans = util.Min(ans, arr[left])
+			left = mid + 1
+		} else {
+			ans = util.Min(ans, arr[mid])
+			right = mid - 1
+		}
+	}
+
+	return ans
+}
