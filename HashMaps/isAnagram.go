@@ -1,5 +1,9 @@
 package hashmaps
 
+/*
+	TC--->O(n)
+	SC--->O(n)
+*/
 func IsAnagram(s, t string) bool {
 	if len(s) != len(t) {
 		return false
@@ -9,17 +13,8 @@ func IsAnagram(s, t string) bool {
 	mapT := make(map[string]int)
 
 	for i := 0; i < len(s); i++ {
-		if val, exist := mapS[string(s[i])]; exist {
-			mapS[string(s[i])] = val + 1
-		} else {
-			mapS[string(s[i])] = 1
-		}
-
-		if val, exist := mapT[string(t[i])]; exist {
-			mapT[string(t[i])] = val + 1
-		} else {
-			mapT[string(t[i])] = 1
-		}
+		mapS[string(s[i])] += 1
+		mapT[string(t[i])] += 1
 	}
 
 	for key, value := range mapS {
