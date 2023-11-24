@@ -1653,3 +1653,19 @@ func minInRotatedSortedArray(arr []int) int {
 
 	return ans
 }
+
+func canJump(arr []int) bool {
+	n := len(arr)
+	max_reach := arr[0]
+	lastIndex := n - 1
+
+	for i := 0; i <= max_reach; i++ {
+		if i+arr[i] >= lastIndex {
+			return true
+		} else {
+			max_reach = util.Max(max_reach, i+arr[i])
+		}
+	}
+
+	return false
+}
