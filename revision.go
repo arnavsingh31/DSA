@@ -1669,3 +1669,21 @@ func canJump(arr []int) bool {
 
 	return false
 }
+
+func twoSum(nums []int, target int) []int {
+	complementMap := make(map[int]int)
+
+	for i := 0; i < len(nums); i++ {
+		complementMap[nums[i]] = i
+	}
+
+	for i := 0; i < len(nums); i++ {
+		complement := target - nums[i]
+
+		if index, exist := complementMap[complement]; exist && index != i {
+			return []int{index, i}
+		}
+	}
+
+	return []int{}
+}
