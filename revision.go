@@ -1716,3 +1716,28 @@ func candy(ratings []int) int {
 
 	return totalCandy
 }
+
+func buyChocolate(prices []int, money int) int {
+	savings := -1
+	ptr1 := 0
+	ptr2 := len(prices) - 1
+
+	for i := 0; i < len(prices); i++ {
+		cost := prices[ptr1] + prices[ptr2]
+		if money-cost > 0 {
+			savings = util.Max(savings, money-cost)
+		}
+
+		if prices[ptr1] > prices[ptr2] {
+			ptr1++
+		} else {
+			ptr2--
+		}
+	}
+
+	if savings < 0 {
+		return money
+	}
+
+	return savings
+}
