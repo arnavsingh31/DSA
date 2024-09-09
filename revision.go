@@ -1687,3 +1687,32 @@ func twoSum(nums []int, target int) []int {
 
 	return []int{}
 }
+
+func candy(ratings []int) int {
+	candyArr := make([]int, len(ratings))
+
+	for i := 0; i < len(ratings); i++ {
+		candyArr[i] = 1
+	}
+
+	// check left neighbour
+	for i := 1; i < len(ratings)-1; i++ {
+		if ratings[i] > ratings[i-1] {
+			candyArr[i] = candyArr[i-1] + 1
+		}
+	}
+
+	// check right neighbour
+	for i := len(ratings) - 2; i >= 0; i-- {
+		if ratings[i] > ratings[i+1] && candyArr[i] <= candyArr[i+1] {
+			candyArr[i] = candyArr[i+1] + 1
+		}
+	}
+
+	totalCandy := 0
+	for i := 0; i < len(candyArr); i++ {
+		totalCandy += candyArr[i]
+	}
+
+	return totalCandy
+}
