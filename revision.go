@@ -1741,3 +1741,41 @@ func buyChocolate(prices []int, money int) int {
 
 	return savings
 }
+
+func firstAndLastIndex(arr []int, target int) []int {
+	start, end := 0, len(arr)-1
+	firstPos, lastPos := -1, -1
+
+	// first find the first occurence of target
+	for start <= end {
+		mid := (start + end) / 2
+
+		if arr[mid] == target {
+			firstPos = mid
+			end = mid - 1
+		} else if arr[mid] > target {
+			end = mid - 1
+		} else {
+			start = mid + 1
+		}
+	}
+
+	// reset the positions
+	start, end = 0, len(arr)-1
+
+	// now find the last occurence of the target
+	for start <= end {
+		mid := (start + end) / 2
+
+		if arr[mid] == target {
+			lastPos = mid
+			start = mid + 1
+		} else if arr[mid] > target {
+			end = mid - 1
+		} else {
+			start = start + 1
+		}
+	}
+
+	return []int{firstPos, lastPos}
+}
