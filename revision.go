@@ -1779,3 +1779,27 @@ func firstAndLastIndex(arr []int, target int) []int {
 
 	return []int{firstPos, lastPos}
 }
+
+func completeCircuit(cost, gas []int) int {
+	currGain := 0
+	totalGain := 0
+	possiblePos := -1
+
+	for i := 0; i < len(gas); i++ {
+		totalGain += gas[i] - cost[i]
+		currGain += gas[i] - cost[i]
+
+		if currGain >= 0 && possiblePos == -1 {
+			possiblePos = i
+		} else if currGain < 0 {
+			possiblePos = -1
+			currGain = 0
+		}
+	}
+
+	if totalGain >= 0 {
+		return possiblePos
+	}
+
+	return -1
+}
