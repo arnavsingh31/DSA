@@ -1819,3 +1819,22 @@ func addOne(digits []int) []int {
 
 	return digits
 }
+
+func maxWaterCapacityContainer(heights []int) int {
+	start := 0
+	end := len(heights) - 1
+	maxArea := 0
+
+	for start < end {
+		short := util.Min(heights[start], heights[end])
+		maxArea = util.Max(maxArea, (end-start)*short)
+
+		if heights[start] < heights[end] {
+			start++
+		} else {
+			end--
+		}
+	}
+
+	return maxArea
+}
