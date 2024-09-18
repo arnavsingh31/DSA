@@ -1880,3 +1880,21 @@ func prductExceptSelf2(nums []int) []int {
 
 	return ans
 }
+
+func removeDup1(nums []int) int {
+	if len(nums) == 1 {
+		return 1
+	}
+
+	prevNum := nums[0]
+	ptr := 1
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != prevNum {
+			nums[ptr] = nums[i]
+			prevNum = nums[i]
+			ptr++
+		}
+	}
+	return ptr
+}
