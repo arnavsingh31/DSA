@@ -1838,3 +1838,45 @@ func maxWaterCapacityContainer(heights []int) int {
 
 	return maxArea
 }
+
+func productExceptSelf(nums []int) []int {
+	ans := make([]int, len(nums))
+	prefixProduct := make([]int, len(nums))
+	postfixProduct := make([]int, len(nums))
+
+	for i := 0; i < len(prefixProduct); i++ {
+		prefixProduct[i] = 1
+		postfixProduct[i] = 1
+	}
+
+	for i := 0; i < len(nums); i++ {
+		prefixProduct[i] = prefixProduct[i-1] * nums[i-1]
+	}
+
+	for i := len(nums) - 2; i > 0; i-- {
+		postfixProduct[i] = postfixProduct[i+1] * nums[i+1]
+	}
+
+	for i := 0; i < len(postfixProduct); i++ {
+		ans[i] = prefixProduct[i] * postfixProduct[i]
+	}
+
+	return ans
+}
+
+func prductExceptSelf2(nums []int) []int {
+	ans := make([]int, len(nums))
+	temp := 1
+
+	ans[0] = 1
+	for i := 1; i < len(nums); i++ {
+		ans[i] = nums[i-1] * ans[i-1]
+	}
+
+	for i := len(nums) - 1; i >= 0; i-- {
+		ans[i] = ans[i] * temp
+		temp = nums[i] * temp
+	}
+
+	return ans
+}
