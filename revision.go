@@ -1898,3 +1898,22 @@ func removeDup1(nums []int) int {
 	}
 	return ptr
 }
+
+func removeDup2(nums []int) int {
+	ptr := 1
+	count := 1
+
+	for i := 1; i < len(nums); i++ {
+		if nums[i] == nums[i-1] && count < 2 {
+			nums[ptr] = nums[i]
+			ptr++
+			count++
+		} else if nums[i] != nums[i-1] {
+			nums[ptr] = nums[i]
+			ptr++
+			count = 1
+		}
+	}
+
+	return ptr
+}
