@@ -1936,3 +1936,36 @@ func searchAndInsert(nums []int, target int) int {
 
 	return start
 }
+
+func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
+	ans := make([][]int, 0)
+
+	for i := 0; i < len(nums); i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+
+		j := i + 1
+		k := len(nums) - 1
+
+		for j < k {
+			sum := nums[i] + nums[j] + nums[k]
+
+			if sum == 0 {
+				ans = append(ans, []int{nums[i], nums[j], nums[k]})
+				j++
+
+				for nums[j] == nums[j-1] && j < k {
+					j++
+				}
+			} else if sum > 0 {
+				k--
+			} else {
+				j++
+			}
+		}
+	}
+
+	return ans
+}
