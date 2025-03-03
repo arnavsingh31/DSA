@@ -2008,3 +2008,65 @@ func threeSumClosest(nums []int, target int) int {
 
 	return closestSum
 }
+
+func boundaryTraversalInBinaryTree(root *trees.Node) []int {
+	ans := make([]int, 0)
+	if root == nil {
+		return ans
+	}
+
+	var traverseLeftBoundary func(*trees.Node)
+	var traverseRigthBoundary func(*trees.Node)
+	var traverseLeafNode func(*trees.Node)
+
+	right := make([]int, 0)
+
+	traverseLeftBoundary = func(node *trees.Node) {
+		if node == nil || (node.Left == nil && node.Right == nil) {
+			return
+		}
+
+		ans = append(ans, node.Val)
+
+		if node.Left != nil {
+			traverseLeftBoundary(node.Left)
+		} else {
+			traverseLeftBoundary(node.Right)
+		}
+	}
+
+	traverseRigthBoundary = func(node *trees.Node) {
+		if node == nil || (node.Left == nil && node.Right == nil) {
+			return
+		}
+
+		right = append(right, node.Val)
+
+		if node.Right != nil {
+			traverseRigthBoundary(node.Right)
+		} else {
+			traverseRigthBoundary(node.Left)
+		}
+	}
+
+	traverseLeafNode = func(node *trees.Node) {
+		if node.Left == nil && node.Right == nil {
+			ans = append(ans, node.Val)
+		}
+
+		traverseLeafNode(node.Left)
+		traverseLeafNode(node.Right)
+	}
+
+	traverseLeftBoundary(root)
+
+	traverseLeafNode(root)
+
+	traverseRigthBoundary(root)
+	// reverse the right boundary nodes then add them to ans array
+	for i := len(right) - 1; i >= 0; i-- {
+		ans = append(ans, right[i])
+	}
+
+	return ans
+}

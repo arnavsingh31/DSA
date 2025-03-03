@@ -16,13 +16,13 @@ func OddEvenList(head *ListNode) *ListNode {
 		prevNode.Next = currNode.Next
 		prevNode = currNode
 		currNode = currNode.Next
-	}
 
-	if count%2 == 0 {
-		prevNode.Next = dummyNode.Next
-	} else {
-		prevNode.Next = currNode.Next
-		currNode.Next = dummyNode.Next
+		if count%2 == 0 {
+			prevNode.Next = dummyNode.Next
+		} else {
+			prevNode.Next = currNode.Next
+			currNode.Next = dummyNode.Next
+		}
 	}
 
 	return head
